@@ -17,6 +17,12 @@ class node_list():
         except AttributeError:
             self.nodes = [oNode]
 
+    def get_node(self, sNodeName):
+        for oNode in self.nodes:
+            if oNode.name == sNodeName:
+                return oNode
+        return None
+
 
 class edge():
 

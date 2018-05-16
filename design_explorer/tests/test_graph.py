@@ -103,7 +103,7 @@ class testEdgeMethods(unittest.TestCase):
         oNodeList = graph.node_list()
         self.assertEqual(oNodeList.nodes, None)
 
-    def test_node_list_add_node(self):
+    def test_node_list_method_add_node(self):
         oNodeList = graph.node_list()
         oNodeList.add_node(graph.node('N1'))
         oNodeList.add_node(graph.node('N2'))
@@ -111,6 +111,16 @@ class testEdgeMethods(unittest.TestCase):
         self.assertEqual(oNodeList.nodes[0].name, 'N1')
         self.assertEqual(oNodeList.nodes[1].name, 'N2')
         self.assertEqual(oNodeList.nodes[2].name, 'N3')
-      
+
+    def test_node_list_method_get_node(self):
+        oNodeList = graph.node_list()
+        oNodeList.add_node(graph.node('N1'))
+        oNodeList.add_node(graph.node('N2'))
+        oNodeList.add_node(graph.node('N3'))
+        self.assertEqual(oNodeList.get_node('N1').name, 'N1')
+        self.assertEqual(oNodeList.get_node('N2').name, 'N2')
+        self.assertEqual(oNodeList.get_node('N3').name, 'N3')
+        self.assertEqual(oNodeList.get_node('N564'), None)
+
 if __name__ == '__main__':
     unittest.main()
