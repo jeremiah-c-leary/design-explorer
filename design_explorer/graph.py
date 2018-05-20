@@ -44,18 +44,14 @@ class trace():
             self.path = [oEdge]
 
     def get_expanded_path(self):
-        lExpandedPath = None
+
+        lExpandedPath = []
+
         for oPath in self.path:
             if isinstance(oPath, edge):
-                try:
-                    lExpandedPath.append(oPath)
-                except AttributeError:
-                    lExpandedPath = [oPath]
+                lExpandedPath.append(oPath)
             elif isinstance(oPath, trace):
                 lTracePath = oPath.get_expanded_path()
-                try:
-                    lExpandedPath.extend(lTracePath)
-                except AttributeError:
-                    lExpandedPath = lTracePath
+                lExpandedPath.extend(lTracePath)
 
         return lExpandedPath
