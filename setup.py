@@ -27,7 +27,7 @@ setup(name='design-explorer',
   packages=find_packages(),
   zip_safe=False,
   test_suite='nose.collector',
-  tests_require=['nose']
+  tests_require=['nose'],
   keywords=['vhdl', 'verilog']
 )
         
