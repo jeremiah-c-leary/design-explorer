@@ -6,9 +6,8 @@ def get_participant_subnodes(lNodes):
 
     lBoxes = []
     for oNode in lNodes:
-        if oNode.subNode:
-            if oNode.subNode not in lBoxes:
-                lBoxes.append(oNode.subNode)
+        if oNode.subNode and oNode.subNode not in lBoxes:
+            lBoxes.append(oNode.subNode)
 
     return lBoxes
 
