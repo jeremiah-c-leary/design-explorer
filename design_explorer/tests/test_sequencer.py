@@ -1,4 +1,3 @@
-import os
 
 import unittest
 from design_explorer import sequencer
@@ -51,7 +50,7 @@ class testSequencer(unittest.TestCase):
         dExpected.append('@enduml')
 
         self.assertEqual(dExpected, sequencer.create_plantuml_sequence_diagram(oTrace, oNodeList))
-        
+
 
     def test_edge_and_trace_diagram_creation(self):
         oNodeList = graph.node_list()

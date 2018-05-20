@@ -1,6 +1,4 @@
 
-import graph
-
 
 def get_participant_subnodes(lNodes):
 

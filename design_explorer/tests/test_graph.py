@@ -1,4 +1,3 @@
-import os
 
 import unittest
 from design_explorer import graph
@@ -10,7 +9,7 @@ class testEdgeMethods(unittest.TestCase):
         oNode = graph.node()
         self.assertEqual(oNode.name, None)
         self.assertEqual(oNode.subNode, None)
-     
+
     def test_node_class_parameters(self):
         oNode = graph.node('name', 'subNode')
         self.assertEqual(oNode.name, 'name')
