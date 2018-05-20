@@ -102,3 +102,7 @@ venv.bak/
 
 # mypy
 .mypy_cache/
+
+# design-explorer specific files
+design_explorer/tests/de_sequencer/t1_actual_output.uml
+design_explorer/tests/de_sequencer/t2_actual_output.uml

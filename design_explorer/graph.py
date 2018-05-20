@@ -32,9 +32,28 @@ class edge():
         self.name = name
 
 
-class trace():
+class edge_list():
 
     def __init__(self):
+        self.edges = None
+
+    def add_edge(self, oEdge):
+        try:
+            self.edges.append(oEdge)
+        except AttributeError:
+            self.edges = [oEdge]
+
+    def get_edge(self, sEdgeName):
+        for oEdge in self.edges:
+            if oEdge.name == sEdgeName:
+                return oEdge
+        return None
+
+
+class trace():
+
+    def __init__(self, sName):
+        self.name = sName
         self.path = None
 
     def add_to_path(self, oEdge):
@@ -55,3 +74,21 @@ class trace():
                 lExpandedPath.extend(lTracePath)
 
         return lExpandedPath
+
+
+class trace_list():
+
+    def __init__(self):
+        self.traces = None
+
+    def add_trace(self, oTrace):
+        try:
+            self.traces.append(oTrace)
+        except AttributeError:
+            self.traces = [oTrace]
+
+    def get_trace(self, sTraceName):
+        for oTrace in self.traces:
+            if oTrace.name == sTraceName:
+                return oTrace
+        return None
