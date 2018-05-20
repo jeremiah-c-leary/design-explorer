@@ -3,14 +3,12 @@ import graph
 
 
 def get_participant_subnodes(lNodes):
-    lBoxes = None
+
+    lBoxes = []
     for oNode in lNodes:
         if oNode.subNode:
-            if lBoxes:
-                if oNode.subNode not in lBoxes:
-                    lBoxes.append(oNode.subNode)
-            else:
-                lBoxes = [oNode.subNode]
+            if oNode.subNode not in lBoxes:
+                lBoxes.append(oNode.subNode)
 
     return lBoxes
 
