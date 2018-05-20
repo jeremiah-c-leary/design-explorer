@@ -88,7 +88,7 @@ class testSequencer(unittest.TestCase):
 
         self.assertEqual(dExpected, sequencer.create_plantuml_sequence_diagram(oTrace1, oNodeList))
 
-      
+
     def test_edge_and_trace_diagram_creation_with_boxes(self):
         oNodeList = graph.node_list()
         oNodeList.add_node(graph.node('N1'))
