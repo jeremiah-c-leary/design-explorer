@@ -1,17 +1,19 @@
 
 import graph
 
+
 def get_participant_subnodes(lNodes):
     lBoxes = None
-    for oNode in lNodes: 
+    for oNode in lNodes:
         if oNode.subNode:
             if lBoxes:
-                if not oNode.subNode in lBoxes:
+                if oNode.subNode not in lBoxes:
                     lBoxes.append(oNode.subNode)
             else:
                 lBoxes = [oNode.subNode]
-           
+
     return lBoxes
+
 
 def get_participants(oTrace, oNodeList, lEdges):
 
@@ -19,24 +21,16 @@ def get_participants(oTrace, oNodeList, lEdges):
     for oEdge in lEdges:
         oSourceNode = oNodeList.get_node(oEdge.source)
         oTargetNode = oNodeList.get_node(oEdge.target)
-        if not oSourceNode in lParticipants:
+        if oSourceNode not in lParticipants:
             lParticipants.append(oSourceNode)
-        if not oTargetNode in lParticipants:
+        if oTargetNode not in lParticipants:
             lParticipants.append(oTargetNode)
     return lParticipants
 
 
-def create_plantuml_sequence_diagram(oTrace, oNodeList):
+def build_participant_section(lBoxes, lParticipants):
 
-    lDiagram = ['@startuml']
-    lDiagram.append('')
-
-    lEdges = oTrace.get_expanded_path()
-
-    lParticipants = get_participants(oTrace, oNodeList, lEdges) 
-
-    lBoxes = get_participant_subnodes(lParticipants)
-
+    lDiagram = []
     dBoxes = {}
     if lBoxes:
         for sBox in lBoxes:
@@ -48,7 +42,7 @@ def create_plantuml_sequence_diagram(oTrace, oNodeList):
 
     lUsedNodes = []
     for oParticipant in lParticipants:
-        if not oParticipant.name in lUsedNodes:
+        if oParticipant.name not in lUsedNodes:
             if not oParticipant.subNode:
                 lDiagram.append(' '.join(['participant', oParticipant.name]))
                 lUsedNodes.append(oParticipant.name)
@@ -60,9 +54,31 @@ def create_plantuml_sequence_diagram(oTrace, oNodeList):
                 lDiagram.append('end box')
 
     lDiagram.append('')
+    return lDiagram
 
+
+def build_sequence_section(lEdges):
+
+    lDiagram = []
     for oEdge in lEdges:
         lDiagram.append(' '.join([oEdge.source, '->', oEdge.target, ':', oEdge.name]))
+    return lDiagram
+
+
+def create_plantuml_sequence_diagram(oTrace, oNodeList):
+
+    lDiagram = ['@startuml']
+    lDiagram.append('')
+
+    lEdges = oTrace.get_expanded_path()
+
+    lParticipants = get_participants(oTrace, oNodeList, lEdges)
+
+    lBoxes = get_participant_subnodes(lParticipants)
+
+    lDiagram.extend(build_participant_section(lBoxes, lParticipants))
+
+    lDiagram.extend(build_sequence_section(lEdges))
 
     lDiagram.append('')
     lDiagram.append('@enduml')
