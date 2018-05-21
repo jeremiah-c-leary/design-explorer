@@ -83,15 +83,13 @@ def build_trace_list(dTracefile):
     return oTraceList
 
 
-def process_trace(oTrace, oEdgeList):
-
-    lNewTrace = graph.trace(oTrace.name)
+def process_trace(lTrace, oTrace, oEdgeList, oTraceList):
 
     for sPath in oTrace.path:
         if oEdgeList.get_edge(sPath):
-            lNewTrace.add_to_path(oEdgeList.get_edge(sPath))
-
-    return lNewTrace
+            lTrace.add_to_path(oEdgeList.get_edge(sPath))
+        if oTraceList.get_trace(sPath):
+            process_trace(lTrace, oTraceList.get_trace(sPath), oEdgeList, oTraceList)
 
 
 def validate_requested_trace_exists(oTraceList, sTraceName):
@@ -116,10 +114,12 @@ def main():
 
     validate_requested_trace_exists(oTraceList, commandLineArguments.tracename)
 
-    oTrace = process_trace(oTraceList.get_trace(commandLineArguments.tracename), oEdgeList)
-    lDiagram = sequencer.create_plantuml_sequence_diagram(oTrace, oNodeList)
+    lNewTrace = graph.trace(commandLineArguments.tracename)
+    process_trace(lNewTrace, oTraceList.get_trace(commandLineArguments.tracename), oEdgeList, oTraceList)
+    lDiagram = sequencer.create_plantuml_sequence_diagram(lNewTrace, oNodeList)
 
     write_plantuml_file(lDiagram, commandLineArguments.umlfile)
+
 
 if __name__ == '__main__':
     main()

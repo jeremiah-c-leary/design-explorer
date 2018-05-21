@@ -20,6 +20,12 @@
     },
     "N7":{
       "subNode":"S5"
+    },
+    "N7":{
+      "debug":"S5"
+    },
+    "N8":{
+      "debug":"S5"
     }
   },
   "edge":{
@@ -52,6 +58,16 @@
       "source":"N6",
       "target":"N7",
       "interface":"I6"
+    },
+    "E7":{
+      "source":"N1",
+      "target":"N7",
+      "interface":"I7"
+    },
+    "E8":{
+      "source":"N2",
+      "target":"N8",
+      "interface":"I8"
     }
   },
   "trace":{
@@ -68,6 +84,22 @@
         "E5",
         "E6",
         "E4"
+      ]
+    },
+    "T3":{
+      "path":[
+        "T1",
+        "E3",
+        "E4"
+      ]
+    },
+    "T4":{
+      "path":[
+        "E1",
+        "E7",
+        "E2",
+        "E8",
+        "E3"
       ]
     }
   }

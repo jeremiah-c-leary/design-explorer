@@ -1,0 +1,22 @@
+@startuml
+
+box "S1"
+  participant N1
+  participant N2
+end box
+box "S2"
+  participant N3
+end box
+box "S3"
+  participant N4
+end box
+box "S4"
+  participant N5
+end box
+
+N1 -> N2 : E1
+N2 -> N3 : E2
+N3 -> N4 : E3
+N4 -> N5 : E4
+
+@enduml
