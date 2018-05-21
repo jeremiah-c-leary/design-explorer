@@ -106,3 +106,6 @@ venv.bak/
 # design-explorer specific files
 design_explorer/tests/de_sequencer/*_actual_output.uml
 design_explorer/tests/de_sequencer/*.png
+
+# VIM files
+.*.swp
