@@ -4,19 +4,19 @@ box "S1"
   participant N1
   participant N2
 end box
-participant N7
+participant N8
 box "S2"
   participant N3
 end box
-participant N8
+participant N9
 box "S3"
   participant N4
 end box
 
 N1 -> N2 : E1
-N1 -> N7 : E7
+N1 -> N8 : E7
 N2 -> N3 : E2
-N2 -> N8 : E8
+N2 -> N9 : E8
 N3 -> N4 : E3
 
 @enduml
