@@ -1,0 +1,42 @@
+{
+  "node":{
+    "N1":{
+      "subNode":"S1"
+    },
+    "N2":{
+      "subNode":"S1"
+    }
+  },
+  "edge":{
+    "E1":{
+      "source":"N1",
+      "target":"N2",
+      "interface":"I1"
+    },
+    "E2":{
+      "source":"N2",
+      "target":"N3",
+      "interface":"I2"
+    }
+  },
+  "trace":{
+    "T3":{
+      "path":[
+        "T1",
+        "E3",
+        "E4"
+      ]
+    },
+    "T4":{
+      "path":[
+        "E1",
+        "E7",
+        "E2",
+        "E8",
+        "E3"
+      ]
+    }
+  }
+}
+
+

@@ -23,6 +23,7 @@ def parse_command_line_arguments():
 
     parser.add_argument('-tf',
                         '--tracefile',
+                        nargs='+',
                         required=True,
                         help='JSON trace definition file')
     parser.add_argument('-tn',
@@ -49,8 +50,26 @@ def write_plantuml_file(lDiagram, sFileName):
 
 
 def read_trace_file(commandLineArguments):
-    with open(commandLineArguments.tracefile) as json_file:
-        return json.load(json_file)
+    dTraceFile = {}
+    dTraceFile['node'] = {}
+    dTraceFile['edge'] = {}
+    dTraceFile['trace'] = {}
+    for sTraceFile in commandLineArguments.tracefile:
+        with open(sTraceFile) as json_file:
+            dJsonFile = json.load(json_file)
+        if 'node' in dJsonFile:
+            for sNode in dJsonFile['node']:
+                dTraceFile['node'][sNode] = dJsonFile['node'][sNode]
+
+        if 'edge' in dJsonFile:
+            for sEdge in dJsonFile['edge']:
+                dTraceFile['edge'][sEdge] = dJsonFile['edge'][sEdge]
+
+        if 'trace' in dJsonFile:
+            for sTrace in dJsonFile['trace']:
+                dTraceFile['trace'][sTrace] = dJsonFile['trace'][sTrace]
+        
+    return dTraceFile
 
 
 def build_node_list(dTracefile):
