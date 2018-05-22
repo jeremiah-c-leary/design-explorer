@@ -99,73 +99,29 @@ class testEdgeMethods(unittest.TestCase):
         self.assertEqual(lEdges[4].source, 'S4')
         self.assertEqual(lEdges[5].source, 'S5')
 
-    def test_node_list_class_attributes_exist(self):
-        oNodeList = graph.node_list()
-        self.assertEqual(oNodeList.nodes, None)
+    def test_base_list_class_attributes_exist(self):
+        oNodeList = graph.base_list()
+        self.assertEqual(oNodeList.lItems, None)
 
-    def test_node_list_method_add_node(self):
-        oNodeList = graph.node_list()
-        oNodeList.add_node(graph.node('N1'))
-        oNodeList.add_node(graph.node('N2'))
-        oNodeList.add_node(graph.node('N3'))
-        self.assertEqual(oNodeList.nodes[0].name, 'N1')
-        self.assertEqual(oNodeList.nodes[1].name, 'N2')
-        self.assertEqual(oNodeList.nodes[2].name, 'N3')
+    def test_base_list_method_add_item(self):
+        oNodeList = graph.base_list()
+        oNodeList.add_item(graph.node('N1'))
+        oNodeList.add_item(graph.node('N2'))
+        oNodeList.add_item(graph.node('N3'))
+        self.assertEqual(oNodeList.lItems[0].name, 'N1')
+        self.assertEqual(oNodeList.lItems[1].name, 'N2')
+        self.assertEqual(oNodeList.lItems[2].name, 'N3')
 
-    def test_node_list_method_get_node(self):
-        oNodeList = graph.node_list()
-        oNodeList.add_node(graph.node('N1'))
-        oNodeList.add_node(graph.node('N2'))
-        oNodeList.add_node(graph.node('N3'))
-        self.assertEqual(oNodeList.get_node('N1').name, 'N1')
-        self.assertEqual(oNodeList.get_node('N2').name, 'N2')
-        self.assertEqual(oNodeList.get_node('N3').name, 'N3')
-        self.assertEqual(oNodeList.get_node('N564'), None)
+    def test_base_list_method_get_item(self):
+        oNodeList = graph.base_list()
+        oNodeList.add_item(graph.node('N1'))
+        oNodeList.add_item(graph.node('N2'))
+        oNodeList.add_item(graph.node('N3'))
+        self.assertEqual(oNodeList.get_item('N1').name, 'N1')
+        self.assertEqual(oNodeList.get_item('N2').name, 'N2')
+        self.assertEqual(oNodeList.get_item('N3').name, 'N3')
+        self.assertEqual(oNodeList.get_item('N564'), None)
 
-    def test_edge_list_class_attributes_exist(self):
-        oEdgeList = graph.edge_list()
-        self.assertEqual(oEdgeList.edges, None)
-
-    def test_edge_list_method_add_edge(self):
-        oEdgeList = graph.edge_list()
-        oEdgeList.add_edge(graph.edge(name='E1'))
-        oEdgeList.add_edge(graph.edge(name='E2'))
-        oEdgeList.add_edge(graph.edge(name='E3'))
-        self.assertEqual(oEdgeList.edges[0].name, 'E1')
-        self.assertEqual(oEdgeList.edges[1].name, 'E2')
-        self.assertEqual(oEdgeList.edges[2].name, 'E3')
-
-    def test_edge_list_method_get_edge(self):
-        oEdgeList = graph.edge_list()
-        oEdgeList.add_edge(graph.edge(name='E1'))
-        oEdgeList.add_edge(graph.edge(name='E2'))
-        oEdgeList.add_edge(graph.edge(name='E3'))
-        self.assertEqual(oEdgeList.get_edge('E1').name, 'E1')
-        self.assertEqual(oEdgeList.get_edge('E2').name, 'E2')
-        self.assertEqual(oEdgeList.get_edge('E3').name, 'E3')
-        self.assertEqual(oEdgeList.get_edge('E100'), None)
-
-    def test_trace_list_class_attributes_exist(self):
-        oTraceList = graph.trace_list()
-        self.assertEqual(oTraceList.traces, None)
-
-    def test_trace_list_method_add_trace(self):
-        oTraceList = graph.trace_list()
-        oTraceList.add_trace(graph.trace('T1'))
-        oTraceList.add_trace(graph.trace('T2'))
-        oTraceList.add_trace(graph.trace('T3'))
-        self.assertEqual(oTraceList.traces[0].name, 'T1')
-        self.assertEqual(oTraceList.traces[1].name, 'T2')
-        self.assertEqual(oTraceList.traces[2].name, 'T3')
-
-    def test_trace_list_method_get_trace(self):
-        oTraceList = graph.trace_list()
-        oTraceList.add_trace(graph.trace('T1'))
-        oTraceList.add_trace(graph.trace('T2'))
-        oTraceList.add_trace(graph.trace('T3'))
-        self.assertEqual(oTraceList.get_trace('T1').name, 'T1')
-        self.assertEqual(oTraceList.get_trace('T2').name, 'T2')
-        self.assertEqual(oTraceList.get_trace('T3').name, 'T3')
 
 if __name__ == '__main__':
     unittest.main()

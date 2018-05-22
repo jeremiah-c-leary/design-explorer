@@ -14,8 +14,8 @@ def get_participants(oTrace, oNodeList, lEdges):
 
     lParticipants = []
     for oEdge in lEdges:
-        oSourceNode = oNodeList.get_node(oEdge.source)
-        oTargetNode = oNodeList.get_node(oEdge.target)
+        oSourceNode = oNodeList.get_item(oEdge.source)
+        oTargetNode = oNodeList.get_item(oEdge.target)
         if oSourceNode not in lParticipants:
             lParticipants.append(oSourceNode)
         if oTargetNode not in lParticipants:
