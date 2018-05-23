@@ -26,10 +26,11 @@ class node():
 
 class edge():
 
-    def __init__(self, source=None, target=None, name=None):
+    def __init__(self, source=None, target=None, name=None, sInterface=None):
         self.source = source
         self.target = target
         self.name = name
+        self.interface = sInterface
 
 
 class trace():

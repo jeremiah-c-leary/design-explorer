@@ -20,12 +20,14 @@ class testEdgeMethods(unittest.TestCase):
         self.assertEqual(oEdge.source, None)
         self.assertEqual(oEdge.target, None)
         self.assertEqual(oEdge.name, None)
+        self.assertEqual(oEdge.interface, None)
 
     def test_edge_class_parameters(self):
-        oEdge = graph.edge('source', 'target', 'name')
+        oEdge = graph.edge('source', 'target', 'name', 'interface')
         self.assertEqual(oEdge.source, 'source')
         self.assertEqual(oEdge.target, 'target')
         self.assertEqual(oEdge.name, 'name')
+        self.assertEqual(oEdge.interface, 'interface')
 
     def test_trace_class_exists(self):
         oTrace = graph.trace('T1')

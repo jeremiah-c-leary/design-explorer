@@ -71,7 +71,7 @@ def build_sequence_section(lEdges):
 
     lDiagram = []
     for oEdge in lEdges:
-        lDiagram.append(' '.join([oEdge.source, '->', oEdge.target, ':', oEdge.name]))
+        lDiagram.append(' '.join([oEdge.source, '->', oEdge.target, ':', oEdge.interface]))
     return lDiagram
 
 

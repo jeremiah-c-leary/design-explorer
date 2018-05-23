@@ -8,7 +8,7 @@ box "S2"
   participant N3
 end box
 
-N1 -> N2 : E1
-N2 -> N3 : E2
+N1 -> N2 : I1
+N2 -> N3 : I2
 
 @enduml

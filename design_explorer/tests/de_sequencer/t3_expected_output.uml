@@ -14,9 +14,9 @@ box "S4"
   participant N5
 end box
 
-N1 -> N2 : E1
-N2 -> N3 : E2
-N3 -> N4 : E3
-N4 -> N5 : E4
+N1 -> N2 : I1
+N2 -> N3 : I2
+N3 -> N4 : I3
+N4 -> N5 : I4
 
 @enduml

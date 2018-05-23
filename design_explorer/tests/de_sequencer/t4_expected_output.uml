@@ -13,10 +13,10 @@ box "S3"
   participant N4
 end box
 
-N1 -> N2 : E1
-N1 -> N8 : E7
-N2 -> N3 : E2
-N2 -> N9 : E8
-N3 -> N4 : E3
+N1 -> N2 : I1
+N1 -> N8 : I7
+N2 -> N3 : I2
+N2 -> N9 : I8
+N3 -> N4 : I3
 
 @enduml
