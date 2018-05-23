@@ -8,7 +8,7 @@ def readme():
 
 
 setup(name='design-explorer',
-      version='0.0',
+      version='0.1',
       description='Design Explorer',
       long_description=readme(),
       classifiers=[
@@ -21,8 +21,8 @@ setup(name='design-explorer',
           'Operating System :: POSIX :: Linux',
           'Topic :: Text Processing :: General',
       ],
-      url='https://github.com/jeremiah-c-leary/vhdl-style-guide',
-      download_url='https://github.com/jeremiah-c-leary/vhdl-style-guide',
+      url='https://github.com/jeremiah-c-leary/design-explorer',
+      download_url='https://github.com/jeremiah-c-leary/design-explorer',
       author='Jeremiah C Leary',
       author_email='jeremiah.c.leary@gmail.com',
       license='GNU General Public License',
@@ -30,5 +30,6 @@ setup(name='design-explorer',
       zip_safe=False,
       test_suite='nose.collector',
       tests_require=['nose'],
+      scripts=['bin/de_sequencer'],
       keywords=['vhdl', 'verilog']
       )
