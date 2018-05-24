@@ -13,10 +13,7 @@ class base_list():
         self.lItems = None
 
     def add_item(self, oItem):
-        try:
-            self.lItems.append(oItem)
-        except AttributeError:
-            self.lItems = [oItem]
+        self.lItems = append_to_list(self.lItems, oItem)
 
     def get_item(self, sItemName):
         for oItem in self.lItems:
@@ -74,10 +71,7 @@ class trace():
         self.path = None
 
     def add_to_path(self, oEdge):
-        try:
-            self.path.append(oEdge)
-        except AttributeError:
-            self.path = [oEdge]
+        self.path = append_to_list(self.path, oEdge)
 
     def get_expanded_path(self):
 
