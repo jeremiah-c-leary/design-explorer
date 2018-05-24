@@ -1,4 +1,12 @@
 
+def append_to_list(lList, item):
+    try:
+        lList.append(item)
+    except AttributeError:
+        lList = [item]
+    return lList
+
+
 class base_list():
 
     def __init__(self):
@@ -26,10 +34,7 @@ class node_list(base_list):
         lNodes = None
         for oNode in self.lItems:
             if oNode.subNode == sSubNodeName:
-                try:
-                    lNodes.append(oNode)
-                except AttributeError:
-                    lNodes = [oNode]
+                lNodes = append_to_list(lNodes, oNode)
         return lNodes
 
 
@@ -58,10 +63,7 @@ class edge_list(base_list):
         lEdges = None
         for oEdge in self.lItems:
             if oEdge.source == sNodeName:
-                try:
-                    lEdges.append(oEdge)
-                except AttributeError:
-                    lEdges = [oEdge]
+                lEdges = append_to_list(lEdges, oEdge)
         return lEdges
 
 
