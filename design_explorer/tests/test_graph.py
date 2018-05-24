@@ -128,7 +128,7 @@ class testEdgeMethods(unittest.TestCase):
         oNodeList = graph.node_list()
         self.assertEqual(oNodeList.lItems, None)
 
-    def test_node_list_method_get_subnode(self):
+    def test_node_list_method_get_subnodes_of_node(self):
         oNodeList = graph.node_list()
         oNodeList.add_item(graph.node('N1', 'S1'))
         oNodeList.add_item(graph.node('N2', 'S1'))
@@ -140,6 +140,27 @@ class testEdgeMethods(unittest.TestCase):
         self.assertEqual(lSubNodes[0].name, 'N3')
         self.assertEqual(oNodeList.get_subnodes_of_node('N564'), None)
 
+    def test_edge_list_class_attributes_exist(self):
+        oEdgeList = graph.edge_list()
+        self.assertEqual(oEdgeList.lItems, None)
+
+    def test_edge_list_class_method_get_edges_of_node(self):
+        oEdgeList = graph.edge_list()
+        oEdgeList.add_item(graph.edge('S1', 'T1', 'N1', 'I1'))
+        oEdgeList.add_item(graph.edge('S2', 'T2', 'N2', 'I2'))
+        oEdgeList.add_item(graph.edge('S3', 'T3', 'N3', 'I3'))
+        oEdgeList.add_item(graph.edge('S3', 'T4', 'N3', 'I4'))
+        oEdgeList.add_item(graph.edge('S3', 'T5', 'N3', 'I5'))
+        oEdgeList.add_item(graph.edge('S3', 'T6', 'N3', 'I6'))
+
+        lNodeList = oEdgeList.get_edges_of_node('S1')
+        self.assertEqual(lNodeList[0].interface, 'I1')
+
+        lNodeList = oEdgeList.get_edges_of_node('S3')
+        self.assertEqual(lNodeList[0].interface, 'I3')
+        self.assertEqual(lNodeList[1].interface, 'I4')
+        self.assertEqual(lNodeList[2].interface, 'I5')
+        self.assertEqual(lNodeList[3].interface, 'I6')
 
 if __name__ == '__main__':
     unittest.main()

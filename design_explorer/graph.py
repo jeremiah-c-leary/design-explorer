@@ -31,8 +31,6 @@ class node_list(base_list):
                 except AttributeError:
                     lNodes = [oNode]
         return lNodes
-            
-
 
 
 class node():
@@ -49,6 +47,22 @@ class edge():
         self.target = target
         self.name = name
         self.interface = sInterface
+
+
+class edge_list(base_list):
+
+    def __init__(self):
+        base_list.__init__(self)
+
+    def get_edges_of_node(self, sNodeName):
+        lEdges = None
+        for oEdge in self.lItems:
+            if oEdge.source == sNodeName:
+                try:
+                    lEdges.append(oEdge)
+                except AttributeError:
+                    lEdges = [oEdge]
+        return lEdges
 
 
 class trace():
