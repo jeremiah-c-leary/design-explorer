@@ -124,6 +124,22 @@ class testEdgeMethods(unittest.TestCase):
         self.assertEqual(oNodeList.get_item('N3').name, 'N3')
         self.assertEqual(oNodeList.get_item('N564'), None)
 
+    def test_node_list_class_attributes_exist(self):
+        oNodeList = graph.node_list()
+        self.assertEqual(oNodeList.lItems, None)
+
+    def test_node_list_method_get_subnode(self):
+        oNodeList = graph.node_list()
+        oNodeList.add_item(graph.node('N1', 'S1'))
+        oNodeList.add_item(graph.node('N2', 'S1'))
+        oNodeList.add_item(graph.node('N3', 'S2'))
+        lSubNodes = oNodeList.get_subnodes_of_node('S1')
+        self.assertEqual(lSubNodes[0].name, 'N1')
+        self.assertEqual(lSubNodes[1].name, 'N2')
+        lSubNodes = oNodeList.get_subnodes_of_node('S2')
+        self.assertEqual(lSubNodes[0].name, 'N3')
+        self.assertEqual(oNodeList.get_subnodes_of_node('N564'), None)
+
 
 if __name__ == '__main__':
     unittest.main()

@@ -17,6 +17,24 @@ class base_list():
         return None
 
 
+class node_list(base_list):
+
+    def __init__(self):
+        base_list.__init__(self)
+
+    def get_subnodes_of_node(self, sSubNodeName):
+        lNodes = None
+        for oNode in self.lItems:
+            if oNode.subNode == sSubNodeName:
+                try:
+                    lNodes.append(oNode)
+                except AttributeError:
+                    lNodes = [oNode]
+        return lNodes
+            
+
+
+
 class node():
 
     def __init__(self, name=None, subNode=None):
