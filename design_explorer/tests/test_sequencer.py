@@ -49,7 +49,7 @@ class testSequencer(unittest.TestCase):
         dExpected.append('')
         dExpected.append('@enduml')
 
-        self.assertEqual(dExpected, sequencer.create_plantuml_sequence_diagram(oTrace, oNodeList))
+        self.assertEqual(dExpected, sequencer.create_plantuml_sequence_diagram(oTrace, oNodeList, None))
 
     def test_edge_and_trace_diagram_creation(self):
         oNodeList = graph.base_list()
@@ -85,7 +85,7 @@ class testSequencer(unittest.TestCase):
         dExpected.append('')
         dExpected.append('@enduml')
 
-        self.assertEqual(dExpected, sequencer.create_plantuml_sequence_diagram(oTrace1, oNodeList))
+        self.assertEqual(dExpected, sequencer.create_plantuml_sequence_diagram(oTrace1, oNodeList, None))
 
     def test_edge_and_trace_diagram_creation_with_boxes(self):
         oNodeList = graph.base_list()
@@ -129,9 +129,9 @@ class testSequencer(unittest.TestCase):
         dExpected.append('')
         dExpected.append('@enduml')
 
-        self.assertEqual(dExpected, sequencer.create_plantuml_sequence_diagram(oTrace1, oNodeList))
+        self.assertEqual(dExpected, sequencer.create_plantuml_sequence_diagram(oTrace1, oNodeList, None))
 
-    def test_edge_and_trace_diagram_creation_with_boxes_2(self):
+    def test_edge_and_trace_diagram_creation_with_boxes_2(self): 
         oNodeList = graph.base_list()
         oNodeList.add_item(graph.node('N1'))
         oNodeList.add_item(graph.node('N2', 'F1'))
@@ -191,8 +191,9 @@ class testSequencer(unittest.TestCase):
         dExpected.append('')
         dExpected.append('@enduml')
 
-        self.assertEqual(dExpected, sequencer.create_plantuml_sequence_diagram(oTrace1, oNodeList))
+        self.assertEqual(dExpected, sequencer.create_plantuml_sequence_diagram(oTrace1, oNodeList, None))
 
+        
 
 if __name__ == '__main__':
     unittest.main()

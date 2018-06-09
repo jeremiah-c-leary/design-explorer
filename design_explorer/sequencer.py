@@ -52,14 +52,14 @@ def add_participant_box(lUsedNodes, lDiagram, oParticipant, dBoxes):
     return lDiagram
 
 
-def build_participant_section(lBoxes, lParticipants):
+def build_participant_section(lBoxes, lParticipants, lExpandNodes):
 
     lDiagram = []
     dBoxes = create_box_dictionary(lBoxes, lParticipants)
 
     lUsedNodes = []
     for oParticipant in lParticipants:
-        if oParticipant.name not in lUsedNodes:
+        if oParticipant.name not in lUsedNodes and oParticipant.name not in lExpandNodes:
             lDiagram = add_participant(lUsedNodes, lDiagram, oParticipant)
             lDiagram = add_participant_box(lUsedNodes, lDiagram, oParticipant, dBoxes)
 
@@ -75,10 +75,15 @@ def build_sequence_section(lEdges):
     return lDiagram
 
 
-def create_plantuml_sequence_diagram(oTrace, oNodeList):
+def create_plantuml_sequence_diagram(oTrace, oNodeList, lExpandNodes):
 
     lDiagram = ['@startuml']
     lDiagram.append('')
+
+    if lExpandNodes:
+        lExpandNodes = lExpandNodes
+    else:
+        lExpandNodes = []
 
     lEdges = oTrace.get_expanded_path()
 
@@ -86,7 +91,7 @@ def create_plantuml_sequence_diagram(oTrace, oNodeList):
 
     lBoxes = get_participant_subnodes(lParticipants)
 
-    lDiagram.extend(build_participant_section(lBoxes, lParticipants))
+    lDiagram.extend(build_participant_section(lBoxes, lParticipants, lExpandNodes))
 
     lDiagram.extend(build_sequence_section(lEdges))
 
