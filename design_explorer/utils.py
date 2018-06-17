@@ -2,26 +2,41 @@ import json
 from design_explorer import graph
 
 
-def read_trace_file(commandLineArguments):
+def add_nodes_to_dictionary(dTraceFile, dJsonFile):
+    if 'node' in dJsonFile:
+        for sNode in dJsonFile['node']:
+            dTraceFile['node'][sNode] = dJsonFile['node'][sNode]
+
+
+def add_edges_to_dictionary(dTraceFile, dJsonFile):
+    if 'edge' in dJsonFile:
+        for sEdge in dJsonFile['edge']:
+            dTraceFile['edge'][sEdge] = dJsonFile['edge'][sEdge]
+
+
+def add_traces_to_dictionary(dTraceFile, dJsonFile):
+    if 'trace' in dJsonFile:
+        for sTrace in dJsonFile['trace']:
+            dTraceFile['trace'][sTrace] = dJsonFile['trace'][sTrace]
+
+
+def create_empty_trace_dictionary():
     dTraceFile = {}
     dTraceFile['node'] = {}
     dTraceFile['edge'] = {}
     dTraceFile['trace'] = {}
+    return dTraceFile
+
+
+def read_trace_file(commandLineArguments):
+    dTraceFile = create_empty_trace_dictionary()
     for sTraceFile in commandLineArguments.tracefile:
         with open(sTraceFile) as json_file:
             dJsonFile = json.load(json_file)
 
-        if 'node' in dJsonFile:
-            for sNode in dJsonFile['node']:
-                dTraceFile['node'][sNode] = dJsonFile['node'][sNode]
-
-        if 'edge' in dJsonFile:
-            for sEdge in dJsonFile['edge']:
-                dTraceFile['edge'][sEdge] = dJsonFile['edge'][sEdge]
-
-        if 'trace' in dJsonFile:
-            for sTrace in dJsonFile['trace']:
-                dTraceFile['trace'][sTrace] = dJsonFile['trace'][sTrace]
+        add_nodes_to_dictionary(dTraceFile, dJsonFile)
+        add_edges_to_dictionary(dTraceFile, dJsonFile)
+        add_traces_to_dictionary(dTraceFile, dJsonFile)
 
     return dTraceFile
 
