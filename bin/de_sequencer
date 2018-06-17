@@ -70,7 +70,7 @@ def main():
 
     commandLineArguments = parse_command_line_arguments()
 
-    dTracefile = utils.read_trace_file(commandLineArguments)
+    dTracefile = utils.read_trace_file(commandLineArguments.tracefile)
 
     oNodeList = utils.build_node_list(dTracefile)
     oEdgeList = utils.build_edge_list(dTracefile)

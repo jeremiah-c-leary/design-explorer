@@ -2,16 +2,10 @@ import json
 from design_explorer import graph
 
 
-def merge_dictionaries(dTraceFile, dJsonFile):
-    if 'node' in dJsonFile:
-        for sNode in dJsonFile['node']:
-            dTraceFile['node'][sNode] = dJsonFile['node'][sNode]
-    if 'edge' in dJsonFile:
-        for sEdge in dJsonFile['edge']:
-            dTraceFile['edge'][sEdge] = dJsonFile['edge'][sEdge]
-    if 'trace' in dJsonFile:
-        for sTrace in dJsonFile['trace']:
-            dTraceFile['trace'][sTrace] = dJsonFile['trace'][sTrace]
+def merge_key_with_dictionary(dTraceFile, dJsonFile, sKey):
+    if sKey in dJsonFile:
+        for sKeyName in dJsonFile[sKey]:
+            dTraceFile[sKey][sKeyName] = dJsonFile[sKey][sKeyName]
 
 
 def create_empty_trace_dictionary():
@@ -22,13 +16,15 @@ def create_empty_trace_dictionary():
     return dTraceFile
 
 
-def read_trace_file(commandLineArguments):
+def read_trace_file(lTraceFiles):
     dTraceFile = create_empty_trace_dictionary()
-    for sTraceFile in commandLineArguments.tracefile:
+    for sTraceFile in lTraceFiles:
         with open(sTraceFile) as json_file:
             dJsonFile = json.load(json_file)
 
-        merge_dictionaries(dTraceFile, dJsonFile)
+        merge_key_with_dictionary(dTraceFile, dJsonFile, 'node')
+        merge_key_with_dictionary(dTraceFile, dJsonFile, 'edge')
+        merge_key_with_dictionary(dTraceFile, dJsonFile, 'trace')
 
     return dTraceFile
 
@@ -70,4 +66,5 @@ def process_trace(lTrace, oTrace, oEdgeList, oTraceList):
         if oEdgeList.get_item(sPath):
             lTrace.add_to_path(oEdgeList.get_item(sPath))
         if oTraceList.get_item(sPath):
-            process_trace(lTrace, oTraceList.get_item(sPath), oEdgeList, oTraceList)
+            process_trace(lTrace, oTraceList.get_item(sPath), oEdgeList,
+                          oTraceList)

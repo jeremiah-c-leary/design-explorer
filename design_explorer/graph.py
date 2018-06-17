@@ -88,6 +88,7 @@ class trace():
 
         return lExpandedPath
 
+
 def merge_two_edges(oEdge1, oEdge2):
     if oEdge1.target == oEdge2.source:
         oNewEdge = copy.deepcopy(oEdge1)
