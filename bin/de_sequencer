@@ -12,6 +12,7 @@ executablePath = os.path.dirname(os.path.realpath(__file__))
 sys.path.append(os.path.join(executablePath, '..'))
 from design_explorer import sequencer
 from design_explorer import graph
+from design_explorer import utils
 
 
 def parse_command_line_arguments():
@@ -19,7 +20,7 @@ def parse_command_line_arguments():
 
     parser = argparse.ArgumentParser(
       prog='Design Explorer Sequencer',
-      description='''Generates sequence diagrams from configuration file.''')
+      description='''Generates sequence diagrams from configuration files.''')
 
     parser.add_argument('-tf',
                         '--tracefile',
@@ -40,7 +41,7 @@ def parse_command_line_arguments():
                         nargs='+',
                         required=False,
                         help='List of nodes to expand')
-                 
+
     if len(sys.argv) == 1:
         parser.print_help()
         sys.exit(1)
@@ -53,70 +54,6 @@ def write_plantuml_file(lDiagram, sFileName):
         for sString in lDiagram:
             oFile.write(sString + '\n')
     oFile.close()
-
-
-def read_trace_file(commandLineArguments):
-    dTraceFile = {}
-    dTraceFile['node'] = {}
-    dTraceFile['edge'] = {}
-    dTraceFile['trace'] = {}
-    for sTraceFile in commandLineArguments.tracefile:
-        with open(sTraceFile) as json_file:
-            dJsonFile = json.load(json_file)
-
-        if 'node' in dJsonFile:
-            for sNode in dJsonFile['node']:
-                dTraceFile['node'][sNode] = dJsonFile['node'][sNode]
-
-        if 'edge' in dJsonFile:
-            for sEdge in dJsonFile['edge']:
-                dTraceFile['edge'][sEdge] = dJsonFile['edge'][sEdge]
-
-        if 'trace' in dJsonFile:
-            for sTrace in dJsonFile['trace']:
-                dTraceFile['trace'][sTrace] = dJsonFile['trace'][sTrace]
-
-    return dTraceFile
-
-
-def build_node_list(dTracefile):
-    oNodeList = graph.base_list()
-    for sNode in dTracefile['node']:
-        oNode = graph.node(sNode)
-        if 'subNode' in dTracefile['node'][sNode]:
-            oNode.subNode = dTracefile['node'][sNode]['subNode']
-        oNodeList.add_item(oNode)
-    return oNodeList
-
-
-def build_edge_list(dTracefile):
-    oEdgeList = graph.base_list()
-    for sEdge in dTracefile['edge']:
-        oEdge = graph.edge()
-        oEdge.source = dTracefile['edge'][sEdge]['source']
-        oEdge.target = dTracefile['edge'][sEdge]['target']
-        oEdge.interface = dTracefile['edge'][sEdge]['interface']
-        oEdge.name = sEdge
-        oEdgeList.add_item(oEdge)
-    return oEdgeList
-
-
-def build_trace_list(dTracefile):
-    oTraceList = graph.base_list()
-    for sTrace in dTracefile['trace']:
-        oTrace = graph.trace(sTrace)
-        oTrace.path = dTracefile['trace'][sTrace]['path']
-        oTraceList.add_item(oTrace)
-    return oTraceList
-
-
-def process_trace(lTrace, oTrace, oEdgeList, oTraceList):
-
-    for sPath in oTrace.path:
-        if oEdgeList.get_item(sPath):
-            lTrace.add_to_path(oEdgeList.get_item(sPath))
-        if oTraceList.get_item(sPath):
-            process_trace(lTrace, oTraceList.get_item(sPath), oEdgeList, oTraceList)
 
 
 def validate_requested_trace_exists(oTraceList, sTraceName):
@@ -133,16 +70,16 @@ def main():
 
     commandLineArguments = parse_command_line_arguments()
 
-    dTracefile = read_trace_file(commandLineArguments)
+    dTracefile = utils.read_trace_file(commandLineArguments)
 
-    oNodeList = build_node_list(dTracefile)
-    oEdgeList = build_edge_list(dTracefile)
-    oTraceList = build_trace_list(dTracefile)
+    oNodeList = utils.build_node_list(dTracefile)
+    oEdgeList = utils.build_edge_list(dTracefile)
+    oTraceList = utils.build_trace_list(dTracefile)
 
     validate_requested_trace_exists(oTraceList, commandLineArguments.tracename)
 
     lNewTrace = graph.trace(commandLineArguments.tracename)
-    process_trace(lNewTrace, oTraceList.get_item(commandLineArguments.tracename), oEdgeList, oTraceList)
+    utils.process_trace(lNewTrace, oTraceList.get_item(commandLineArguments.tracename), oEdgeList, oTraceList)
     lDiagram = sequencer.create_plantuml_sequence_diagram(lNewTrace, oNodeList, commandLineArguments.expand)
 
     write_plantuml_file(lDiagram, commandLineArguments.umlfile)
