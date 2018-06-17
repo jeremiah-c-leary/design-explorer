@@ -2,19 +2,13 @@ import json
 from design_explorer import graph
 
 
-def add_nodes_to_dictionary(dTraceFile, dJsonFile):
+def merge_dictionaries(dTraceFile, dJsonFile):
     if 'node' in dJsonFile:
         for sNode in dJsonFile['node']:
             dTraceFile['node'][sNode] = dJsonFile['node'][sNode]
-
-
-def add_edges_to_dictionary(dTraceFile, dJsonFile):
     if 'edge' in dJsonFile:
         for sEdge in dJsonFile['edge']:
             dTraceFile['edge'][sEdge] = dJsonFile['edge'][sEdge]
-
-
-def add_traces_to_dictionary(dTraceFile, dJsonFile):
     if 'trace' in dJsonFile:
         for sTrace in dJsonFile['trace']:
             dTraceFile['trace'][sTrace] = dJsonFile['trace'][sTrace]
@@ -34,9 +28,7 @@ def read_trace_file(commandLineArguments):
         with open(sTraceFile) as json_file:
             dJsonFile = json.load(json_file)
 
-        add_nodes_to_dictionary(dTraceFile, dJsonFile)
-        add_edges_to_dictionary(dTraceFile, dJsonFile)
-        add_traces_to_dictionary(dTraceFile, dJsonFile)
+        merge_dictionaries(dTraceFile, dJsonFile)
 
     return dTraceFile
 
