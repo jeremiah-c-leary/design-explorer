@@ -8,7 +8,7 @@ def readme():
 
 
 setup(name='design-explorer',
-      version='0.2',
+      version='0.3',
       description='Design Explorer',
       long_description=readme(),
       classifiers=[
