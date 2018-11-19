@@ -68,3 +68,12 @@ def process_trace(lTrace, oTrace, oEdgeList, oTraceList):
         if oTraceList.get_item(sPath):
             process_trace(lTrace, oTraceList.get_item(sPath), oEdgeList,
                           oTraceList)
+
+
+def append_to_list(lList, oItem):
+    try:
+        lList.append(oItem)
+    except:
+        lList = [oItem]
+    return lList
+
