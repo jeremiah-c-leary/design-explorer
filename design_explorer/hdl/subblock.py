@@ -12,13 +12,15 @@ class create():
         self.interface_types = None
         self.instance_name = instance_name
 
-    def add_source_interface(self, oInterface):
+    def _add_interface(self, oInterface, sInterfaceType):
         self.interfaces = utils.append_to_list(self.interfaces, oInterface)
-        self.interface_types = utils.append_to_list(self.interface_types, 'Source')
+        self.interface_types = utils.append_to_list(self.interface_types, sInterfaceType)
+
+    def add_source_interface(self, oInterface):
+        self._add_interface(oInterface, 'Source')
 
     def add_sink_interface(self, oInterface):
-        self.interfaces = utils.append_to_list(self.interfaces, oInterface)
-        self.interface_types = utils.append_to_list(self.interface_types, 'Sink')
+        self._add_interface(oInterface, 'Sink')
 
     def _extract_interface(self, oInterface, sInterfaceType):
         for sLine in oInterface.extract_port_list(sInterfaceType):
