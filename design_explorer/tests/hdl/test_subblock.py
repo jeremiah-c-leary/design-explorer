@@ -28,12 +28,12 @@ class testHdlSubblock(unittest.TestCase):
         oSubblock.add_source_interface(oIntSource)
         oSubblock.add_sink_interface(oIntSink)
         self.assertEqual(oSubblock.source_interfaces[0].name, 'Interface1') 
-        self.assertEqual(oSubblock.source_interfaces[0].source_ports[0].name, 'Port1') 
-        self.assertEqual(oSubblock.source_interfaces[0].sink_ports[0].name, 'Port2') 
+        self.assertEqual(oSubblock.source_interfaces[0].ports[0].name, 'Port1') 
+        self.assertEqual(oSubblock.source_interfaces[0].ports[1].name, 'Port2') 
 
         self.assertEqual(oSubblock.sink_interfaces[0].name, 'Interface2') 
-        self.assertEqual(oSubblock.sink_interfaces[0].source_ports[0].name, 'Port3') 
-        self.assertEqual(oSubblock.sink_interfaces[0].sink_ports[0].name, 'Port4') 
+        self.assertEqual(oSubblock.sink_interfaces[0].ports[0].name, 'Port3') 
+        self.assertEqual(oSubblock.sink_interfaces[0].ports[1].name, 'Port4') 
 
     def test_subblock_create_entity_method(self):
         oSubblock = subblock.create('instance1')

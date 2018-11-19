@@ -1,3 +1,5 @@
+from design_explorer import utils
+
 
 class create():
     '''
@@ -7,19 +9,33 @@ class create():
     def __init__(self, name):
         self.name = name
         self.description = None
-        self.source_ports = None
-        self.sink_ports = None
+        self.ports = None
+        self.port_types = None
 
     def add_source_port(self, oPort):
-        try:
-            self.source_ports.append(oPort)
-        except:
-            self.source_ports = []
-            self.source_ports.append(oPort)
+        self.ports = utils.append_to_list(self.ports, oPort)
+        self.port_types = utils.append_to_list(self.port_types, 'Source')
 
     def add_sink_port(self, oPort):
+        self.ports = utils.append_to_list(self.ports, oPort)
+        self.port_types = utils.append_to_list(self.port_types, 'Sink')
+
+    def extract_port_list(self, interface_type):
+        lReturn = []
+        lReturn.append('--[I:' + self.name + ']')
         try:
-            self.sink_ports.append(oPort)
-        except:
-            self.sink_ports = []
-            self.sink_ports.append(oPort)
+            for iIndex, oPort in enumerate(self.ports):
+                if interface_type == 'Source':
+                    if self.port_types[iIndex] == 'Source':
+                        lReturn.append(oPort.name + ' : out')
+                    else:
+                        lReturn.append(oPort.name + ' : in')
+                if interface_type == 'Sink':
+                    if self.port_types[iIndex] == 'Source':
+                        lReturn.append(oPort.name + ' : in')
+                    else:
+                        lReturn.append(oPort.name + ' : out')
+        except TypeError:
+            pass
+
+        return lReturn
