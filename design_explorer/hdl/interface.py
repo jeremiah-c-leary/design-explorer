@@ -23,16 +23,14 @@ class create():
         self._add_port(oPort, 'Sink')
 
     def _extract_port(self, oPort, sInterface_type, sPortType):
-        if sInterface_type == 'Source':
-            if sPortType == 'Source':
-                return oPort.name + ' : out'
-            else:
-                return oPort.name + ' : in'
-        if sInterface_type == 'Sink':
-            if sPortType == 'Source':
-                return oPort.name + ' : in'
-            else:
-                return oPort.name + ' : out'
+        if sInterface_type == 'Source' and sPortType == 'Source':
+            return oPort.name + ' : out'
+        elif sInterface_type == 'Source' and sPortType == 'Sink':
+            return oPort.name + ' : in'
+        elif sInterface_type == 'Sink' and sPortType == 'Source':
+            return oPort.name + ' : in'
+        else:
+            return oPort.name + ' : out'
 
     def extract_port_list(self, interface_type):
         lReturn = []
