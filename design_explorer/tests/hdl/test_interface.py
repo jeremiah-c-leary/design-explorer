@@ -37,7 +37,7 @@ class test_hdl_interface(unittest.TestCase):
     def test_interface_extract_port_list_wo_ports_method(self):
         oInterface = interface.create('Interface1')
         lExpected = []
-        lExpected.append('--[I:Interface1]')
+        lExpected.append('-- [I:Interface1]')
         self.assertEqual(oInterface.extract_port_list('Source'), lExpected)
 
     def test_interface_port_map_w_ports_method(self):
@@ -51,14 +51,14 @@ class test_hdl_interface(unittest.TestCase):
         oInterface.add_source_port(oPort3)
         oInterface.add_sink_port(oPort4)
         lExpected = []
-        lExpected.append('--[I:Interface1]')
+        lExpected.append('-- [I:Interface1]')
         lExpected.append('Port1 : out')
         lExpected.append('Port2 : in')
         lExpected.append('Port3 : out')
         lExpected.append('Port4 : in')
         self.assertEqual(oInterface.extract_port_list('Source'), lExpected)
         lExpected = []
-        lExpected.append('--[I:Interface1]')
+        lExpected.append('-- [I:Interface1]')
         lExpected.append('Port1 : in')
         lExpected.append('Port2 : out')
         lExpected.append('Port3 : in')

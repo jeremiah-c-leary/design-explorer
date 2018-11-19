@@ -23,10 +23,12 @@ class create():
         lReturn.append('entity ' + self.instance_name.upper() + ' is')
         lReturn.append('  port map (')
         for oInterface in self.sink_interfaces:
-            lReturn.append('    -- [I:' + oInterface.name + ']')
+            for sLine in oInterface.extract_port_list('Sink'):
+                lReturn.append('    ' + sLine)
             lReturn.append('')
         for oInterface in self.source_interfaces:
-            lReturn.append('    -- [I:' + oInterface.name + ']')
+            for sLine in oInterface.extract_port_list('Source'):
+                lReturn.append('    ' + sLine)
             lReturn.append('')
         lReturn.append('  )')
         lReturn.append('end entity ' + self.instance_name.upper() + ';')

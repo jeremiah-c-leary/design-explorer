@@ -42,7 +42,7 @@ class create():
 
     def extract_port_list(self, interface_type):
         lReturn = []
-        lReturn.append('--[I:' + self.name + ']')
+        lReturn.append('-- [I:' + self.name + ']')
         try:
             for iIndex, oPort in enumerate(self.ports):
                 sPortType = self.port_types[iIndex]
