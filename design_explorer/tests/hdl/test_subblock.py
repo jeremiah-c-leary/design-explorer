@@ -10,8 +10,8 @@ class testHdlSubblock(unittest.TestCase):
     def test_subblock_class_attributes_exist(self):
         oSubblock = subblock.create('instance')
         self.assertEqual(oSubblock.instance_name, 'instance')
-        self.assertEqual(oSubblock.source_interfaces, None)
-        self.assertEqual(oSubblock.sink_interfaces, None)
+        self.assertEqual(oSubblock.interfaces, None)
+        self.assertEqual(oSubblock.interface_types, None)
 
     def test_subblock_add_sink_and_source_interface_methods(self):
         oPort1 = port.create('Port1')
@@ -27,13 +27,13 @@ class testHdlSubblock(unittest.TestCase):
         oSubblock = subblock.create('instance')
         oSubblock.add_source_interface(oIntSource)
         oSubblock.add_sink_interface(oIntSink)
-        self.assertEqual(oSubblock.source_interfaces[0].name, 'Interface1')
-        self.assertEqual(oSubblock.source_interfaces[0].ports[0].name, 'Port1')
-        self.assertEqual(oSubblock.source_interfaces[0].ports[1].name, 'Port2')
+        self.assertEqual(oSubblock.interfaces[0].name, 'Interface1')
+        self.assertEqual(oSubblock.interfaces[0].ports[0].name, 'Port1')
+        self.assertEqual(oSubblock.interfaces[0].ports[1].name, 'Port2')
 
-        self.assertEqual(oSubblock.sink_interfaces[0].name, 'Interface2')
-        self.assertEqual(oSubblock.sink_interfaces[0].ports[0].name, 'Port3')
-        self.assertEqual(oSubblock.sink_interfaces[0].ports[1].name, 'Port4')
+        self.assertEqual(oSubblock.interfaces[1].name, 'Interface2')
+        self.assertEqual(oSubblock.interfaces[1].ports[0].name, 'Port3')
+        self.assertEqual(oSubblock.interfaces[1].ports[1].name, 'Port4')
 
     def test_subblock_create_entity_method(self):
         oSubblock = subblock.create('instance1')
