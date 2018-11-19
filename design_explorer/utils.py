@@ -73,7 +73,7 @@ def process_trace(lTrace, oTrace, oEdgeList, oTraceList):
 def append_to_list(lList, oItem):
     try:
         lList.append(oItem)
-    except:
+    except AttributeError:
         lList = [oItem]
     return lList
 

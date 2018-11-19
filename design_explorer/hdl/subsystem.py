@@ -1,3 +1,5 @@
+from design_explorer import utils
+
 
 class create():
     '''
@@ -10,8 +12,4 @@ class create():
 
 
     def add_subblock(self, oSubblock):
-        try:
-            self.subblocks.append(oSubblock)
-        except:
-            self.subblocks = []
-            self.subblocks.append(oSubblock)
+        self.subblocks = utils.append_to_list(self.subblocks, oSubblock)

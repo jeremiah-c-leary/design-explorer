@@ -41,7 +41,7 @@ class testHdlSubblock(unittest.TestCase):
         oSubblock.add_sink_interface(interface.create('FIFO'))
         oSubblock.add_source_interface(interface.create('Interrupts'))
         oSubblock.add_source_interface(interface.create('Ethernet'))
-       
+
         lExpected = []
         lExpected.append('entity INSTANCE1 is')
         lExpected.append('  port map (')
