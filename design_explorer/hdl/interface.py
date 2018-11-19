@@ -12,13 +12,15 @@ class create():
         self.ports = None
         self.port_types = None
 
-    def add_source_port(self, oPort):
+    def _add_port(self, oPort, sPort_type):
         self.ports = utils.append_to_list(self.ports, oPort)
-        self.port_types = utils.append_to_list(self.port_types, 'Source')
+        self.port_types = utils.append_to_list(self.port_types, sPort_type)
+
+    def add_source_port(self, oPort):
+        self._add_port(oPort, 'Source')
 
     def add_sink_port(self, oPort):
-        self.ports = utils.append_to_list(self.ports, oPort)
-        self.port_types = utils.append_to_list(self.port_types, 'Sink')
+        self._add_port(oPort, 'Sink')
 
     def extract_port_list(self, interface_type):
         lReturn = []
