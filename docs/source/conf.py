@@ -163,6 +163,3 @@ texinfo_documents = [
      author, 'design-explorer', 'One line description of project.',
      'Miscellaneous'),
 ]
-
-
-

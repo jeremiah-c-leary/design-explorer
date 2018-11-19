@@ -10,6 +10,5 @@ class create():
         self.instance_name = instance_name
         self.subblocks = None
 
-
     def add_subblock(self, oSubblock):
         self.subblocks = utils.append_to_list(self.subblocks, oSubblock)

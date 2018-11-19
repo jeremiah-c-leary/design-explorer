@@ -6,4 +6,3 @@ def append_to_list(lList, oItem):
     except AttributeError:
         lList = [oItem]
     return lList
-
