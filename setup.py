@@ -30,6 +30,5 @@ setup(name='design-explorer',
       zip_safe=False,
       test_suite='nose.collector',
       tests_require=['nose'],
-      scripts=['bin/de_sequencer'],
       keywords=['vhdl', 'verilog']
       )
