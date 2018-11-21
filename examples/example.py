@@ -4,12 +4,13 @@ import sys
 
 sys.path.append('..')
 
+from design_explorer import system
 from design_explorer import hdl
 from design_explorer import hw
 from design_explorer import connect
 
 #Create top level system
-oSystem = hdl.subsystem.create('Top Level System')
+oSystem = system.create('Top Level System')
 
 #Create cca
 oCca = hw.cca.create('Development Board')
