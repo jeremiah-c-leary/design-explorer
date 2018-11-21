@@ -8,12 +8,14 @@ from design_explorer import system
 from design_explorer import hdl
 from design_explorer import hw
 from design_explorer import connect
+from design_explorer import utils
 
 #Create top level system
 oSystem = system.create('Top Level System')
 
 #Create cca
 oCca = hw.cca.create('Development Board')
+oSystem.add_component(oCca)
 
 #Create FPGA and devices it interacts with
 oFpga = hw.fpga.create('FPGA')
@@ -56,3 +58,10 @@ oFpga.add_hdl_block(oEmifIp)
 
 oFpgaCore = hdl.subsystem.create('FPGA Core')
 oFpga.add_hdl_block(oFpgaCore)
+
+#Output node list for gephi
+lNodeList = oSystem.extract_node_list()
+utils.write_to_file('system_node.csv', lNodeList)
+
+lCcaNodeList = oCca.extract_node_list()
+utils.write_to_file('cca_node.csv', lCcaNodeList)
