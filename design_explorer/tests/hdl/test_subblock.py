@@ -58,7 +58,7 @@ class testHdlSubblock(unittest.TestCase):
 
         self.assertEqual(oSubblock.create_entity(), lExpected)
 
-        
+
 
 if __name__ == '__main__':
     unittest.main()

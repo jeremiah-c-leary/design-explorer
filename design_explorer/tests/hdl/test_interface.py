@@ -64,7 +64,7 @@ class test_hdl_interface(unittest.TestCase):
         lExpected.append('Port3 : in')
         lExpected.append('Port4 : out')
         self.assertEqual(oInterface.extract_port_list('Sink'), lExpected)
- 
+
 
 if __name__ == '__main__':
     unittest.main()

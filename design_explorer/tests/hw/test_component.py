@@ -44,6 +44,6 @@ class test_hw_component(unittest.TestCase):
 
         self.assertEqual(oComponent.get_interface('Interface1').name, 'Interface1')
         self.assertEqual(oComponent.get_interface('Interface2').name, 'Interface2')
-        
+
 if __name__ == '__main__':
     unittest.main()
