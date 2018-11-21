@@ -35,6 +35,15 @@ class test_hw_component(unittest.TestCase):
         self.assertEqual(oComponent.interfaces[1].ports[0].name, 'Port3')
         self.assertEqual(oComponent.interfaces[1].ports[1].name, 'Port4')
 
+    def test_component_get_interface_method(self):
+        oIntSource = interface.create('Interface1')
+        oIntSink = interface.create('Interface2')
+        oComponent = component.create('component')
+        oComponent.add_source_interface(oIntSource)
+        oComponent.add_sink_interface(oIntSink)
 
+        self.assertEqual(oComponent.get_interface('Interface1').name, 'Interface1')
+        self.assertEqual(oComponent.get_interface('Interface2').name, 'Interface2')
+        
 if __name__ == '__main__':
     unittest.main()

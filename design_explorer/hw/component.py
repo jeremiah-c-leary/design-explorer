@@ -21,3 +21,8 @@ class create():
 
     def add_sink_interface(self, oInterface):
         self._add_interface(oInterface, 'Sink')
+
+    def get_interface(self, sInterfaceName):
+        for oInterface in self.interfaces:
+            if sInterfaceName == oInterface.name:
+                return oInterface
