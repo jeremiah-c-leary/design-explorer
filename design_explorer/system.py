@@ -9,9 +9,13 @@ class create():
     def __init__(self, name):
         self.name = name
         self.components = None
+        self.connections = None
 
     def add_component(self, oComponent):
         self.components = utils.append_to_list(self.components, oComponent)
+
+    def add_connection(self, oConnection):
+        self.connections = utils.append_to_list(self.connections, oConnection)
 
     def extract_node_list(self):
         lReturn = ['Id,Label']
