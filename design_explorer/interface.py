@@ -37,21 +37,13 @@ class create():
 
 
 def extract_port(oPort, sInterface_type, sPortType):
-    if sInterface_type == 'Source':
-        return extract_source_port(oPort, sPortType)
-    else:
-        return extract_sink_port(oPort, sPortType)
+    # Define source and sink port mapping
+    dPortMap = {}
+    dPortMap['Source'] = {}
+    dPortMap['Source']['Source'] = 'out'
+    dPortMap['Source']['Sink'] = 'in'
+    dPortMap['Sink'] = {}
+    dPortMap['Sink']['Source'] = 'in'
+    dPortMap['Sink']['Sink'] = 'out'
 
-
-def extract_source_port(oPort, sPortType):
-    if sPortType == 'Source':
-        return oPort.name + ' : out'
-    else:
-        return oPort.name + ' : in'
-
-
-def extract_sink_port(oPort, sPortType):
-    if sPortType == 'Source':
-        return oPort.name + ' : in'
-    else:
-        return oPort.name + ' : out'
+    return oPort.name + ' : ' + dPortMap[sInterface_type][sPortType]
