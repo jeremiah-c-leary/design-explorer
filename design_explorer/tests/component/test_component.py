@@ -1,6 +1,6 @@
 
 import unittest
-from design_explorer.hw import component
+from design_explorer import component
 from design_explorer.hdl import port
 from design_explorer.hdl import interface
 

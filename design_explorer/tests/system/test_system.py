@@ -3,6 +3,7 @@ import unittest
 from design_explorer import system
 from design_explorer import hw
 from design_explorer import connect
+from design_explorer import component
 from design_explorer.hdl import subblock
 from design_explorer.hdl import interface
 
@@ -29,10 +30,10 @@ class test_system(unittest.TestCase):
     def test_system_extract_node_list_method(self):
         oSystem = system.create('System1')
         oSystem.add_component(hw.fpga.create('FPGA1'))
-        oSystem.add_component(hw.component.create('DAC_1'))
-        oSystem.add_component(hw.component.create('DAC_2'))
-        oSystem.add_component(hw.component.create('ADC'))
-        oSystem.add_component(hw.component.create('MEMORY'))
+        oSystem.add_component(component.create('DAC_1'))
+        oSystem.add_component(component.create('DAC_2'))
+        oSystem.add_component(component.create('ADC'))
+        oSystem.add_component(component.create('MEMORY'))
         lExpected = []
         lExpected.append('Id,Label')
         lExpected.append('FPGA1,FPGA1')
