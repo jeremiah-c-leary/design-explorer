@@ -1,6 +1,6 @@
 
 import unittest
-from design_explorer.hdl import port
+from design_explorer import port
 
 
 class test_hdl_port(unittest.TestCase):
