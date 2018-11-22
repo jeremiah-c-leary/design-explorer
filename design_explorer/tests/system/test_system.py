@@ -35,11 +35,11 @@ class test_system(unittest.TestCase):
         oSystem.add_component(hw.component.create('MEMORY'))
         lExpected = []
         lExpected.append('Id,Label')
-        lExpected.append('1,FPGA1')
-        lExpected.append('2,DAC_1')
-        lExpected.append('3,DAC_2')
-        lExpected.append('4,ADC')
-        lExpected.append('5,MEMORY')
+        lExpected.append('FPGA1,FPGA1')
+        lExpected.append('DAC_1,DAC_1')
+        lExpected.append('DAC_2,DAC_2')
+        lExpected.append('ADC,ADC')
+        lExpected.append('MEMORY,MEMORY')
         self.assertEqual(oSystem.extract_node_list(), lExpected)
 
     def test_system_add_connection_method(self):
@@ -100,8 +100,8 @@ class test_system(unittest.TestCase):
 
         lExpected = []
         lExpected.append('Source,Target,Type,Kind,Id,Label,timeset,Weight')
-        lExpected.append('Subblock1,Subblock2,Directed,0,Connection1,,1')
-        lExpected.append('Subblock1,Subblock3,Directed,1,Connection2,,1')
+        lExpected.append('Subblock1,Subblock2,Directed,,0,Connection1,,1')
+        lExpected.append('Subblock1,Subblock3,Directed,,1,Connection2,,1')
 
         self.assertEqual(oSystem.extract_edge_list(), lExpected)
 
