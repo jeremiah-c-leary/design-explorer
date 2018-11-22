@@ -22,9 +22,9 @@ class testHdlSubsystem(unittest.TestCase):
         oSystem.add_subblock(oSub3)
 
         self.assertEqual(len(oSystem.subblocks), 3)
-        self.assertEqual(oSystem.subblocks[0].instance_name, 'Sub1')
-        self.assertEqual(oSystem.subblocks[1].instance_name, 'Sub2')
-        self.assertEqual(oSystem.subblocks[2].instance_name, 'Sub3')
+        self.assertEqual(oSystem.subblocks[0].name, 'Sub1')
+        self.assertEqual(oSystem.subblocks[1].name, 'Sub2')
+        self.assertEqual(oSystem.subblocks[2].name, 'Sub3')
 
 
 

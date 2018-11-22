@@ -9,7 +9,7 @@ class testHdlSubblock(unittest.TestCase):
 
     def test_subblock_class_attributes_exist(self):
         oSubblock = subblock.create('instance')
-        self.assertEqual(oSubblock.instance_name, 'instance')
+        self.assertEqual(oSubblock.name, 'instance')
         self.assertEqual(oSubblock.interfaces, None)
         self.assertEqual(oSubblock.interface_types, None)
 
