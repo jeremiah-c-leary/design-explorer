@@ -9,7 +9,7 @@ def append_to_list(lList, oItem):
 
 
 def write_to_file(sFileName, lList):
-    with open (sFileName, 'w') as oFile:
+    with open(sFileName, 'w') as oFile:
         for sLine in lList:
             oFile.write(sLine + '\n')
     oFile.close()
