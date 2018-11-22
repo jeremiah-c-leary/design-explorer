@@ -26,5 +26,8 @@ class create():
     def extract_edge_list(self):
         lReturn = ['Source,Target,Type,Kind,Id,Label,timeset,Weight']
         for iIndex, oConnection in enumerate(self.connections):
-            lReturn.append(oConnection.source.name + ',' + oConnection.sink.name + ',Directed,,' + str(iIndex) + ',' + oConnection.name + ',,1')
+            lReturn.append(oConnection.source.name + ',' + \
+                           oConnection.sink.name + ',Directed,,' + \
+                           str(iIndex) + ',' + \
+                           oConnection.name + ',,1')
         return lReturn

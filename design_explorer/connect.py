@@ -2,9 +2,17 @@
 
 class create():
 
-    def __init__(self, sName, oSource, sSourceInterfaceName, oSink, sSinkInterfaceName):
+    def __init__(self, sName):
         self.name = sName
-        self.source = oSource
-        self.source_interface = oSource.get_interface(sSourceInterfaceName)
-        self.sink = oSink
-        self.sink_interface = oSink.get_interface(sSinkInterfaceName)
+        self.source = None
+        self.source_interface = None
+        self.sink = None
+        self.sink_interface = None
+
+    def add_source(self, oComponent, sInterfaceName):
+        self.source = oComponent
+        self.source_interface = oComponent.get_interface(sInterfaceName)
+
+    def add_sink(self, oComponent, sInterfaceName):
+        self.sink = oComponent
+        self.sink_interface = oComponent.get_interface(sInterfaceName)

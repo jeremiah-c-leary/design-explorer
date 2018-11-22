@@ -16,7 +16,9 @@ class test_connect(unittest.TestCase):
         oInterface2 = interface.create('Interface2')
         oSubblock2.add_sink_interface(oInterface2)
 
-        oConnection = connect.create('Connection1', oSubblock1, 'Interface1', oSubblock2, 'Interface2')
+        oConnection = connect.create('Connection1')
+        oConnection.add_source(oSubblock1, 'Interface1')
+        oConnection.add_sink(oSubblock2, 'Interface2')
         self.assertEqual(oConnection.name, 'Connection1')
         self.assertEqual(oConnection.source.name, 'Subblock1')
         self.assertEqual(oConnection.source_interface.name, 'Interface1')

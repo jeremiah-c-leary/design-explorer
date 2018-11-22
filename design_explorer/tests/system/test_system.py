@@ -63,8 +63,12 @@ class test_system(unittest.TestCase):
         oSubblock3.add_sink_interface(oInterface3)
         oSystem.add_component(oSubblock3)
 
-        oConnection1 = connect.create('Connection1', oSubblock1, 'Interface1.0', oSubblock2, 'Interface2')
-        oConnection2 = connect.create('Connection2', oSubblock1, 'Interface1.1', oSubblock3, 'Interface3')
+        oConnection1 = connect.create('Connection1')
+        oConnection1.add_source(oSubblock1, 'Interface1.0')
+        oConnection1.add_sink(oSubblock2, 'Interface2')
+        oConnection2 = connect.create('Connection2')
+        oConnection2.add_source(oSubblock1, 'Interface1.1')
+        oConnection2.add_sink(oSubblock3, 'Interface3')
 
         oSystem.add_connection(oConnection1)
         oSystem.add_connection(oConnection2)
@@ -93,8 +97,13 @@ class test_system(unittest.TestCase):
         oSubblock3.add_sink_interface(oInterface3)
         oSystem.add_component(oSubblock3)
 
-        oConnection1 = connect.create('Connection1', oSubblock1, 'Interface1.0', oSubblock2, 'Interface2')
-        oConnection2 = connect.create('Connection2', oSubblock1, 'Interface1.1', oSubblock3, 'Interface3')
+        oConnection1 = connect.create('Connection1')
+        oConnection1.add_source(oSubblock1, 'Interface1.0')
+        oConnection1.add_sink(oSubblock2, 'Interface2')
+
+        oConnection2 = connect.create('Connection2')
+        oConnection2.add_source(oSubblock1, 'Interface1.1')
+        oConnection2.add_sink(oSubblock3, 'Interface3')
 
         oSystem.add_connection(oConnection1)
         oSystem.add_connection(oConnection2)
