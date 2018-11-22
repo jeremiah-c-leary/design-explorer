@@ -10,6 +10,7 @@ from design_explorer import hw
 from design_explorer import connect
 from design_explorer import utils
 from design_explorer import component
+from design_explorer import interface
 
 #Create top level system
 oSystem = system.create('Top Level System')
@@ -23,22 +24,22 @@ oFpga = hw.fpga.create('FPGA')
 oCca.add_component(oFpga)
 # Add DAC and it's interfaces
 oDac = component.create('DAC')
-oDacSpiInterface = hdl.interface.create('DAC SPI')
+oDacSpiInterface = interface.create('DAC SPI')
 oDac.add_sink_interface(oDacSpiInterface)
 oCca.add_component(oDac)
 # Add ADC and it's interfaces
 oAdc = component.create('ADC')
-oAdcSpiInterface = hdl.interface.create('DAC SPI')
+oAdcSpiInterface = interface.create('DAC SPI')
 oAdc.add_sink_interface(oAdcSpiInterface)
 oCca.add_component(oAdc)
 # Add Flash and it's interfaces
 oFlash = component.create('FLASH')
-oFlashDataInterface = hdl.interface.create('FLASH Data')
+oFlashDataInterface = interface.create('FLASH Data')
 oFlash.add_sink_interface(oFlashDataInterface)
 oCca.add_component(oFlash)
 # Add DDR4 and it's interfaces
 oDdr4 = component.create('DDR4')
-oDdr4DataInterface = hdl.interface.create('DDR4 Data')
+oDdr4DataInterface = interface.create('DDR4 Data')
 oDdr4.add_sink_interface(oDdr4DataInterface)
 oCca.add_component(oDdr4)
 # Add interfaces to FPGA
@@ -48,10 +49,25 @@ oFpga.add_source_interface(oFlashDataInterface)
 oFpga.add_source_interface(oDdr4DataInterface)
 
 # Add connections
-oCca.add_connection(connect.create('DAC SPI', oFpga, 'DAC SPI', oDac, 'DAC SPI'))
-oCca.add_connection(connect.create('ADC SPI', oFpga, 'ADC SPI', oAdc, 'ADC SPI'))
-oCca.add_connection(connect.create('FLASH Data', oFpga, 'FLASH Data', oFlash, 'FLASH Data'))
-oCca.add_connection(connect.create('DDR4 Data', oFpga, 'DDR4 Data', oDdr4, 'DDR4 Data'))
+oConnection = connect.create('DAC SPI')
+oConnection.add_source(oFpga, 'DAC SPI')
+oConnection.add_sink(oDac, 'DAC SPI')
+oCca.add_connection(oConnection)
+
+oConnection = connect.create('ADC SPI')
+oConnection.add_source(oFpga, 'ADC SPI')
+oConnection.add_sink(oAdc, 'ADC SPI')
+oCca.add_connection(oConnection)
+
+oConnection = connect.create('FLASH Data')
+oConnection.add_source(oFpga, 'FLASH Data')
+oConnection.add_sink(oFlash, 'FLASH Data')
+oCca.add_connection(oConnection)
+
+oConnection = connect.create('DDR4 Data')
+oConnection.add_source(oFpga, 'DDR4 Data')
+oConnection.add_sink(oDdr4, 'DDR4 Data')
+oCca.add_connection(oConnection)
 
 #Create blocks
 oClockResetBlock = hdl.subblock.create('Clock Reset')
