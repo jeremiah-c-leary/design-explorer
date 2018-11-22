@@ -1,5 +1,4 @@
 
-from design_explorer import utils
 from design_explorer import component
 
 
