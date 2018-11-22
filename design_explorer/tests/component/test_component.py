@@ -2,7 +2,7 @@
 import unittest
 from design_explorer import component
 from design_explorer.hdl import port
-from design_explorer.hdl import interface
+from design_explorer import interface
 
 
 class test_hw_component(unittest.TestCase):

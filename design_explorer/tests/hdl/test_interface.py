@@ -1,7 +1,7 @@
 
 import unittest
 from design_explorer.hdl import port
-from design_explorer.hdl import interface
+from design_explorer import interface
 
 
 class test_hdl_interface(unittest.TestCase):

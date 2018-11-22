@@ -5,7 +5,7 @@ from design_explorer import hw
 from design_explorer import connect
 from design_explorer import component
 from design_explorer.hdl import subblock
-from design_explorer.hdl import interface
+from design_explorer import interface
 
 
 class test_system(unittest.TestCase):

@@ -2,7 +2,7 @@
 import unittest
 from design_explorer.hdl import subblock
 from design_explorer.hdl import port
-from design_explorer.hdl import interface
+from design_explorer import interface
 
 
 class testHdlSubblock(unittest.TestCase):

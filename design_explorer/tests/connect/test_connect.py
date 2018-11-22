@@ -2,7 +2,7 @@
 import unittest
 from design_explorer import connect
 from design_explorer.hdl import subblock
-from design_explorer.hdl import interface
+from design_explorer import interface
 
 
 class test_connect(unittest.TestCase):
