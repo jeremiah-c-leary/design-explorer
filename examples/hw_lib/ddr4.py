@@ -5,11 +5,13 @@ sys.path.append('../..')
 
 import design_explorer as de
 
-generic = de.component.create('DDR4')
+def create():
 
-oDataInterface = de.interface.create('Data')
-oDiscreteInterface = de.interface.create('Discrete')
-
-generic.add_sink_interface(oDataInterface)
-generic.add_sink_interface(oDiscreteInterface)
+    generic = de.component.create('DDR4')
+    
+    oDataInterface = de.interface.create('Data')
+    oDiscreteInterface = de.interface.create('Discrete')
+    
+    generic.add_sink_interface(oDataInterface)
+    generic.add_sink_interface(oDiscreteInterface)
 

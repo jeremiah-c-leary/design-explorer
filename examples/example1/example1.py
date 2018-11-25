@@ -14,10 +14,10 @@ oCca = de.hw.cca.create('CCA')
 
 oSystem.add_component(oCca)
 
-oAdc = hw_lib.adc.generic
-oDac = hw_lib.dac.generic
-oFlash = hw_lib.flash.generic
-oDdr4 = hw_lib.ddr4.generic
+oAdc = hw_lib.adc.create()
+oDac = hw_lib.dac.create()
+oFlash = hw_lib.flash.create()
+oDdr4 = hw_lib.ddr4.create()
 oFpga = fpga.generic
 
 oCca.add_component(oAdc)
