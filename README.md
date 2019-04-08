@@ -46,8 +46,8 @@ I am a attempting to answer the following questions with this project:
 
 1.  Can an hdl system be abstracted using python
 2.  Can an abstracted hdl system be used to document the design
-..1. Produce accurate block diagrams
-..2. Provide a different vehicle to browse the documentation
+  1. Produce accurate block diagrams
+  2. Provide a different vehicle to browse the documentation
 3.  Can an abstracted hdl system be used to create hierarchies
 4.  Can an abstracted hdl system be used to generate HDL tool inputs
 5.  Can a re-usable library of components be created to aid in IP generation
