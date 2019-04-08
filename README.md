@@ -22,3 +22,39 @@
       alt="Code Climate" />
   </a>
 </div>
+
+Overview
+--------
+
+I believe Design-Explorer is a missing tool in the design process of hdl systems.
+We have tools that can help us after the we have code, a bottom up view.
+However, we do not seem to have any tools to perform a top down design.
+
+I have used Microsoft Visio for block diagrams and Microsoft Word for documentation.
+However, I believe these tools are insufficient for there given tasks.
+
+Block diagrams are out of date the moment they are saved and commited to source control.
+Word documents are difficult to manage and lock information into a hard to parse format.
+
+Design-Explorer will attempt to provide an easy to use tool to document and explore design decisions.
+It will also allow data mining to provide different visualizations of the design.
+
+Goals
+-----
+
+I am a attempting to answer the following questions with this project:
+
+1.  Can an hdl system be abstracted using python
+2.  Can an abstracted hdl system be used to document the design
+    a.  Produce accurate block diagrams
+    b.  Provide a different vehicle to browse the documentation
+3.  Can an abstracted hdl system be used to create hierarchies
+4.  Can an abstracted hdl system be used to generate HDL tool inputs
+5.  Can a re-usable library of components be created to aid in IP generation
+
+Outputs
+-------
+
+1.  Graphical output of the design that can be filtered depending on what the user is looking for.
+2.  HDL files that can be compiled and synthesized
+
