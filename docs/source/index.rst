@@ -10,7 +10,9 @@ Welcome to design-explorer's documentation!
    :maxdepth: 2
    :caption: Contents:
 
-
+   overview
+   interfaces
+   case_study_1/case_study_1.rst
 
 Indices and tables
 ==================
