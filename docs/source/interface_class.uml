@@ -2,6 +2,11 @@
   class Interface {
     Name : String
     Source : Boolean
-    Ports : String
+    Ports : port list
+    methods {
+      add_port()
+      get_interfaces()
+      get_interface_named()
+    }
   }
 @enduml

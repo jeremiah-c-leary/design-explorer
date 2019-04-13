@@ -12,6 +12,8 @@ Welcome to design-explorer's documentation!
 
    overview
    interfaces
+   ports
+   connections
    case_study_1/case_study_1.rst
 
 Indices and tables

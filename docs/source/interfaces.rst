@@ -20,15 +20,19 @@ Analog Inputs    Sink
 Clock            Sink
 ================ ============
 
+.. image:: img/adc_interfaces.png
+
 An FPGA which communicates with the ADC would have the following interfaces:
 
 ================ ============
 Interface        Direction
 ================ ============
 SPI              Source
-Input Discretes  Source
-Output Discretes Sink
+Input Discretes  Sink
+Output Discretes Source
 ================ ============
+
+.. image:: img/fpga_interfaces.png
 
 Naming the interfaces clarifies communication between team members.
 
@@ -39,73 +43,36 @@ We will implement a interface using a class.
 
 .. uml:: interface_class.uml
 
-Interface Ports
-===============
+Code Example
+------------
 
-Ports within an interface can be either a source or a sink.
+We can define the interfaces for the ADC and the FPGA using DE:
 
-For example, the SPI interface on the ADC is a four wire SPI interface has the following ports:
+.. code-block:: python
 
-===== ====== ========= ================
-Port  Width  Polarity   Direction
-===== ====== ========= ================
-SCK     1       -       Sink
-CS_N    1       0       Sink
-DIN     1       -       Sink
-DOUT    1       -       Source
-===== ====== ========= ================
+   oAdc = hdl.device.create()
+   oAdc.add_interface(hdl.interface('Power', False))
+   oAdc.add_interface(hdl.interface('SPI', False))
+   oAdc.add_interface(hdl.interface('Input Discretes', False))
+   oAdc.add_interface(hdl.interface('Output Discretes', True))
+   oAdc.add_interface(hdl.interface('Analog Inputs', False))
+   oAdc.add_interface(hdl.interface('Clock', False))
 
-The Input Discretes Interface could be defined as:
+   oFPGA = hdl.device.create()
+   oFPGA.add_interface(hdl.interface('SPI', True))
+   oFPGA.add_interface(hdl.interface('Input Discretes', False))
+   oFPGA.add_interface(hdl.interface('Output Discretes', True))
 
-====== ====== ========= ================
-Port   Width  Polarity   Direction
-====== ====== ========= ================
-ADR0     1       -       Sink
-ADR1     1       -       Sink
-AIN1     1       -       Sink
-AIN2     1       -       Sink
-AINCOM   1       -       Sink
-SYNC_N   1       0       Sink
-====== ====== ========= ================
+If we wanted to grab the SPI interface on the oADC object:
 
-The Output Discretes Interface could be defined as:
+.. code-block:: python
 
-===== ====== ========= ================
-Port  Width  Polarity   Direction
-===== ====== ========= ================
-ERR_N   1       0       Source
-===== ====== ========= ================
-
-Etc....
+  oSpiInterface = oAdc.get_interface_named('SPI')
 
 
-The SPI interface on the FPGA will more than likely have differently named ports.
+If we wanted to grab all the interfaces:
 
-===== ====== ========= ================
-Port  Width  Polarity   Direction
-===== ====== ========= ================
-SCK     1       -       Sink
-CS_N    1       0       Sink
-MOSI    1       -       Sink
-MISO    1       -       Source
-===== ====== ========= ================
+.. code-block:: python
 
-This can happen if we are re-using a design or because of externally imposed naming conventions.
+  lInterfaces = oAdc.get_interfaces()
 
-Implementation
---------------
-
-We will implement a port with a class.
-
-.. uml:: port_class.uml
-
-
-Connections
-===========
-
-Connections between interfaces must align the correct ports.
-This will be accomplished using a positional and named association methods.
-The default will be positional.
-The ports will be matched in the two interfaces starting with the first defined.
-
- 
