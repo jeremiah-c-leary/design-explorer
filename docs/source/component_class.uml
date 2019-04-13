@@ -1,0 +1,24 @@
+@startuml
+  class component{
+    Name : String
+    Interfaces : 
+    methods {
+      add_interface()
+      get_interfaces()
+      get_interface_named()
+    }
+  }
+@enduml
+
+
+@startuml
+  class hdl {
+    Name : String
+    Architecture : String
+    methods {
+      add_interface()
+      get_interfaces()
+      get_interface_named()
+    }
+  }
+@enduml
