@@ -11,6 +11,7 @@ Welcome to design-explorer's documentation!
    :caption: Contents:
 
    overview
+   system
    components
    interfaces
    ports
