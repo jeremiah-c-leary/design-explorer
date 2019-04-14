@@ -4,8 +4,6 @@
     Source : Interface Object
     Sink : Interface Object
     Map : dictionary
-    methods {
-       map(source_port, sink_port)
-    }
+    map(source_port, sink_port)
   }
 @enduml

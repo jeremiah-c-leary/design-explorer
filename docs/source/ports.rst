@@ -53,7 +53,7 @@ Implementation
 
 We will implement a port with a class.
 
-.. uml:: port_class.uml
+.. image:: img/port_class.png
 
 Code Example
 ------------

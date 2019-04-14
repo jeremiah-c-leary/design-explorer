@@ -41,7 +41,7 @@ Implementation
 
 We will implement a interface using a class.
 
-.. uml:: interface_class.uml
+.. image:: img/interface_class.png
 
 Code Example
 ------------

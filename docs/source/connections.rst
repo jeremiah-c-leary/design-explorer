@@ -17,7 +17,7 @@ Implementation
 
 We will implement a interface using a class.
 
-.. uml:: connection_class.uml
+.. image:: img/connection_class.png
 
 Code Example
 ------------

@@ -31,7 +31,7 @@ Implementation
 
 We will implement the component as a class:
 
-.. uml:: component_class.uml
+.. image:: img/component_class.png
 
 Code Examples
 -------------

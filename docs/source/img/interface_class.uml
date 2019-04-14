@@ -3,10 +3,8 @@
     Name : String
     Source : Boolean
     Ports : port list
-    methods {
-      add_port()
-      get_interfaces()
-      get_interface_named()
-    }
+    add_port()
+    get_interfaces()
+    get_interface_named()
   }
 @enduml
