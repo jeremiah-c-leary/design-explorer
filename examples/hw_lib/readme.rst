@@ -38,7 +38,7 @@ Creating the hardware libray
 
 The first step to creating the hardware library is to create the directory and the *__init__.py* file.
 
-..code-block:: bash
+.. code-block:: bash
 
     $ mkdir hw_lib
     $ touch hw_lib/__init__.py
@@ -53,14 +53,14 @@ These directories can be further divided as needed.
 
 Creating the function directory follows the same steps as creating a hardware libary:
 
-..code-block:: bash
+.. code-block:: bash
 
     $ mkdir hw_lib/adc
     $ touch hw_lib/adc/__init__.py
 
 However, we need to modify the *hw_lib/__init__.py* file to include the new subdirectory:
 
-..code-block:: python
+.. code-block:: python
 
     from . import adc
 
@@ -75,13 +75,13 @@ We can then use this simple model to create an initial system.
 
 First we need to import design_explorer:
 
-..code-block:: python
+.. code-block:: python
 
     import design_explorer as de
 
 Then we will make a function to return an object which will represent our generic ADC.
 
-..code-block:: python
+.. code-block:: python
 
     import design_explorer as de
 
@@ -90,7 +90,7 @@ Then we will make a function to return an object which will represent our generi
 
 We will create a component object...
 
-..code-block:: python
+.. code-block:: python
 
     import design_explorer as de
 
@@ -106,7 +106,7 @@ The data interface can be LVDS, serial, or JESD204B.
 The discrete interface will vary by manufacturer, but typically includes resets and power downs.
 These interfaces are intended to cover most ADCs.
 
-..code-block:: python
+.. code-block:: python
 
     import design_explorer as de
 
@@ -121,7 +121,7 @@ These interfaces are intended to cover most ADCs.
 
 Then we will add the interfaces to the generic object...
 
-..code-block:: python
+.. code-block:: python
 
     import design_explorer as de
 
@@ -140,7 +140,7 @@ Then we will add the interfaces to the generic object...
 
 ...and then return the object to the caller:
 
-..code-block:: python
+.. code-block:: python
 
     import design_explorer as de
 
