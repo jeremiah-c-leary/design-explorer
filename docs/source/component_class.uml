@@ -1,7 +1,7 @@
 @startuml
   class component{
     Name : String
-    Interfaces : 
+    Interfaces : Interface object list
     methods {
       add_interface()
       get_interfaces()
@@ -12,13 +12,36 @@
 
 
 @startuml
-  class hdl {
+  class fpga_component {
     Name : String
-    Architecture : String
+    Interfaces : Interface object list
+    Component : Component object
     methods {
       add_interface()
       get_interfaces()
       get_interface_named()
+      add_component()
+      get_component()
+    }
+  }
+@enduml
+
+@startuml
+  class hdl_component {
+    Name : String
+    Interfaces : Interface object list
+    Components : Component object list
+    Connections: Connection object list
+    methods {
+      add_interface()
+      get_interfaces()
+      get_interface_named()
+      add_component()
+      get_components()
+      get_component_named()
+      add_connection()
+      get_connection()
+      get_connection_named()
     }
   }
 @enduml

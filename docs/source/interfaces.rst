@@ -7,7 +7,7 @@ Each interface must be uniquely named on a component.
 Each interface is composed of at least one port.
 Each interface is a source on one component and a sink on another.
 
-For example, the AD4110 ADC clock device could be defined with the following interfaces:
+For example, the ADC `AD4110 <https://www.analog.com/media/en/technical-documentation/data-sheets/AD4110-1.pdf>`_ could be defined with the following interfaces:
 
 ================ ============
 Interface        Direction
@@ -22,7 +22,7 @@ Clock            Sink
 
 .. image:: img/adc_interfaces.png
 
-An FPGA which communicates with the ADC would have the following interfaces:
+An FPGA which communicates with the ADC could have the following interfaces:
 
 ================ ============
 Interface        Direction

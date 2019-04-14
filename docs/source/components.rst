@@ -8,17 +8,23 @@ There are many types of components:
 - ADC
 - DAC
 - RAM
+- FPGA
 - HDL code
-- Circuit Card Assembly (CCA)
 
-Components can hold other components.
+.. image:: img/component.png
+
+
+Only the FPGA and HDL components can hold other components.
 This allows for hierarchical design.
-For example, a CCA component could include an ADC, DAC, and FPGA.
-The FPGA would then include HDL components representing the top level HDL file.
-The top level HDL file would then include other components.
+The diagram above shows a CCA system which includes an ADC, DAC, and FPGA.
+The FPGA includes an HDL component representing the top level HDL file.
+The top level HDL file includes other components.
 They can also contain connections, which show how those subcomponents are connected.
-Components also provide interfaces.
 
+Each component has a set of interfaces.
+Components connect to other components through these interfaces.
+
+We can represent the high level connections in any HDL system using components and connections.
 
 Implementation
 --------------
@@ -30,25 +36,19 @@ We will implement the component as a class:
 Code Examples
 -------------
 
-.. code-block::python
+Coding the diagram above would look like this:
 
-  oADC = de.hw.adc.create('ADC')
-  oDAC = de.hw.dac.analog_devices('DAC')
-  ORAM = de.hw.ram.ddr4.micron.create('DDR4')
+.. code-block:: python
 
-  oFPGA = de.hw.fpga.altera.arria10.create('SOC FPGA')
-  oFPGA.add_component(de.hdl.entity('SOC_FPGA_TOP'))
-  oTopHdl = oFpga.get_component_named('SOC_FPGA_TOP')
-  oTopHdl.add_interface()
-  oTopHdl.add_interface()
+  oCCA = de.system.create('CCA')
+  oCCA.add_component(de.hw.adc.create('ADC'))
+  oCCA.add_component(de.hw.dac.create('DAC'))
+  oCCA.add_component(de.hw.fpga.altera.arria10.create('FPGA'))
 
-  oClockRst = de.hdl.entity('Clock and Reset Control')
-  oClockRst.add_interface()
-  oClockRst.add_interface()
+  oFPGA = oCCA.get_component_named('FPGA')
+  oFPGA.add_component(de.hdl.entity('FPGA_TOP'))
 
-  oCore = de.hdl.entity('Core')
-  oCore.add_interface()
-  oCore.add_interface()
+  oTopHdl = oFpga.get_component_named('FPGA_TOP')
+  oTopHdl = oFpga.add_component(de.hdl.entity('component1'))
+  oTopHdl = oFpga.add_component(de.hdl.entity('component2'))
 
-  oTopHdl.add_component(oClockRst)
-  oTopHdl.add_component(oCore)

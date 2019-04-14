@@ -8,7 +8,7 @@ Connections provide the connection between any two interfaces.
 The diagram above shows three interfaces connected between the FPGA and an external component.
 
 Connections between interfaces must align the correct ports.
-This will be accomplished using a positional and named association methods.
+This will be accomplished using positional and named association methods.
 The default will be positional.
 The ports will be matched in the two interfaces starting with the first defined.
 
@@ -82,7 +82,7 @@ In this case, we just map the connections that do exist.
 The AIN1, AIN2, and AINCOM are not controlled by the FPGA, but are listed in the components interface.
 By not mapping to them, a connection is not made between the FPGA and the component for those ports not listed.
 
-The above example also shows how to map a vectored port to a non-vectore port.
+The above example also shows how to map a vectored port to a non-vectored port.
 You can take a single bit or a slice of bits and map them to portions of other ports.
 
 .. code-block:: python
