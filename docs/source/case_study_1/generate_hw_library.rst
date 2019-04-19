@@ -39,4 +39,4 @@ We will create a hardware library with the following format:
 For each directory we will add a blank *__init__.py* file.
 
 .. include:: lta_1000g.rst
-
+.. include:: ltc_2986.rst

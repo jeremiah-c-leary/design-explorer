@@ -1,0 +1,137 @@
+Temperature Sensor
+------------------
+
+Following the LED example, we make the directory.
+
+.. code-block:: bash
+
+    mkdir -p hw_lib/temp_sensor/analog_devices/ltc2986
+
+We will create the necessary *__init__.py* files at each level of the hierarchy.
+
+hw_lib/__init__.py
+^^^^^^^^^^^^^^^^^^
+
+.. code-block:: python
+
+   from . import led
+   from . import temp_sensor
+
+hw_lib/temp_sensor/__init__.py
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. code-block:: python
+
+   from . import analog_devices
+
+hw_lib/temp_sensor/analog_devices/__init__.py
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. code-block:: python
+
+   from . import ltc2986
+
+hw_lib/temp_sensor/analog_devices/ltc2986/__init__.py
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+We add the interfaces and part files to the init file:
+
+.. code-block:: python
+
+   from . import interfaces
+   from . import part
+
+hw_lib/temp_sensor/analog_devices/ltc2986/interfaces.py
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+We import design explorer:
+
+.. code-block:: python
+
+   import design_explorer as de
+
+Looking at the block diagram on page 11 we see the only pins we care about connect directly to the processor.
+We will group these pins in a *reset* interface, *interrupt* interface, and a *SPI* interface.
+
+First we create the interfaces:
+
+.. code-block:: python
+
+   import design_explorer as de
+   
+   oSPI = de.interface.create('SPI', source=False)
+   
+   oReset = de.interface.create('Discretes', source=False)
+
+   oInterrupt = de.interface.create('Interrupt', source=True)
+
+Then we add the ports to the interfaces:
+
+.. code-block:: python
+
+   import design_explorer as de
+   
+   oSPI = de.interface.create('SPI', source=False)
+   oSPI.add_port(de.port.create('SCK', False)
+   oSPI.add_port(de.port.create('SDI', False)
+   oSPI.add_port(de.port.create('CS_N', False)
+   oSPI.add_port(de.port.create('SDO', True)
+ 
+   oReset = de.interface.create('Discretes', source=False)
+   oReset.add_port(de.port.create('RESET_N', False))
+
+   oInterrupt = de.interface.create('Interrupt', source=True)
+   oInterrupt.add_port(de.port.create('INTERRUPT', True))
+
+hw_lib/temp_sensor/analog_devices/ltc2986/part.py
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+We add the interfaces to the object:
+
+.. code-block:: python
+
+    from . import interfaces
+    import design_explorer as de
+    
+    def create (self):
+    
+        oReturn = de.component.create('ltc2986')
+    
+        oReturn.add_interface(interfaces.oSPI)
+        oReturn.add_interface(interfaces.oRESET)
+        oReturn.add_interface(interfaces.oINTERRUPT)
+
+To make things easier on ourselves in the future, we will also add a link to the datasheet to the object:
+
+.. code-block:: python
+
+    from . import interfaces
+    import design_explorer as de
+    
+    def create (self):
+    
+        oReturn = de.component.create('ltc2986')
+    
+        oReturn.add_interface(interfaces.oSPI)
+        oReturn.add_interface(interfaces.oRESET)
+        oReturn.add_interface(interfaces.oINTERRUPT)
+
+        oReturn.datasheet = https://www.analog.com/media/en/technical-documentation/data-sheets/29861fa.pdf
+
+Finally we return the object:
+
+.. code-block:: python
+
+    from . import interfaces
+    import design_explorer as de
+    
+    def create (self):
+
+        oReturn = de.component.create('ltc2986')
+    
+        oReturn.add_interface(interfaces.oSPI)
+        oReturn.add_interface(interfaces.oRESET)
+        oReturn.add_interface(interfaces.oINTERRUPT)
+
+        return oReturn
+
