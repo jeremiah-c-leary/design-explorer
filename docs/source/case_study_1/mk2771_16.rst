@@ -1,0 +1,93 @@
+Clock Generator
+---------------
+
+Following the LED example, we make the directory.
+
+.. code-block:: bash
+
+    mkdir -p hw_lib/clock/idt/mk2771_16
+
+We will create or modify the necessary *__init__.py* files at each level of the hierarchy.
+
+hw_lib/__init__.py
+^^^^^^^^^^^^^^^^^^
+
+.. code-block:: python
+
+   from . import led
+   from . import temp_sensor
+   from . import clock
+
+hw_lib/clock/__init__.py
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. code-block:: python
+
+   from . import idt
+
+hw_lib/clock/idt/__init__.py
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. code-block:: python
+
+   from . import mk2771_16
+
+hw_lib/clock/idt/mk2771_16/__init__.py
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+We add the interfaces and part files to the init file:
+
+.. code-block:: python
+
+   from . import interfaces
+   from . import part
+
+hw_lib/clock/idt/mk2771_16/interfaces.py
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+We import design explorer:
+
+.. code-block:: python
+
+   import design_explorer as de
+
+Looking at the block diagram on page 1 we are only using the processor clock outputs.
+The processor clock selector inputs will be tied on the board.
+
+First we create the interface:
+
+.. code-block:: python
+
+   import design_explorer as de
+   
+   oPclock = de.interface.create('PClock', source=True)
+   
+Then we add the ports to the interface:
+
+.. code-block:: python
+
+   import design_explorer as de
+   
+   oPclock = de.interface.create('PClock', source=True)
+   oPclock.add_port(de.port.create('PCLOCK', 2, True)
+
+hw_lib/clock/idt/mk2771_16/part.py
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Condensing the steps down, we have the following model of the *mk2771-16*.
+
+.. code-block:: python
+
+    from . import interfaces
+    import design_explorer as de
+    
+    def create (self):
+    
+        oReturn = de.component.create('mk2771_16')
+    
+        oReturn.add_interface(interfaces.oPclock)
+
+        oReturn.datasheet = https://www.idt.com/document/dst/mk2771-15-datasheet 
+
+        return oReturn
+
