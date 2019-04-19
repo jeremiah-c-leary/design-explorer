@@ -38,5 +38,5 @@ We will create a hardware library with the following format:
 
 For each directory we will add a blank *__init__.py* file.
 
-.. include:: ltc_1000g.rst
+.. include:: lta_1000g.rst
 
