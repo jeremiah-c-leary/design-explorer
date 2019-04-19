@@ -1,0 +1,171 @@
+LED
+---
+
+We will start with the Lite On LED part LTA 1000G.
+First we make the directory.
+
+.. code-block:: bash
+
+    mkdir -p hw_lib/led/lite_on/lta_1000g
+
+The **-p** option on mkdir will create all the parent directories of *lta_1000g*.
+We will create the necessary *__init__.py* files at each level of the hierarchy.
+
+hw_lib/__init__.py
+^^^^^^^^^^^^^^^^^^
+
+.. code-block:: python
+
+   from . import led
+
+hw_lib/led/__init__.py
+^^^^^^^^^^^^^^^^^^^^^^
+
+.. code-block:: python
+
+   from . import lite_on
+
+hw_lib/led/lite_on/__init__.py
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. code-block:: python
+
+   from . import lta_1000g
+
+hw_lib/led/lite_on/lta_1000g/__init__.py
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+We will split the modeling of the *lta 1000g* part into two files:  interfaces and the part.
+
+.. code-block:: python
+
+   from . import interfaces
+   from . import part
+
+Seperating the interfaces into a seperate file will make it easier to re-use the interface.
+
+.. NOTE::  Need to really see if this is so.
+  It might be better to combine the files into a single file and remove the extra level of hierarchy.
+  Although having a directory to store everything for a part makes it easier to add features.
+
+hw_lib/led/lite_on/lta_1000g/interfaces.py
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+We import design explorer:
+
+.. code-block:: python
+
+   import design_explorer as de
+
+Looking at the data sheet we see only two interfaces: Anode and Cathode.
+The Anode is the end we would drive.
+The Cathode would be tied to ground.
+
+First we create the interfaces:
+
+.. code-block:: python
+
+   import design_explorer as de
+   
+   # Add the interface that we would drive to turn on and off the LEDs
+   oAnode = de.interface.create('Anode', source=False)
+   
+   # This is the ground node
+   oCathode = de.interface.create('Cathode', source=True)
+
+Then we add the ports to the interfaces:
+
+.. code-block:: python
+
+   import design_explorer as de
+   
+   # Add the interface that we would drive to turn on and off the LEDs
+   oAnode = de.interface.create('Anode', False)
+   oAnode.add_port(de.port.create('Anode', 10, False, 'The end that is driven by the user'))
+   
+   # This is the ground node
+   oCathode = de.interface.create('Cathode', True)
+   oCathode.add_port(de.port.create('Cathode', 10, False, 'The end that is driven to ground'))
+
+In this code, we are creating a port and adding it on the same line.
+The port could be created as a seperate object first and then a second line would add it.
+
+hw_lib/led/lite_on/lta_1000g/part.py
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+We start with importing our interfaces to the part and design explorer:
+
+.. code-block:: python
+
+    from . import interfaces
+    import design_explorer as de
+
+Then we add a create procedure which will build and return an object that represents the *lta 1000g*.
+
+.. code-block:: python
+
+    from . import interfaces
+    import design_explorer as de
+    
+    def create (self):
+    
+
+We create a component object and name it *lta_1000g*:
+
+.. code-block:: python
+
+    from . import interfaces
+    import design_explorer as de
+    
+    def create (self):
+    
+        oReturn = de.component.create('lta_1000g')
+    
+Then add the interfaces to the object:
+
+.. code-block:: python
+
+    from . import interfaces
+    import design_explorer as de
+    
+    def create (self):
+    
+        oReturn = de.component.create('lta_1000g')
+    
+        oReturn.add_interface(interfaces.oAnode)
+        oReturn.add_interface(interfaces.oCathode)
+
+To make things easier on ourselves in the future, we will also add a link to the datasheet to the object:
+
+.. code-block:: python
+
+    from . import interfaces
+    import design_explorer as de
+    
+    def create (self):
+    
+        oReturn = de.component.create('lta_1000g')
+    
+        oReturn.add_interface(interfaces.oAnode)
+        oReturn.add_interface(interfaces.oCathode)
+
+        oReturn.datasheet = http://optoelectronics.liteon.com/upload/download/DS-30-92-0809/A1000G.pdf
+
+Finally we return the object:
+
+.. code-block:: python
+
+    from . import interfaces
+    import design_explorer as de
+    
+    def create (self):
+    
+        oReturn = de.component.create('lta_1000g')
+    
+        oReturn.add_interface(interfaces.oAnode)
+        oReturn.add_interface(interfaces.oCathode)
+
+        oReturn.datasheet = http://optoelectronics.liteon.com/upload/download/DS-30-92-0809/A1000G.pdf
+    
+        return oReturn
+
