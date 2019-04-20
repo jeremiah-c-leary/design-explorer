@@ -9,7 +9,7 @@ Device       Manufacturer       Part Number
 ADC          Analog Devices     `AD4110-1 <https://www.analog.com/media/en/technical-documentation/data-sheets/AD4110-1.pdf>`_
 Temp Sensor  Analog Devices     `LTC2986 <https://www.analog.com/media/en/technical-documentation/data-sheets/AD4110-1.pdf>`_
 LED          Lite On            `LTA-1000G <http://optoelectronics.liteon.com/upload/download/DS-30-92-0809/A1000G.pdf>`_
-Host         Texas Instruments  OMAP-L137
+Host         Texas Instruments  `OMAP-L137 <http://www.ti.com/lit/ds/sprs563g/sprs563g.pdf>`_
 Discretes    N/A                N/A
 Clock Gen    IDT                `MK2771-16 <https://www.idt.com/document/dst/mk2771-15-datasheet>`_ 
 ===========  =================  ============
@@ -41,7 +41,7 @@ We will create a hardware library with the following format:
   |       |
   |       +-- lta_1000g
   |
-  +-- omap
+  +-- processors
   |   |
   |   +-- texas_instruments
   |       |
@@ -59,3 +59,4 @@ For each directory we will add a blank *__init__.py* file.
 .. include:: ltc_2986.rst
 .. include:: mk2771_16.rst
 .. include:: adc4110_1.rst
+.. include:: omap.rst
