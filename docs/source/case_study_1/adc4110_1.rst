@@ -1,0 +1,110 @@
+Analog Digital Converter
+------------------------
+
+Following the LED example, we make the directory.
+
+.. code-block:: bash
+
+    mkdir -p hw_lib/adc/analog_devices/ad4110_1
+
+We will create or modify the necessary *__init__.py* files at each level of the hierarchy.
+
+hw_lib/__init__.py
+^^^^^^^^^^^^^^^^^^
+
+Adding the adc directory to the hw_lib init file:
+
+.. code-block:: python
+
+   from . import led
+   from . import temp_sensor
+   from . import clock
+   from . import adc
+
+hw_lib/adc/__init__.py
+^^^^^^^^^^^^^^^^^^^^^^
+
+Creating the adc init file:
+
+.. code-block:: python
+
+   from . import analog_devices
+
+hw_lib/adc/analog_devices/__init__.py
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Creating the analog devices init file:
+
+.. code-block:: python
+
+   from . import ad4110_1
+
+hw_lib/adc/analog_devices/ad4110_1/__init__.py
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+We add the interfaces and part files to the init file:
+
+.. code-block:: python
+
+   from . import interfaces
+   from . import part
+
+hw_lib/adc/analog_devices/ad4110_1/interfaces.py
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Looking at the block diagram on page 1 we can group the digital signals into three interfaces:
+
+============= =========================
+Interface     Pins
+============= =========================
+SPI           CS_N, SCLK, DIN, DOUT
+Discretes     SYNC_N, ERR_N, ADR[1:0]
+Input Select  AIN[2:1], AINCOM
+============= =========================
+
+We will ignore the analog and power pins along with the CLKIO pin.
+
+Using the table above, we will create the interfaces:
+
+.. code-block:: python
+
+   import design_explorer as de
+   
+   oSPI = de.interface.create('SPI', source=False)
+   oSPI.add_port(de.port.create('CS_N', 1, False))
+   oSPI.add_port(de.port.create('SCLK', 1, False))
+   oSPI.add_port(de.port.create('DIN', 1, False))
+   oSPI.add_port(de.port.create('DOUT', 1, True))
+
+   oDiscretes = de.interface.create('Discretes', source=False)
+   oDiscretes.add_port(de.port.create('SYNC_N', 1, False))
+   oDiscretes.add_port(de.port.create('ERR_N', 1, True))
+   oDiscretes.add_port(de.port.create('ADR', 2, False))
+
+   oInputSelect = de.interface.create('Input Select', source=False)
+   oInputSelect.add_port(de.port.create('AIN2', 1, False))
+   oInputSelect.add_port(de.port.create('AIN1', 1, False))
+   oInputSelect.add_port(de.port.create('AINCOM', 1, False))
+
+hw_lib/adc/analog_devices/ad4110_1/part.py
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The model of the ad4110 is similar to the other models.
+
+.. code-block:: python
+
+    from . import interfaces
+    import design_explorer as de
+    
+    def create (self):
+    
+        oReturn = de.component.create('ad4110-1')
+    
+        oReturn.add_interface(interfaces.oSPI)
+        oReturn.add_interface(interfaces.oDiscretes)
+        oReturn.add_interface(interfaces.oInputSelect)
+
+        oReturn.datasheet = https://www.analog.com/media/en/technical-documentation/data-sheets/AD4110-1.pdf
+
+        return oReturn
+
