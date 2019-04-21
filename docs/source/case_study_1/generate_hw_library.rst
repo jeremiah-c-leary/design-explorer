@@ -75,3 +75,4 @@ For each directory we will add a blank *__init__.py* file.
 .. include:: adc4110_1.rst
 .. include:: omap.rst
 .. include:: discretes.rst
+.. include:: fpga.rst
