@@ -72,10 +72,10 @@ Then we add the ports to the interfaces:
    import design_explorer as de
    
    oSPI = de.interface.create('SPI', source=False)
-   oSPI.add_port(de.port.create('SCK', 1, False)
-   oSPI.add_port(de.port.create('SDI', 1, False)
-   oSPI.add_port(de.port.create('CS_N', 1, False)
-   oSPI.add_port(de.port.create('SDO', 1, True)
+   oSPI.add_port(de.port.create('SCK', 1, False))
+   oSPI.add_port(de.port.create('SDI', 1, False))
+   oSPI.add_port(de.port.create('CS_N', 1, False))
+   oSPI.add_port(de.port.create('SDO', 1, True))
  
    oReset = de.interface.create('Discretes', source=False)
    oReset.add_port(de.port.create('RESET_N', 1, False))

@@ -22,10 +22,17 @@ Strategy
 ********
 
 #. Generate HW library
+#. Generate System
+
+   #. Add components
+   #. Define interfaces on FPGA
+   #. Add connections
+   #. Create CCA
+
 #. Decompose Requirements
-#. Identify Interfaces
 #. Architect FPGA
 
 .. include::  generate_hw_library.rst
+.. include::  generate_system.rst
 .. include::  system_level_requirements.rst
 
