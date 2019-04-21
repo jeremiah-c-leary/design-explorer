@@ -24,9 +24,9 @@ Code Example
 
 .. code-block:: python
 
-  oConnection1 = de.connection(oFpga.get_interface_named('SPI'), oComponent.get_interface_named('SPI'))
-  oConnection2 = de.connection(oFpga.get_interface_named('Output Discretes'), oComponent.get_interface_named('Input Discretes'))
-  oConnection3 = de.connection(oComponent.get_interface_named('Output Disretes'), oFPGA.get_interface_named('Input Discretes'))
+  oConnection1 = de.connection.create((oFpga.get_interface_named('SPI'), oComponent.get_interface_named('SPI')))
+  oConnection2 = de.connection.create((oFpga.get_interface_named('Output Discretes'), oComponent.get_interface_named('Input Discretes')))
+  oConnection3 = de.connection.create((oComponent.get_interface_named('Output Disretes'), oFPGA.get_interface_named('Input Discretes')))
 
 In the above example, the default behavior is to map each port in the source port list and connect it to each port in the sink port list from index 0.
 The naming of the ports do not matter, only the order. 
@@ -35,7 +35,7 @@ If the order of the ports in the two port lists do not match, then a mapping can
 
 .. code-block:: python
 
-  oConnection1 = de.connection(oFpga.get_interface_named('SPI'), oComponent.get_interface_named('SPI'))
+  oConnection1 = de.connection.create((oFpga.get_interface_named('SPI'), oComponent.get_interface_named('SPI')))
   oConnection1.map('SCK', 'SCK')
   oConnection1.map('CS_N', 'CS_N')
   oConnection1.map('MOSI', 'DIN')
@@ -48,18 +48,18 @@ The output SPI data on the component is configurable and can be either the SPI d
 
 .. code-block:: python
 
-  oConnection1 = de.connection(oComponent.get_interface_named('SPI'), oFPGA.get_interface_named('Input Discretes'))
-  oConnection3 = de.connection(oComponent.get_interface_named('Output Disretes'), oFPGA.get_interface_named('Input Discretes'))
+  oConnection1 = de.connection.create((oComponent.get_interface_named('SPI'), oFPGA.get_interface_named('Input Discretes')))
+  oConnection3 = de.connection.create((oComponent.get_interface_named('Output Disretes'), oFPGA.get_interface_named('Input Discretes')))
 
 In this case, we have the Input discretes being fed by two seperate interfaces.
 We will need to using mapping to ensure the correct connections are made:
 
 .. code-block:: python
 
-  oConnection1 = de.connection(oComponent.get_interface_named('SPI'), oFPGA.get_interface_named('Input Discretes'))
+  oConnection1 = de.connection.create((oComponent.get_interface_named('SPI'), oFPGA.get_interface_named('Input Discretes')))
   oConnection1.map('DOUT', 'RDY_N')
 
-  oConnection3 = de.connection(oComponent.get_interface_named('Output Disretes'), oFPGA.get_interface_named('Input Discretes'))
+  oConnection3 = de.connection.create((oComponent.get_interface_named('Output Disretes'), oFPGA.get_interface_named('Input Discretes')))
   oConnection3.map('ERR_N', 'ERR_N')
 
 Any port not listed in the map will be ignored.
@@ -74,7 +74,7 @@ In this case, we just map the connections that do exist.
 
 .. code-block:: python
 
-  oConnection2 = de.connection(oFpga.get_interface_named('Output Discretes'), oComponent.get_interface_named('Input Discretes'))
+  oConnection2 = de.connection.create((oFpga.get_interface_named('Output Discretes'), oComponent.get_interface_named('Input Discretes')))
   oConnection2.map('ADR[0]', 'ADR0')
   oConnection2.map('ADR[1]', 'ADR1')
   oConnection2.map('SYNC_N', 'SYNC_N')

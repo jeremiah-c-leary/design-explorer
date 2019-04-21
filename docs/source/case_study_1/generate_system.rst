@@ -122,8 +122,8 @@ Finally we will add the discrete interfaces:
    oInputDiscretes = de.interface.create('Input Discretes')
    oInputDiscretes.create_port('DISC_IN', 8, False)
 
-   outputDiscretes = de.interface.create('Output Discretes')
-   outputDiscretes.create_port('DISC_OUT', 8, False)
+   oOutputDiscretes = de.interface.create('Output Discretes')
+   oOutputDiscretes.create_port('DISC_OUT', 8, False)
 
    oFpga.add_interface(oInputDiscretes)
    oFpga.add_interface(oOutputDiscretes)
@@ -131,3 +131,24 @@ Finally we will add the discrete interfaces:
 .. NOTE:: These interfaces should be defined in a seperate file and imported.
    This will keep the code cleaner
 
+Add Connections
+---------------
+
+Now we connect the component interfaces to the FPGA interfaces:
+
+.. code-block:: python
+
+   oConnection1 = de.connection.create(oClockGen.get_interface_named('Pclock'), oFpga.get_interface_named('Clock'))
+   oConnection1.map('Pclock[0]', 'CLK')
+
+   oConnection2 = de.connection.create(oHost.get_interface_named('GPIO0'), oFpga.get_interface_named('Reset'))
+   oConnection2.map('GPIO0[2]', 'RESET_N')
+
+   oConnection3 = de.connection.create(oDiscretes.get_interface_named('Output'), oFpga.get_interface_named('Input Discretes'))
+   oConnection4 = de.connection.create(oFpga.get_interface_named('Output Discretes', oDiscretes.get_interface_named('Input'))
+
+   oConnection5 = de.connection.create(oFpga.get_interface_named('LED'), oLED.get_interface_named('Anode'))
+
+   oConnection6 = de.connection.create(oFpga.get_interface_named('LED'), oLED.get_interface_named('Anode'))
+
+   
