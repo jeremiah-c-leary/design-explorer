@@ -22,3 +22,15 @@ We will be creating the components before adding them to the system:
    Going from left to right it includes the type of device, manufacturer, and part number.
    This condensing of information is part of what design-explorer is designed for.
 
+Then we add them to the CCA:
+
+.. code-block:: python
+
+    oCCA.add_component(oADC)
+    oCCA.add_component(oTempSensor)
+    oCCA.add_component(oLED)
+    oCCA.add_component(oHost)
+    oCCA.add_component(oClockGen)
+    oCCA.add_component(oDiscretes)
+    oCCA.add_component(oFPGA)
+

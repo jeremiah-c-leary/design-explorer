@@ -25,9 +25,9 @@ Strategy
 #. Generate System
 
    #. Add components
+   #. Create CCA
    #. Define interfaces on FPGA
    #. Add connections
-   #. Create CCA
 
 #. Decompose Requirements
 #. Architect FPGA

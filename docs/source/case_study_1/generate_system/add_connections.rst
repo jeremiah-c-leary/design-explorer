@@ -71,4 +71,19 @@ Finally we will connect the ADC interfaces:
    oConnection11.map('ADC_AIN[1]', 'AIN1')
    oConnection11.map('ADC_AIN[0]', 'AINCOM')
 
-The final step in connections is to add them to the system 
+The final step in connections is to add them to the CCA:
+
+.. code-block:: python
+
+    # Add connections to the CCA
+    oCCA.add_connection(oConnection1)
+    oCCA.add_connection(oConnection2)
+    oCCA.add_connection(oConnection3)
+    oCCA.add_connection(oConnection4)
+    oCCA.add_connection(oConnection5)
+    oCCA.add_connection(oConnection6)
+    oCCA.add_connection(oConnection7)
+    oCCA.add_connection(oConnection8)
+    oCCA.add_connection(oConnection9)
+    oCCA.add_connection(oConnection10)
+    oCCA.add_connection(oConnection11)
