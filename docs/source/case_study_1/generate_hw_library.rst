@@ -1,7 +1,7 @@
 Generate HW Library
 ===================
 
-We have five devices we in our system and we were given which parts will be used:
+We have seven devices in our system and we were given which parts will be used:
 
 ===========  =================  ============
 Device       Manufacturer       Part Number
@@ -11,7 +11,8 @@ Temp Sensor  Analog Devices     `LTC2986 <https://www.analog.com/media/en/techni
 LED          Lite On            `LTA-1000G <http://optoelectronics.liteon.com/upload/download/DS-30-92-0809/A1000G.pdf>`_
 Host         Texas Instruments  `OMAP-L137 <http://www.ti.com/lit/ds/sprs563g/sprs563g.pdf>`_
 Discretes    N/A                N/A
-Clock Gen    IDT                `MK2771-16 <https://www.idt.com/document/dst/mk2771-15-datasheet>`_ 
+Clock Gen    IDT                `MK2771-16 <https://www.idt.com/document/dst/mk2771-15-datasheet>`_
+FPGA         Intel              `MAX 10 <https://www.intel.com/content/dam/www/programmable/us/en/pdfs/literature/hb/max-10/m10_overview.pdf>`_
 ===========  =================  ============
 
 Hardware Library Directory Structure
@@ -48,10 +49,23 @@ We will create a hardware library with the following format:
   |       +-- omap_l137
   |
   +-- clock
+  |   |
+  |   +-- idt
+  |       |
+  |       +-- mk2771_16
+  |
+  +-- generic
+  |   |
+  |   +-- dicretes
+  |
+  +-- fpga
       |
-      +-- idt
+      +-- intel
           |
-          +-- mk2771_16
+          +-- max10
+              |
+              +-- max10M50
+
 
 For each directory we will add a blank *__init__.py* file.
 
@@ -60,3 +74,4 @@ For each directory we will add a blank *__init__.py* file.
 .. include:: mk2771_16.rst
 .. include:: adc4110_1.rst
 .. include:: omap.rst
+.. include:: discretes.rst
