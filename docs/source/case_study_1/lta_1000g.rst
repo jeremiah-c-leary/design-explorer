@@ -40,7 +40,7 @@ We will split the modeling of the *lta 1000g* part into two files:  interfaces a
 .. code-block:: python
 
    from . import interfaces
-   from . import part
+   from .part import *
 
 Seperating the interfaces into a seperate file will make it easier to re-use the interface.
 

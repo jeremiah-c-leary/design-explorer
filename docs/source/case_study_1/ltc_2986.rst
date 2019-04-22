@@ -39,7 +39,7 @@ We add the interfaces and part files to the init file:
 .. code-block:: python
 
    from . import interfaces
-   from . import part
+   from .part import *
 
 hw_lib/temp_sensor/analog_devices/ltc2986/interfaces.py
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

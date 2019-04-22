@@ -41,7 +41,7 @@ Creating the *discretes* init file:
 .. code-block:: python
 
    from . import interfaces
-   from . import part
+   from .part import *
 
 hw_lib/generic/discretes/interfaces.py
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

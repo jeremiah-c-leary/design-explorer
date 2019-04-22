@@ -61,7 +61,7 @@ The interfaces will be defined when the part is created.
 
 .. code-block:: python
 
-   from . import part
+   from .part import *
 
 hw_lib/fpga/intel/max10/max10m50/part.py
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

@@ -49,7 +49,7 @@ We add the interfaces and part files to the init file:
 .. code-block:: python
 
    from . import interfaces
-   from . import part
+   from .part import *
 
 hw_lib/processor/texas_instruments/omap_l137/interfaces.py
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
