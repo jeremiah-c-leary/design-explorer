@@ -1,0 +1,11 @@
+@startuml
+  class system{
+    name : String
+    items : object list
+    connections : connection object list
+    add_item()
+    add_connection()
+  }
+@enduml
+
+

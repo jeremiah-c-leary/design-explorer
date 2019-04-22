@@ -1,7 +1,11 @@
 from design_explorer import system
 
+def create(name):
 
-class create(system.create):
+    return cca(name)
+
+
+class cca(system.create):
     '''
     Creates a CCA object with a given instance name.
     '''

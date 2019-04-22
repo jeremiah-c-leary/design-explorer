@@ -1,17 +1,18 @@
 
 import unittest
-from design_explorer.hw import cca
+import design_explorer as de
 
 
-class test_hw_cca(unittest.TestCase):
+class test_cca(unittest.TestCase):
 
     def test_cca_class_attributes_exist(self):
-        oCca = cca.create('cca1')
+        oCca = de.hw.cca.create('cca1')
         self.assertEqual(oCca.name, 'cca1')
         self.assertEqual(oCca.components, None)
+        self.assertEqual(oCca.connections, None)
 
     def test_cca_class_add_component_method(self):
-        oCca = cca.create('cca1')
+        oCca = de.hw.cca.create('cca1')
         oCca.add_component('Component 1')
         oCca.add_component('Component 2')
         oCca.add_component('Component 3')

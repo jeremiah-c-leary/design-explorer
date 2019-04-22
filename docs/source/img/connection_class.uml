@@ -1,9 +1,9 @@
 @startuml
   class Connection {
-    Name : String
-    Source : Interface Object
-    Sink : Interface Object
-    Map : dictionary
+    name : String
+    source : Interface Object
+    sink : Interface Object
+    map : dictionary
     map(source_port, sink_port)
   }
 @enduml
