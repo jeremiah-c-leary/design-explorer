@@ -1,9 +1,8 @@
 @startuml
   class Interface {
-    Name : String
-    Width : Integer
-    Polarity : String
-    Source : Boolean
-    Description : String
+    name : String
+    width : Integer
+    source : Boolean
+    description : String
   }
 @enduml

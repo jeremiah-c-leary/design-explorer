@@ -50,29 +50,27 @@ We can define the interfaces for the ADC and the FPGA using DE:
 
 .. code-block:: python
 
-   oAdc = hdl.device.create()
-   oAdc.add_interface(hdl.interface('Power', False))
-   oAdc.add_interface(hdl.interface('SPI', False))
-   oAdc.add_interface(hdl.interface('Input Discretes', False))
-   oAdc.add_interface(hdl.interface('Output Discretes', True))
-   oAdc.add_interface(hdl.interface('Analog Inputs', False))
-   oAdc.add_interface(hdl.interface('Clock', False))
+   oAdc = de.component.create()
+   oAdc.add_interface(de.interface('Power'))
+   oAdc.add_interface(de.interface('SPI'))
+   oAdc.add_interface(de.interface('Input Discretes'))
+   oAdc.add_interface(de.interface('Output Discretes'))
+   oAdc.add_interface(de.interface('Analog Inputs'))
+   oAdc.add_interface(de.interface('Clock'))
 
-   oFPGA = hdl.device.create()
-   oFPGA.add_interface(hdl.interface('SPI', True))
-   oFPGA.add_interface(hdl.interface('Input Discretes', False))
-   oFPGA.add_interface(hdl.interface('Output Discretes', True))
+   oFPGA = de.component.create()
+   oSpiInt = oFPGA.create_interface('SPI')
+   oInDisc = oFPGA.create_interface('Input Discretes')
+   oOutDisc = oFPGA.create_interface('Output Discretes')
+
+.. NOTE:: There are two methods to creating an interface.
+  The first method creates the interface and then use the *add_interface* method of the component class.
+  The second uses the *create_interface* method of the component class to create the interface.
+  The interface will be returned when using the second method.
 
 If we wanted to grab the SPI interface on the oADC object:
 
 .. code-block:: python
 
   oSpiInterface = oAdc.get_interface_named('SPI')
-
-
-If we wanted to grab all the interfaces:
-
-.. code-block:: python
-
-  lInterfaces = oAdc.get_interfaces()
 

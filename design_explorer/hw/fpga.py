@@ -21,7 +21,7 @@ class create(component.create):
         lReturn.append('  port map (')
         for iIndex, oInterface in enumerate(self.interfaces):
             sInterfaceType = self.interface_types[iIndex]
-            lReturn.append(extract_interface(oInterface, sInterfaceType))
+            lReturn.extend(extract_interface(oInterface, sInterfaceType))
             lReturn.append('')
         lReturn.append('  )')
         lReturn.append('end entity ' + self.name.upper() + ';')
@@ -30,5 +30,7 @@ class create(component.create):
 
 
 def extract_interface(oInterface, sInterfaceType):
+    lReturn = []
     for sLine in oInterface.extract_port_list(sInterfaceType):
-        return '    ' + sLine
+        lReturn.append('    ' + sLine)
+    return lReturn

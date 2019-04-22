@@ -1,10 +1,10 @@
 @startuml
   class Interface {
-    Name : String
-    Source : Boolean
-    Ports : port list
+    name : String
+    source : Boolean
+    ports : Port list
     add_port()
-    get_interfaces()
-    get_interface_named()
+    create_port()
+    get_number_ports()
   }
 @enduml

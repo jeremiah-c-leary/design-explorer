@@ -1,10 +1,11 @@
 
 class create():
     '''
-    Creates an object with a given instance name.
+    Creates a port with the given 
     '''
 
-    def __init__(self, name, width=None):
+    def __init__(self, name, width=None, source=False, description=None):
         self.name = name
-        self.width = None
-        self.description = None
+        self.width = width
+        self.source = source
+        self.description = description

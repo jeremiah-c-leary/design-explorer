@@ -66,10 +66,10 @@ The SPI interface on the ADC would be coded like this:
    oInterface = de.interface.create(name='SPI', source=False)
 
    # Add ports to interface
-   oInterface.add_port(de.hdl.port.create('SCK',  1, False, 'SPI Clock'))
-   oInterface.add_port(de.hdl.port.create('CS_N', 1, False, 'SPI Chip Select'))
-   oInterface.add_port(de.hdl.port.create('DIN',  1, False, 'Data Input'))
-   oInterface.add_port(de.hdl.port.create('DOUT', 1, True,  'Data Output'))
+   oInterface.add_port(de.port.create('SCK',  1, False, 'SPI Clock'))
+   oInterface.add_port(de.port.create('CS_N', 1, False, 'SPI Chip Select'))
+   oInterface.add_port(de.port.create('DIN',  1, False, 'Data Input'))
+   oInterface.add_port(de.port.create('DOUT', 1, True,  'Data Output'))
 
 The SPI interface on the FPGA would be coded like this:
 
@@ -79,8 +79,8 @@ The SPI interface on the FPGA would be coded like this:
    oInterface = de.interface.create(name='SPI', source=False)
 
    # Add ports to interface
-   oInterface.add_port(de.hdl.port.create('SCK',  1, False, 'SPI Clock'))
-   oInterface.add_port(de.hdl.port.create('CS_N', 1, False, 'SPI Chip Select'))
-   oInterface.add_port(de.hdl.port.create('MOSI', 1, False, 'Data Output'))
-   oInterface.add_port(de.hdl.port.create('MISO', 1, True,  'Data Input'))
+   oInterface.add_port(de.port.create('SCK',  1, False, 'SPI Clock'))
+   oInterface.add_port(de.port.create('CS_N', 1, False, 'SPI Chip Select'))
+   oInterface.add_port(de.port.create('MOSI', 1, False, 'Data Output'))
+   oInterface.add_port(de.port.create('MISO', 1, True,  'Data Input'))
    
