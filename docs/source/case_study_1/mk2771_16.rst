@@ -60,7 +60,7 @@ First we create the interface:
 
    import design_explorer as de
    
-   oPclock = de.interface.create('PClock', source=True)
+   oPclock = de.interface.create('PClock')
    
 Then we add the ports to the interface:
 
@@ -68,8 +68,8 @@ Then we add the ports to the interface:
 
    import design_explorer as de
    
-   oPclock = de.interface.create('PClock', source=True)
-   oPclock.add_port(de.port.create('PCLOCK', 2, True)
+   oPclock = de.interface.create('PClock')
+   oPclock.add_port(de.port.create('PCLOCK', 2, True))
 
 hw_lib/clock/idt/mk2771_16/part.py
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -87,7 +87,7 @@ Condensing the steps down, we have the following model of the *mk2771-16*.
     
         oReturn.add_interface(interfaces.oPclock)
 
-        oReturn.datasheet = https://www.idt.com/document/dst/mk2771-15-datasheet 
+        oReturn.datasheet = 'https://www.idt.com/document/dst/mk2771-15-datasheet'
 
         return oReturn
 

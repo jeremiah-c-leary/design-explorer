@@ -59,11 +59,11 @@ First we create the interfaces:
 
    import design_explorer as de
    
-   oSPI = de.interface.create('SPI', source=False)
+   oSPI = de.interface.create('SPI')
    
-   oReset = de.interface.create('Discretes', source=False)
+   oReset = de.interface.create('Discretes')
 
-   oInterrupt = de.interface.create('Interrupt', source=True)
+   oInterrupt = de.interface.create('Interrupt')
 
 Then we add the ports to the interfaces:
 
@@ -71,16 +71,16 @@ Then we add the ports to the interfaces:
 
    import design_explorer as de
    
-   oSPI = de.interface.create('SPI', source=False)
+   oSPI = de.interface.create('SPI')
    oSPI.add_port(de.port.create('SCK', 1, False))
    oSPI.add_port(de.port.create('SDI', 1, False))
    oSPI.add_port(de.port.create('CS_N', 1, False))
    oSPI.add_port(de.port.create('SDO', 1, True))
- 
-   oReset = de.interface.create('Discretes', source=False)
+   
+   oReset = de.interface.create('Discretes')
    oReset.add_port(de.port.create('RESET_N', 1, False))
 
-   oInterrupt = de.interface.create('Interrupt', source=True)
+   oInterrupt = de.interface.create('Interrupt')
    oInterrupt.add_port(de.port.create('INTERRUPT', 1, True))
 
 hw_lib/temp_sensor/analog_devices/ltc2986/part.py
@@ -130,8 +130,8 @@ Finally we return the object:
         oReturn = de.component.create('ltc2986')
     
         oReturn.add_interface(interfaces.oSPI)
-        oReturn.add_interface(interfaces.oRESET)
-        oReturn.add_interface(interfaces.oINTERRUPT)
+        oReturn.add_interface(interfaces.oReset)
+        oReturn.add_interface(interfaces.oInterrupt)
 
         return oReturn
 

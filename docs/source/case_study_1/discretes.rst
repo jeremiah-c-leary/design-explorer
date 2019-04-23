@@ -55,10 +55,10 @@ Each interface will contain 8 discretes.
    import design_explorer as de
 
    
-   oInputDiscrete = de.interface.create('Input Discretes', source=False)
+   oInputDiscrete = de.interface.create('Input Discretes')
    oInputDiscrete.add_port(de.port.create('DIN', 8, False))
 
-   oOutputDiscrete = de.interface.create('Output Discretes', source=True)
+   oOutputDiscrete = de.interface.create('Output Discretes')
    oOutputDiscrete.add_port(de.port.create('DIN', 8, True))
 
 

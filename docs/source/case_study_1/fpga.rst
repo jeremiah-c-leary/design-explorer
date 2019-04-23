@@ -7,7 +7,7 @@ Following the LED example, we make the directory.
 
 .. code-block:: bash
 
-    mkdir -p hw_lib/fpga/intel/max10/max10M50
+    mkdir -p hw_lib/fpga/intel/max10/max10m50
 
 We will create or modify the necessary *__init__.py* files at each level of the hierarchy.
 
@@ -23,6 +23,7 @@ Adding the *fpga* directory to the hw_lib init file:
    from . import clock
    from . import adc
    from . import processor
+   from . import generic
    from . import fpga
 
 hw_lib/fpga/__init__.py
@@ -73,7 +74,6 @@ FPGAs can contain HDL code, while other components can not.
 
 .. code-block:: python
 
-    from . import interfaces
     import design_explorer as de
     
     def create (self):
