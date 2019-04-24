@@ -20,7 +20,7 @@ Then connect the discrete inputs and outputs:
 
    # Connect to input and output discretes
    oConnection3 = de.connection.create(oDiscretes.get_interface_named('Output'), oFpga.get_interface_named('Input Discretes'))
-   oConnection4 = de.connection.create(oFpga.get_interface_named('Output Discretes', oDiscretes.get_interface_named('Input'))
+   oConnection4 = de.connection.create(oFpga.get_interface_named('Output Discretes'), oDiscretes.get_interface_named('Input'))
 
 Next will will connect the LED interface:
 

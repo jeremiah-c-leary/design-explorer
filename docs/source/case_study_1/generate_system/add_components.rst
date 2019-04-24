@@ -15,7 +15,7 @@ We will be creating the components before adding them to the system:
    oHost = hw_lib.processors.texas_instruments.omap_l137.create('Host')
    oClockGen = hw_lib.clock.idt.mk2771_16.create('Clock')
    oDiscretes = hw_lib.generic.discretes.create('Discretes')
-   oFPGA = hw_lib.fpga.intel.max10.max10m50.create('FPGA')
+   oFpga = hw_lib.fpga.intel.max10.max10m50.create('FPGA')
 
 .. NOTE:: There is a lot of information in the above lines.
    Each line explicitely states what the component is.
@@ -32,5 +32,5 @@ Then we add them to the CCA:
     oCCA.add_component(oHost)
     oCCA.add_component(oClockGen)
     oCCA.add_component(oDiscretes)
-    oCCA.add_component(oFPGA)
+    oCCA.add_component(oFpga)
 

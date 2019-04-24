@@ -45,10 +45,10 @@ class test_system(unittest.TestCase):
         oSubblock3.create_interface('Interface3.1')
         oSystem.add_component(oSubblock3)
 
-        oConnection1 = connection.create(oSubblock1.get_interface_named('Interface1.0'), oSubblock2.get_interface_named('Interface2.0'))
-        oConnection2 = connection.create(oSubblock1.get_interface_named('Interface1.0'), oSubblock3.get_interface_named('Interface3.0'))
-        oConnection3 = connection.create(oSubblock1.get_interface_named('Interface1.1'), oSubblock2.get_interface_named('Interface3.1'))
-        oConnection4 = connection.create(oSubblock2.get_interface_named('Interface2.1'), oSubblock2.get_interface_named('Interface1.1'))
+        oConnection1 = connection.create('con1', oSubblock1.get_interface_named('Interface1.0'), oSubblock2.get_interface_named('Interface2.0'))
+        oConnection2 = connection.create('con2', oSubblock1.get_interface_named('Interface1.0'), oSubblock3.get_interface_named('Interface3.0'))
+        oConnection3 = connection.create('con3', oSubblock1.get_interface_named('Interface1.1'), oSubblock2.get_interface_named('Interface3.1'))
+        oConnection4 = connection.create('con4', oSubblock2.get_interface_named('Interface2.1'), oSubblock2.get_interface_named('Interface1.1'))
 
         oSystem.add_connection(oConnection1)
         oSystem.add_connection(oConnection2)
