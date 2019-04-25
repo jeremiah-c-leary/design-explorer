@@ -37,11 +37,11 @@ class test_system(unittest.TestCase):
         oHdlComponent = de.hdl.component.create('hdl_top')
         oInterface1 = oHdlComponent.create_interface('Interface1')
         oInterface2 = oHdlComponent.create_interface('Interface2')
-        oInterface1.create_port('I1_PORT1', 1, False, 'Port 1 of interface 1')
-        oInterface1.create_port('I1_PORT2', 1, True, 'Port 2 of interface 1')
+        oInterface1.create_port('I1_PORT1', 1, 'in', 'Port 1 of interface 1')
+        oInterface1.create_port('I1_PORT2', 1, 'out', 'Port 2 of interface 1')
 
-        oInterface2.create_port('I2_PORT1', 1, True, 'Port 1 of interface 2')
-        oInterface2.create_port('I2_PORT2', 1, False, 'Port 2 of interface 2')
+        oInterface2.create_port('I2_PORT1', 1, 'out', 'Port 1 of interface 2')
+        oInterface2.create_port('I2_PORT2', 1, 'in', 'Port 2 of interface 2')
 
         lExpected = []
         lExpected.append('entity HDL_TOP is')
@@ -62,11 +62,11 @@ class test_system(unittest.TestCase):
         oHdlComponent = de.hdl.component.create('hdl_top')
         oInterface1 = oHdlComponent.create_interface('Interface1')
         oInterface2 = oHdlComponent.create_interface('Interface2')
-        oInterface1.create_port('I1_PORT1', 9, False, 'Port 1 of interface 1')
-        oInterface1.create_port('I1_PORT2', 1, True, 'Port 2 of interface 1')
+        oInterface1.create_port('I1_PORT1', 9, 'in', 'Port 1 of interface 1')
+        oInterface1.create_port('I1_PORT2', 1, 'out', 'Port 2 of interface 1')
 
-        oInterface2.create_port('I2_PORT1', 1, True, 'Port 1 of interface 2')
-        oInterface2.create_port('I2_PORT2', 32, False, 'Port 2 of interface 2')
+        oInterface2.create_port('I2_PORT1', 1, 'out', 'Port 1 of interface 2')
+        oInterface2.create_port('I2_PORT2', 32, 'in', 'Port 2 of interface 2')
 
         lExpected = []
         lExpected.append('entity HDL_TOP is')
@@ -87,11 +87,11 @@ class test_system(unittest.TestCase):
         oHdlComponent = de.hdl.component.create('hdl_top')
         oInterface1 = oHdlComponent.create_interface('Interface1')
         oInterface2 = oHdlComponent.create_interface('Interface2')
-        oInterface1.create_port('I1_PORT1', 9, False, 'Port 1 of interface 1')
-        oInterface1.create_port('I1_PORT2', 1, True)
+        oInterface1.create_port('I1_PORT1', 9, 'in', 'Port 1 of interface 1')
+        oInterface1.create_port('I1_PORT2', 1, 'out')
 
-        oInterface2.create_port('I2_PORT1', 1, True)
-        oInterface2.create_port('I2_PORT2', 32, False, 'Port 2 of interface 2')
+        oInterface2.create_port('I2_PORT1', 1, 'out')
+        oInterface2.create_port('I2_PORT2', 32, 'in', 'Port 2 of interface 2')
 
         lExpected = []
         lExpected.append('entity HDL_TOP is')

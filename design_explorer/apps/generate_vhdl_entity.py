@@ -10,11 +10,7 @@ def generate_vhdl_entity(oHdlComponent):
             lReturn.append('    -- [I:' + oInterface.name + ']')
             if not oInterface.ports == None:
                 for oPort in oInterface.ports:
-                    sReturn = '    ' + oPort.name + ' : '
-                    if oPort.source:
-                        sReturn += 'out '
-                    else:
-                        sReturn += 'in '
+                    sReturn = '    ' + oPort.name + ' : ' + oPort.direction + ' '
                     if oPort.width == 1:
                         sReturn += 'std_logic; '
                     else:
