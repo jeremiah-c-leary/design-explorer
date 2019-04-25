@@ -27,6 +27,16 @@ oCCA.add_component(oFpga)
 
 # Define interface on FPGA
 
+oClock = de.interface.create('Clock')
+oClock.create_port('CLK', 1, False)
+
+oFpga.add_interface(oClock)
+
+oReset = de.interface.create('Reset')
+oReset.create_port('RESET_N', 1, False)
+
+oFpga.add_interface(oReset)
+
 oAdcSpiInterface = de.interface.create('ADC SPI')
 oAdcSpiInterface.add_port(de.port.create('ADC_CS_N', 1, True))
 oAdcSpiInterface.add_port(de.port.create('ADC_SCLK', 1, True))
@@ -68,17 +78,7 @@ oHostSpi.create_port('HOST_CS_N', 1, False)
 oHostSpi.create_port('HOST_SCLK', 1, False)
 oHostSpi.create_port('HOST_MOSI', 1, False)
 oHostSpi.create_port('HOST_MISO', 1, True)
-
-oReset = de.interface.create('Reset')
-oReset.create_port('RESET_N', 1, False)
-
 oFpga.add_interface(oHostSpi)
-oFpga.add_interface(oReset)
-
-oClock = de.interface.create('Clock')
-oClock.create_port('CLK', 1, False)
-
-oFpga.add_interface(oClock)
 
 oInputDiscretes = de.interface.create('Input Discretes')
 oInputDiscretes.create_port('DISC_IN', 8, False)
@@ -150,3 +150,8 @@ oCCA.add_connection(oConnection9)
 oCCA.add_connection(oConnection10)
 oCCA.add_connection(oConnection11)
 
+# Now do some stuff
+
+lVhdlEntity = de.apps.generate_vhdl_entity(oFpga)
+for sString in lVhdlEntity:
+    print sString
