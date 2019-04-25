@@ -19,7 +19,10 @@ def generate_vhdl_entity(oHdlComponent):
                         sReturn += 'std_logic; '
                     else:
                         sReturn += 'std_logic_vector(' + str(oPort.width - 1) + ' downto 0); '
-                    sReturn += '-- ' + oPort.description
+                    if oPort.description == None:
+                        sReturn += '-- ::WARNING:: Missing description'
+                    else:
+                        sReturn += '-- ' + oPort.description
                     lReturn.append(sReturn)
             lReturn.append('')
         lReturn.pop()
