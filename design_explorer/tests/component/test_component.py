@@ -58,5 +58,16 @@ class test_hw_component(unittest.TestCase):
         self.assertEqual(oComponent.get_interface_named('Interface2').name, 'Interface2')
         self.assertEqual(oComponent.get_interface_named('Blah'), None)
 
+    def test_interface_parent_attribute(self):
+        oIntSource = interface.create('Interface1')
+        oIntSink = interface.create('Interface2')
+        oComponent = component.create('component')
+        oComponent.add_interface(oIntSource)
+        oComponent.add_interface(oIntSink)
+
+        self.assertEqual(oComponent.get_interface_named('Interface1').parent.name, 'component')
+        self.assertEqual(oComponent.get_interface_named('Interface2').parent.name, 'component')
+
+
 if __name__ == '__main__':
     unittest.main()

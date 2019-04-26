@@ -96,7 +96,7 @@ oFpga.add_interface(oOutputDiscretes)
 oConnection1 = de.connection.create('clock', oClockGen.get_interface_named('PClock'), oFpga.get_interface_named('Clock'), False)
 oConnection1.map_port('Pclock[0]', 'CLK')
 
-oConnection2 = de.connection.create('reset', oHost.get_interface_named('GPIO0'), oFpga.get_interface_named('Reset'), False)
+oConnection2 = de.connection.create('reset', oHost.get_interface_named('GPIO_bank_0'), oFpga.get_interface_named('Reset'), False)
 oConnection2.map_port('GPIO0[2]', 'RESET_N')
 
 # Connect to input and output discretes
@@ -160,3 +160,6 @@ lNodes = de.apps.generate_graph_data.node_list(oCCA)
 for sString in lNodes:
     print sString
 
+lEdges = de.apps.generate_graph_data.edge_list(oCCA)
+for sString in lEdges:
+    print sString

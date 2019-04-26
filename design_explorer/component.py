@@ -14,6 +14,7 @@ class create():
         self.datasheet = None
 
     def add_interface(self, oInterface):
+        oInterface.parent = self
         self.interfaces = utils.append_to_list(self.interfaces, oInterface)
 
     def create_interface(self, name):
