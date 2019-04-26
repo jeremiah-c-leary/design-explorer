@@ -14,8 +14,8 @@ class test_interface(unittest.TestCase):
 
     def test_interface_add_port_method(self):
         oInterface = interface.create('Interface1')
-        oInterface.add_port(port.create('Port1', 10, True, 'This is port 1'))
-        oInterface.add_port(port.create('Port2', 5, False, 'This is port 2'))
+        oInterface.add_port(port.create('Port1', 10, 'out', 'This is port 1'))
+        oInterface.add_port(port.create('Port2', 5, 'in', 'This is port 2'))
 
         self.assertEqual(len(oInterface.ports), 2)
         self.assertEqual(oInterface.ports[0].name, 'Port1')
@@ -24,8 +24,8 @@ class test_interface(unittest.TestCase):
     def test_interface_create_port_method(self):
         oInterface = interface.create('Interface1')
 
-        oPort1 = oInterface.create_port('Port1', 10, True, 'This is port 1')
-        oPort2 = oInterface.create_port('Port2', 5, False, 'This is port 2')
+        oPort1 = oInterface.create_port('Port1', 10, 'out', 'This is port 1')
+        oPort2 = oInterface.create_port('Port2', 5, 'in', 'This is port 2')
 
         self.assertEqual(len(oInterface.ports), 2)
         self.assertEqual(oInterface.ports[0].name, 'Port1')
@@ -47,12 +47,12 @@ class test_interface(unittest.TestCase):
         
         self.assertEqual(oInterface.get_number_ports(), 0)
 
-        oInterface.add_port(port.create('Port1', 10, True, 'This is port 1'))
-        oInterface.add_port(port.create('Port2', 5, False, 'This is port 2'))
+        oInterface.add_port(port.create('Port1', 10, 'out', 'This is port 1'))
+        oInterface.add_port(port.create('Port2', 5, 'in', 'This is port 2'))
 
         self.assertEqual(oInterface.get_number_ports(), 15)
 
-        oInterface.add_port(port.create('Port3', 3, False, 'This is port 3'))
+        oInterface.add_port(port.create('Port3', 3, 'in', 'This is port 3'))
 
         self.assertEqual(oInterface.get_number_ports(), 18)
 

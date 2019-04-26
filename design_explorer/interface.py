@@ -19,7 +19,7 @@ class create():
     def add_port(self, oPort):
         self.ports = utils.append_to_list(self.ports, oPort)
 
-    def create_port(self, name, width=None, source=None, description=None):
+    def create_port(self, name, width=None, source='in', description=None):
         oPort = port.create(name, width, source, description)
         self.add_port(oPort)
         return oPort
