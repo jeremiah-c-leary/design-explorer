@@ -28,63 +28,63 @@ oCCA.add_component(oFpga)
 # Define interface on FPGA
 
 oClock = de.interface.create('Clock')
-oClock.create_port('CLK', 1, False)
+oClock.create_port('CLK', 1, 'in')
 
 oFpga.add_interface(oClock)
 
 oReset = de.interface.create('Reset')
-oReset.create_port('RESET_N', 1, False)
+oReset.create_port('RESET_N', 1, 'in')
 
 oFpga.add_interface(oReset)
 
 oAdcSpiInterface = de.interface.create('ADC SPI')
-oAdcSpiInterface.add_port(de.port.create('ADC_CS_N', 1, True))
-oAdcSpiInterface.add_port(de.port.create('ADC_SCLK', 1, True))
-oAdcSpiInterface.add_port(de.port.create('ADC_MOSI', 1, True))
-oAdcSpiInterface.add_port(de.port.create('ADC_MISO', 1, False))
+oAdcSpiInterface.add_port(de.port.create('ADC_CS_N', 1, 'in'))
+oAdcSpiInterface.add_port(de.port.create('ADC_SCLK', 1, 'in'))
+oAdcSpiInterface.add_port(de.port.create('ADC_MOSI', 1, 'in'))
+oAdcSpiInterface.add_port(de.port.create('ADC_MISO', 1, 'out'))
 
 oAdcDiscretes = de.interface.create('ADC Discretes')
-oAdcDiscretes.add_port(de.port.create('ADC_SYNC_N', 1, True))
-oAdcDiscretes.add_port(de.port.create('ADC_ERR_N', 1, False))
-oAdcDiscretes.add_port(de.port.create('ADC_ADR', 2, True))
+oAdcDiscretes.add_port(de.port.create('ADC_SYNC_N', 1, 'out'))
+oAdcDiscretes.add_port(de.port.create('ADC_ERR_N', 1, 'out'))
+oAdcDiscretes.add_port(de.port.create('ADC_ADR', 2, 'out'))
 
 oAdcInputSelect = de.interface.create('ADC Input Select')
-oAdcInputSelect.add_port(de.port.create('ADC_AIN', 3, True))
+oAdcInputSelect.add_port(de.port.create('ADC_AIN', 3, 'out'))
 
 oFpga.add_interface(oAdcSpiInterface)
 oFpga.add_interface(oAdcDiscretes)
 oFpga.add_interface(oAdcInputSelect)
 
 oTsSpi = de.interface.create('Temp Sensor SPI')
-oTsSpi.add_port(de.port.create('TS_SCLK', 1, True))
-oTsSpi.add_port(de.port.create('TS_MOSI', 1, True))
-oTsSpi.add_port(de.port.create('TS_CS_N', 1, True))
-oTsSpi.add_port(de.port.create('TS_MISO', 1, False))
+oTsSpi.add_port(de.port.create('TS_SCLK', 1, 'out'))
+oTsSpi.add_port(de.port.create('TS_MOSI', 1, 'out'))
+oTsSpi.add_port(de.port.create('TS_CS_N', 1, 'out'))
+oTsSpi.add_port(de.port.create('TS_MISO', 1, 'in'))
 
 oTsDiscretes = de.interface.create('Temp Sensor Discretes')
-oTsDiscretes.add_port(de.port.create('TS_RESET_N', 1, True))
-oTsDiscretes.add_port(de.port.create('TS_INT', 1, False))
+oTsDiscretes.add_port(de.port.create('TS_RESET_N', 1, 'out'))
+oTsDiscretes.add_port(de.port.create('TS_INT', 1, 'in'))
 
 oFpga.add_interface(oTsSpi)
 oFpga.add_interface(oTsDiscretes)
 
 oLed = de.interface.create('LED')
-oLed.create_port('LED', 10, True)
+oLed.create_port('LED', 10, 'out')
 
 oFpga.add_interface(oLed)
 
 oHostSpi = de.interface.create('HOST SPI')
-oHostSpi.create_port('HOST_CS_N', 1, False)
-oHostSpi.create_port('HOST_SCLK', 1, False)
-oHostSpi.create_port('HOST_MOSI', 1, False)
-oHostSpi.create_port('HOST_MISO', 1, True)
+oHostSpi.create_port('HOST_CS_N', 1, 'in')
+oHostSpi.create_port('HOST_SCLK', 1, 'in')
+oHostSpi.create_port('HOST_MOSI', 1, 'in')
+oHostSpi.create_port('HOST_MISO', 1, 'out')
 oFpga.add_interface(oHostSpi)
 
 oInputDiscretes = de.interface.create('Input Discretes')
-oInputDiscretes.create_port('DISC_IN', 8, False)
+oInputDiscretes.create_port('DISC_IN', 8, 'in')
 
 oOutputDiscretes = de.interface.create('Output Discretes')
-oOutputDiscretes.create_port('DISC_OUT', 8, False)
+oOutputDiscretes.create_port('DISC_OUT', 8, 'out')
 
 oFpga.add_interface(oInputDiscretes)
 oFpga.add_interface(oOutputDiscretes)
@@ -155,3 +155,8 @@ oCCA.add_connection(oConnection11)
 lVhdlEntity = de.apps.generate_vhdl_entity(oFpga)
 for sString in lVhdlEntity:
     print sString
+
+lNodes = de.apps.generate_graph_data.node_list(oCCA)
+for sString in lNodes:
+    print sString
+
