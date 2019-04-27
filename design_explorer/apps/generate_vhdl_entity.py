@@ -5,17 +5,17 @@ def generate_vhdl_entity(oHdlComponent):
 
     lReturn.append('entity ' + oHdlComponent.name.upper() + ' is')
     lReturn.append('  port (')
-    if not oHdlComponent.interfaces == None:
+    if not oHdlComponent.interfaces is None:
         for oInterface in oHdlComponent.interfaces:
             lReturn.append('    -- [I:' + oInterface.name + ']')
-            if not oInterface.ports == None:
+            if not oInterface.ports is None:
                 for oPort in oInterface.ports:
                     sReturn = '    ' + oPort.name + ' : ' + oPort.direction + ' '
                     if oPort.width == 1:
                         sReturn += 'std_logic; '
                     else:
                         sReturn += 'std_logic_vector(' + str(oPort.width - 1) + ' downto 0); '
-                    if oPort.description == None:
+                    if oPort.description is None:
                         sReturn += '-- ::WARNING:: Missing description'
                     else:
                         sReturn += '-- ' + oPort.description
