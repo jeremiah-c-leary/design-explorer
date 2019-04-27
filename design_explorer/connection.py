@@ -1,4 +1,7 @@
 
+import design_explorer as de
+
+
 class create():
 
     def __init__(self, name, oSystem, source, sink, automap=True):
@@ -28,10 +31,7 @@ class create():
             self.map[source] = sink
 
     def _find_interface(self, sString):
-        lPath = sString.split('.')
-        sComponent = lPath[0]
-        sInterface = lPath[1]
-        oComponent = self.parent.get_component_named(sComponent)
-        oInterface = oComponent.get_interface_named(sInterface)
+        oComponent = self.parent.get_component_named(de.utils.extract_component_from_path(sString))
+        oInterface = oComponent.get_interface_named(de.utils.extract_interface_from_path(sString))
         return oInterface
 

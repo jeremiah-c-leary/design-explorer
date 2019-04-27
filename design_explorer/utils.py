@@ -20,3 +20,21 @@ def write_to_file(sFileName, lList):
         for sLine in lList:
             oFile.write(sLine + '\n')
     oFile.close()
+
+
+def extract_interface_from_path(sPath):
+    '''
+    Returns the interface from a dot notation path.
+    '''
+
+    lPath = sPath.split('.')
+    return lPath[-1]
+
+
+def extract_component_from_path(sPath):
+    '''
+    Returns the last component from a dot notation path.
+    '''
+
+    lPath = sPath.split('.')
+    return lPath[-2]
