@@ -13,13 +13,7 @@ class create():
 
     def _initial_map(self, automap):
         if automap:
-            myMap = {}
-            try:
-                for i in range(0, len(self.source.ports)):
-                    myMap[self.source.ports[i].name] = self.sink.ports[i].name
-                return myMap
-            except TypeError:
-                return None
+            return automap_ports(self)
         else:
             return None
 
@@ -34,3 +28,12 @@ class create():
         oComponent = self.parent.get_component_named(de.utils.extract_component_from_path(sString))
         oInterface = oComponent.get_interface_named(de.utils.extract_interface_from_path(sString))
         return oInterface
+
+def automap_ports(self):
+    myMap = {}
+    try:
+        for i in range(0, len(self.source.ports)):
+            myMap[self.source.ports[i].name] = self.sink.ports[i].name
+        return myMap
+    except TypeError:
+        return None
