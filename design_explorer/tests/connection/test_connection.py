@@ -7,14 +7,14 @@ class test_connection(unittest.TestCase):
 
     def test_connection_class_attributes_exist(self):
         oSystem = de.system.create('Top Level')
-        oComponent1 = oSystem.add_component(de.component.create('Component1'))
+        oComponent1 = oSystem.add_component(de.component.create('Component1', 'Component1'))
         oInterface1 = oComponent1.create_interface('Interface1')
         oInterface1.create_port('I1 P1', 1, 'out')
         oInterface1.create_port('I1 P2', 1, 'out')
         oInterface1.create_port('I1 P3', 1, 'out')
         oInterface1.create_port('I1 P4', 1, 'out')
 
-        oComponent2 = oSystem.add_component(de.component.create('Component2'))
+        oComponent2 = oSystem.add_component(de.component.create('Component2', 'Component2'))
         oInterface2 = oComponent2.create_interface('Interface2')
         oInterface2.create_port('I2 P1', 1, 'out')
         oInterface2.create_port('I2 P2', 1, 'out')
@@ -37,14 +37,14 @@ class test_connection(unittest.TestCase):
 
     def test_connection_map_port_method(self):
         oSystem = de.system.create('Top Level')
-        oComponent1 = oSystem.add_component(de.component.create('Component1'))
+        oComponent1 = oSystem.add_component(de.component.create('Component1', 'Component1'))
         oInterface1 = oComponent1.create_interface('Interface1')
         oInterface1.create_port('I1 P1', 1, 'out')
         oInterface1.create_port('I1 P2', 1, 'out')
         oInterface1.create_port('I1 P3', 1, 'out')
         oInterface1.create_port('I1 P4', 1, 'out')
 
-        oComponent2 = oSystem.add_component(de.component.create('Component2'))
+        oComponent2 = oSystem.add_component(de.component.create('Component2', 'Component2'))
         oInterface2 = oComponent2.create_interface('Interface2')
         oInterface2.create_port('I2 P1', 1, 'out')
         oInterface2.create_port('I2 P2', 1, 'out')

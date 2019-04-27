@@ -23,7 +23,7 @@ class create():
 
     def get_component_named(self, sString):
         for oComponent in self.components:
-            if oComponent.name == sString:
+            if oComponent.instanceName == sString:
                 return oComponent
         raise ValueError('Component named ' + sString + ' could not be found in system ' + self.name)
         return None

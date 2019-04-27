@@ -8,10 +8,11 @@ class create():
     Creates an object with a given instance name.
     '''
 
-    def __init__(self, name):
+    def __init__(self, name, instanceName=None):
         self.name = name
         self.interfaces = None
         self.datasheet = None
+        self.instanceName = instanceName
 
     def add_interface(self, oInterface):
         oInterface.parent = self

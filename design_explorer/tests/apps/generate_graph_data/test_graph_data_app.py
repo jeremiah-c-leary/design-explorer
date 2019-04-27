@@ -9,11 +9,11 @@ class test_node_generation(unittest.TestCase):
 
         oCca = de.hw.cca.create('cca')
 
-        oComp1 = de.component.create('Comp1')
-        oComp2 = de.component.create('Comp2')
-        oComp3 = de.component.create('Comp3')
-        oComp4 = de.component.create('Comp4')
-        oComp5 = de.component.create('Comp5')
+        oComp1 = de.component.create('Comp1', 'Comp1')
+        oComp2 = de.component.create('Comp2', 'Comp2')
+        oComp3 = de.component.create('Comp3', 'Comp3')
+        oComp4 = de.component.create('Comp4', 'Comp4')
+        oComp5 = de.component.create('Comp5', 'Comp5')
 
         oCca.add_component(oComp1)
         oCca.add_component(oComp2)
@@ -37,11 +37,11 @@ class test_edge_generation(unittest.TestCase):
     def setUp(self):
         self.oCca = de.hw.cca.create('cca')
 
-        self.oComp1 = de.component.create('Comp1')
-        self.oComp2 = de.component.create('Comp2')
-        self.oComp3 = de.component.create('Comp3')
-        self.oComp4 = de.component.create('Comp4')
-        self.oComp5 = de.component.create('Comp5')
+        self.oComp1 = de.component.create('Comp1', 'Comp1')
+        self.oComp2 = de.component.create('Comp2', 'Comp2')
+        self.oComp3 = de.component.create('Comp3', 'Comp3')
+        self.oComp4 = de.component.create('Comp4', 'Comp4')
+        self.oComp5 = de.component.create('Comp5', 'Comp5')
 
         self.oCca.add_component(self.oComp1)
         self.oCca.add_component(self.oComp2)

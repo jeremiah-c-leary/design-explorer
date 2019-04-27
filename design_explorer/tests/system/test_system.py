@@ -18,9 +18,9 @@ class test_system(unittest.TestCase):
 
     def test_system_add_component_method(self):
         oSystem = system.create('System1')
-        oSystem.add_component(component.create('Component1'))
-        oSystem.add_component(component.create('Component2'))
-        oComponent3 = oSystem.add_component(component.create('Component3'))
+        oSystem.add_component(component.create('Component1', 'Component1'))
+        oSystem.add_component(component.create('Component2', 'Component2'))
+        oComponent3 = oSystem.add_component(component.create('Component3', 'Component3'))
 
         self.assertEqual(len(oSystem.components), 3)
         self.assertEqual(oSystem.components[0].name, 'Component1')
@@ -31,15 +31,15 @@ class test_system(unittest.TestCase):
     def test_system_add_connection_method(self):
         oSystem = system.create('System1')
 
-        oSubblock1 = oSystem.add_component(subblock.create('Subblock1'))
+        oSubblock1 = oSystem.add_component(subblock.create('Subblock1', 'Subblock1'))
         oSubblock1.create_interface('Interface1_0')
         oSubblock1.create_interface('Interface1_1')
 
-        oSubblock2 = oSystem.add_component(subblock.create('Subblock2'))
+        oSubblock2 = oSystem.add_component(subblock.create('Subblock2', 'Subblock2'))
         oSubblock2.create_interface('Interface2_0')
         oSubblock2.create_interface('Interface2_1')
 
-        oSubblock3 = oSystem.add_component(subblock.create('Subblock3'))
+        oSubblock3 = oSystem.add_component(subblock.create('Subblock3', 'Subblock3'))
         oSubblock3.create_interface('Interface3_0')
         oSubblock3.create_interface('Interface3_1')
 
