@@ -32,7 +32,7 @@ class test_system(unittest.TestCase):
         lExpected.append('end entity HDL_TOP;')
 
         self.assertEqual(lExpected, de.apps.generate_vhdl_entity(oHdlComponent))
-         
+
     def test_entity_with_interfaces_with_single_bit_ports(self):
         oHdlComponent = de.hdl.component.create('hdl_top')
         oInterface1 = oHdlComponent.create_interface('Interface1')

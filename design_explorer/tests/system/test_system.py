@@ -1,11 +1,9 @@
 
 import unittest
 from design_explorer import system
-from design_explorer import hw
 from design_explorer import connection
 from design_explorer import component
 from design_explorer.hdl import subblock
-from design_explorer import interface
 
 
 class test_system(unittest.TestCase):
@@ -51,11 +49,13 @@ class test_system(unittest.TestCase):
         oSystem.add_connection(oConnection1)
         oSystem.add_connection(oConnection2)
         oSystem.add_connection(oConnection3)
-        oSystem.add_connection(oConnection3)
+        oSystem.add_connection(oConnection4)
 
         self.assertEqual(len(oSystem.connections), 4)
         self.assertEqual(oSystem.connections[0].source.name, 'Interface1_0')
         self.assertEqual(oSystem.connections[1].source.name, 'Interface1_0')
+        self.assertEqual(oSystem.connections[2].source.name, 'Interface1_1')
+        self.assertEqual(oSystem.connections[3].source.name, 'Interface2_1')
 
 if __name__ == '__main__':
     unittest.main()

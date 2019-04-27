@@ -5,7 +5,7 @@ def generate_vhdl_entity(oHdlComponent):
 
     lReturn.append('entity ' + oHdlComponent.name.upper() + ' is')
     lReturn.append('  port (')
-    if not oHdlComponent.interfaces == None:    
+    if not oHdlComponent.interfaces == None:
         for oInterface in oHdlComponent.interfaces:
             lReturn.append('    -- [I:' + oInterface.name + ']')
             if not oInterface.ports == None:

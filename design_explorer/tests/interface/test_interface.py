@@ -45,7 +45,6 @@ class test_interface(unittest.TestCase):
     def test_get_number_ports_method(self):
         oInterface = interface.create('Interface1')
 
-        
         self.assertEqual(oInterface.get_number_ports(), 0)
 
         oInterface.add_port(port.create('Port1', 10, 'out', 'This is port 1'))

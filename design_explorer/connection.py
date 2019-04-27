@@ -5,7 +5,7 @@ import design_explorer as de
 class create():
 
     def __init__(self, name, oSystem, source, sink, automap=True):
-        self.name = name 
+        self.name = name
         self.parent = oSystem
         self.source = self._find_interface(source)
         self.sink = self._find_interface(sink)

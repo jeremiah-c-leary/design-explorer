@@ -23,7 +23,7 @@ def create():
     oDiscreteInterface = de.interface.create('Discrete')
     oDiscreteInterface.add_source_port(de.port.create('GPIO', 6))
     oDiscreteInterface.add_source_port(de.port.create('TRIGGER', 1))
-    
+
     oPart.add_source_interface(oDataInterface)
     oPart.add_sink_interface(oControlInterface)
     oPart.add_sink_interface(oDiscreteInterface)

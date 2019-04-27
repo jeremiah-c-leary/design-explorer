@@ -19,7 +19,7 @@ oIpA = hdl_ip.ipa_a.entity.create('U_IP_A')
 oIpB = hdl_ip.ipa_a.entity.create('U_IP_B')
 oIpC = hdl_ip.ipa_a.entity.create('U_IP_C')
 
-# Add IP components to 
+# Add IP components to
 oEntity.add_component(oIpA)
 oEntity.add_component(oIpB)
 oEntity.add_component(oIpC)

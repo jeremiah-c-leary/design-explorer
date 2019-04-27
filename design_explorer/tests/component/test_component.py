@@ -1,7 +1,6 @@
 
 import unittest
 from design_explorer import component
-from design_explorer import port
 from design_explorer import interface
 
 

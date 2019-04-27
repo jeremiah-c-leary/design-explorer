@@ -28,4 +28,3 @@ class create():
             if sInterfaceName == oInterface.name:
                 return oInterface
         raise ValueError('Interface named ' + sInterfaceName + ' could not be found on component ' + self.name)
-        return None

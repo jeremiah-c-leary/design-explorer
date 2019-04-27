@@ -6,7 +6,7 @@ class create():
     Creates a system object with a given instance name.
     This is the base object of design explorer.
 
-    A system can contain other systems by using the add_components method. 
+    A system can contain other systems by using the add_components method.
     '''
 
     def __init__(self, name):
@@ -26,4 +26,3 @@ class create():
             if oComponent.instanceName == sString:
                 return oComponent
         raise ValueError('Component named ' + sString + ' could not be found in system ' + self.name)
-        return None

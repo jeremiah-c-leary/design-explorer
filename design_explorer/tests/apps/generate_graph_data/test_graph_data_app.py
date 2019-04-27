@@ -80,6 +80,6 @@ class test_edge_generation(unittest.TestCase):
         lExpected.append('Comp1,Comp5,Directed')
 
         self.assertEqual(lExpected, de.apps.generate_graph_data.edge_list(self.oCca))
-         
+
 if __name__ == '__main__':
     unittest.main()

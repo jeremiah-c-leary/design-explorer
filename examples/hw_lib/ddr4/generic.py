@@ -11,7 +11,7 @@ def create():
     
     oDataInterface = de.interface.create('Data')
     oDiscreteInterface = de.interface.create('Discrete')
-    
+
     oGeneric.add_sink_interface(oDataInterface)
     oGeneric.add_sink_interface(oDiscreteInterface)
 
