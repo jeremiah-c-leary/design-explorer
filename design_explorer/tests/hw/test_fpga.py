@@ -8,8 +8,9 @@ from design_explorer.hw import fpga
 class test_hw_fpga(unittest.TestCase):
 
     def test_fpga_class_attributes_exist(self):
-        oFpga = fpga.create('fpga1')
-        self.assertEqual(oFpga.name, 'fpga1')
+        oFpga = fpga.create('fpga')
+        self.assertEqual(oFpga.name, 'fpga')
+        self.assertEqual(oFpga.instanceName, None)
         self.assertEqual(oFpga.hdl_blocks, None)
 
     def test_fpga_add_hdl_block_method(self):
