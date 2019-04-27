@@ -8,7 +8,7 @@ import design_explorer as de
 def create():
 
     oGeneric = de.component.create('DDR4')
-    
+
     oDataInterface = de.interface.create('Data')
     oDiscreteInterface = de.interface.create('Discrete')
 

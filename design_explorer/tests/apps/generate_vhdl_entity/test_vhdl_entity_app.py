@@ -19,8 +19,8 @@ class test_system(unittest.TestCase):
 
     def test_entity_with_interfaces_wo_ports(self):
         oHdlComponent = de.hdl.component.create('hdl_top')
-        oInterface1 = oHdlComponent.create_interface('Interface1')
-        oInterface2 = oHdlComponent.create_interface('Interface2')
+        oHdlComponent.create_interface('Interface1')
+        oHdlComponent.create_interface('Interface2')
 
         lExpected = []
         lExpected.append('entity HDL_TOP is')

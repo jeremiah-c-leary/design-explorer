@@ -11,7 +11,7 @@ def create():
     oPart = de.hw.part.create('AD9213')
     oPart.manufacturer = 'Analog Devices'
     oPart.partNumber = 'AD9213'
-    
+
     oDataInterface = de.interface.create('Data')
     oDataInterface.add_source_port(de.port.create('SERDOUT', 16))
 

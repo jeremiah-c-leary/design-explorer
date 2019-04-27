@@ -9,7 +9,7 @@ import design_explorer as de
 def create():
 
     oGeneric = de.component.create('ADC')
-    
+
     oDataInterface = de.interface.create('Data')
     oControlInterface = de.interface.create('Control')
     oDiscreteInterface = de.interface.create('Discrete')
