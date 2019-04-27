@@ -4,7 +4,7 @@ def generate_vhdl_entity(oHdlComponent):
     lReturn = []
 
     add_entity_header(lReturn, oHdlComponent)
-    if not oHdlComponent.interfaces is None:
+    if oHdlComponent.interfaces is not None:
         for oInterface in oHdlComponent.interfaces:
             lReturn.append('    -- [I:' + oInterface.name + ']')
             add_ports(lReturn, oInterface)
@@ -16,7 +16,7 @@ def generate_vhdl_entity(oHdlComponent):
 
 
 def add_ports(lReturn, oInterface):
-    if not oInterface.ports is None:
+    if oInterface.ports is not None:
         for oPort in oInterface.ports:
             sReturn = '    ' + oPort.name + ' : ' + oPort.direction + ' '
             sReturn += add_port_type(oPort)

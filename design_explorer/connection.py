@@ -29,6 +29,7 @@ class create():
         oInterface = oComponent.get_interface_named(de.utils.extract_interface_from_path(sString))
         return oInterface
 
+
 def automap_ports(self):
     myMap = {}
     try:
