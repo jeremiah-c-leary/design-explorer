@@ -14,23 +14,3 @@ class create(component.create):
 
     def add_hdl_block(self, oHdlBlock):
         self.hdl_blocks = utils.append_to_list(self.hdl_blocks, oHdlBlock)
-
-    def create_entity(self):
-        lReturn = []
-        lReturn.append('entity ' + self.name.upper() + ' is')
-        lReturn.append('  port map (')
-        for iIndex, oInterface in enumerate(self.interfaces):
-            sInterfaceType = self.interface_types[iIndex]
-            lReturn.extend(extract_interface(oInterface, sInterfaceType))
-            lReturn.append('')
-        lReturn.append('  )')
-        lReturn.append('end entity ' + self.name.upper() + ';')
-
-        return lReturn
-
-
-def extract_interface(oInterface, sInterfaceType):
-    lReturn = []
-    for sLine in oInterface.extract_port_list(sInterfaceType):
-        lReturn.append('    ' + sLine)
-    return lReturn

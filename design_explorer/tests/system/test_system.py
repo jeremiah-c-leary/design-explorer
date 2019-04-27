@@ -57,5 +57,16 @@ class test_system(unittest.TestCase):
         self.assertEqual(oSystem.connections[2].source.name, 'Interface1_1')
         self.assertEqual(oSystem.connections[3].source.name, 'Interface2_1')
 
+    def test_get_component_named_method(self):
+        oSystem = system.create('System1')
+        oComponent1 = oSystem.add_component(component.create('Component1', 'Component1'))
+        oComponent2 = oSystem.add_component(component.create('Component2', 'Component2'))
+        oComponent3 = oSystem.add_component(component.create('Component3', 'Component3'))
+
+        self.assertEqual(oSystem.get_component_named('Component1'), oComponent1)
+        self.assertEqual(oSystem.get_component_named('Component2'), oComponent2)
+        self.assertEqual(oSystem.get_component_named('Component3'), oComponent3)
+        self.assertRaises(ValueError, oSystem.get_component_named,'Comp1')
+
 if __name__ == '__main__':
     unittest.main()

@@ -33,6 +33,8 @@ class test_port(unittest.TestCase):
         self.assertEqual(oPort.direction, 'inout')
         self.assertEqual(oPort.description, 'This is an inout port')
 
+    def test_invalid_port_direction(self):
+        self.assertRaises(ValueError, port.create, 'Port1', 10, 'bidir', 'This is an inout port')
 
 if __name__ == '__main__':
     unittest.main()
