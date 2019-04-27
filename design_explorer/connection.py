@@ -1,10 +1,11 @@
 
 class create():
 
-    def __init__(self, name, source, sink, automap=True):
+    def __init__(self, name, oSystem, source, sink, automap=True):
         self.name = name 
-        self.source = source
-        self.sink = sink
+        self.parent = oSystem
+        self.source = self._find_interface(source)
+        self.sink = self._find_interface(sink)
         self.map = self._initial_map(automap)
 
     def _initial_map(self, automap):
@@ -25,3 +26,12 @@ class create():
         except TypeError:
             self.map = {}
             self.map[source] = sink
+
+    def _find_interface(self, sString):
+        lPath = sString.split('.')
+        sComponent = lPath[0]
+        sInterface = lPath[1]
+        oComponent = self.parent.get_component_named(sComponent)
+        oInterface = oComponent.get_interface_named(sInterface)
+        return oInterface
+

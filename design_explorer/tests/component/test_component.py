@@ -56,7 +56,7 @@ class test_hw_component(unittest.TestCase):
 
         self.assertEqual(oComponent.get_interface_named('Interface1').name, 'Interface1')
         self.assertEqual(oComponent.get_interface_named('Interface2').name, 'Interface2')
-        self.assertEqual(oComponent.get_interface_named('Blah'), None)
+        self.assertRaises(ValueError, oComponent.get_interface_named, 'Blah')
 
     def test_interface_parent_attribute(self):
         oIntSource = interface.create('Interface1')

@@ -62,10 +62,10 @@ class test_edge_generation(unittest.TestCase):
 
     def test_five_nodes_with_five_edges(self):
 
-        oConnection1 = de.connection.create('Connction1', self.oComp1.get_interface_named('C1 I1'), self.oComp2.get_interface_named('C2 I1'))
-        oConnection2 = de.connection.create('Connction1', self.oComp1.get_interface_named('C1 I2'), self.oComp3.get_interface_named('C3 I1'))
-        oConnection3 = de.connection.create('Connction1', self.oComp1.get_interface_named('C1 I3'), self.oComp4.get_interface_named('C4 I1'))
-        oConnection4 = de.connection.create('Connction1', self.oComp1.get_interface_named('C1 I4'), self.oComp5.get_interface_named('C5 I1'))
+        oConnection1 = de.connection.create('Connection1', self.oCca, 'Comp1.C1 I1', 'Comp2.C2 I1')
+        oConnection2 = de.connection.create('Connection1', self.oCca, 'Comp1.C1 I2', 'Comp3.C3 I1')
+        oConnection3 = de.connection.create('Connection1', self.oCca, 'Comp1.C1 I3', 'Comp4.C4 I1')
+        oConnection4 = de.connection.create('Connection1', self.oCca, 'Comp1.C1 I4', 'Comp5.C5 I1')
 
         self.oCca.add_connection(oConnection1)
         self.oCca.add_connection(oConnection2)

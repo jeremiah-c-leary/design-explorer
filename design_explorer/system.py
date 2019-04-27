@@ -21,3 +21,9 @@ class create():
     def add_connection(self, oConnection):
         self.connections = utils.append_to_list(self.connections, oConnection)
 
+    def get_component_named(self, sString):
+        for oComponent in self.components:
+            if oComponent.name == sString:
+                return oComponent
+        raise ValueError('Component named ' + sString + ' could not be found in system ' + self.name)
+        return None
