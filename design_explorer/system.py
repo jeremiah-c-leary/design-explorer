@@ -16,6 +16,7 @@ class create():
 
     def add_component(self, oItem):
         self.components = utils.append_to_list(self.components, oItem)
+        return oItem
 
     def add_connection(self, oConnection):
         self.connections = utils.append_to_list(self.connections, oConnection)

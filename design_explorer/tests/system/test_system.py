@@ -20,12 +20,13 @@ class test_system(unittest.TestCase):
         oSystem = system.create('System1')
         oSystem.add_component(component.create('Component1'))
         oSystem.add_component(component.create('Component2'))
-        oSystem.add_component(component.create('Component3'))
+        oComponent3 = oSystem.add_component(component.create('Component3'))
 
         self.assertEqual(len(oSystem.components), 3)
         self.assertEqual(oSystem.components[0].name, 'Component1')
         self.assertEqual(oSystem.components[1].name, 'Component2')
         self.assertEqual(oSystem.components[2].name, 'Component3')
+        self.assertEqual(oComponent3, oSystem.components[2])
 
     def test_system_add_connection_method(self):
         oSystem = system.create('System1')
