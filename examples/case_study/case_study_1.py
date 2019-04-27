@@ -9,86 +9,60 @@ oCCA = de.hw.cca.create('CCA')
 oSystem.add_component(oCCA)
 
 # Create components in system
-oADC = hw_lib.adc.analog_devices.ad4110_1.create('ADC')
-oTempSensor = hw_lib.temp_sensor.analog_devices.ltc2986.create('TempSensor')
-oLED = hw_lib.led.lite_on.lta_1000g.create('LED')
-oHost = hw_lib.processors.texas_instruments.omap_l137.create('Host')
-oClockGen = hw_lib.clock.idt.mk2771_16.create('Clock')
-oDiscretes = hw_lib.generic.discretes.create('Discretes')
-oFpga = hw_lib.fpga.intel.max10.max10m50.create('FPGA')
+oCCA.add_component(hw_lib.adc.analog_devices.ad4110_1.create('ADC'))
+oCCA.add_component(hw_lib.temp_sensor.analog_devices.ltc2986.create('TempSensor'))
+oCCA.add_component(hw_lib.led.lite_on.lta_1000g.create('LED'))
+oCCA.add_component(hw_lib.processors.texas_instruments.omap_l137.create('Host'))
+oCCA.add_component(hw_lib.clock.idt.mk2771_16.create('Clock'))
+oCCA.add_component(hw_lib.generic.discretes.create('Discretes'))
+oFpga = oCCA.add_component(hw_lib.fpga.intel.max10.max10m50.create('FPGA'))
 
-oCCA.add_component(oADC)
-oCCA.add_component(oTempSensor)
-oCCA.add_component(oLED)
-oCCA.add_component(oHost)
-oCCA.add_component(oClockGen)
-oCCA.add_component(oDiscretes)
-oCCA.add_component(oFpga)
+# Define interfaces on FPGA
 
-# Define interface on FPGA
-
-oClock = de.interface.create('Clock')
+oClock = oFpga.create_interface('Clock')
 oClock.create_port('CLK', 1, 'in')
 
-oFpga.add_interface(oClock)
-
-oReset = de.interface.create('Reset')
+oReset = oFpga.create_interface('Reset')
 oReset.create_port('RESET_N', 1, 'in')
 
-oFpga.add_interface(oReset)
-
-oAdcSpiInterface = de.interface.create('ADC SPI')
+oAdcSpiInterface = oFpga.create_interface('ADC SPI')
 oAdcSpiInterface.add_port(de.port.create('ADC_CS_N', 1, 'in'))
 oAdcSpiInterface.add_port(de.port.create('ADC_SCLK', 1, 'in'))
 oAdcSpiInterface.add_port(de.port.create('ADC_MOSI', 1, 'in'))
 oAdcSpiInterface.add_port(de.port.create('ADC_MISO', 1, 'out'))
 
-oAdcDiscretes = de.interface.create('ADC Discretes')
+oAdcDiscretes = oFpga.create_interface('ADC Discretes')
 oAdcDiscretes.add_port(de.port.create('ADC_SYNC_N', 1, 'out'))
 oAdcDiscretes.add_port(de.port.create('ADC_ERR_N', 1, 'out'))
 oAdcDiscretes.add_port(de.port.create('ADC_ADR', 2, 'out'))
 
-oAdcInputSelect = de.interface.create('ADC Input Select')
+oAdcInputSelect = oFpga.create_interface('ADC Input Select')
 oAdcInputSelect.add_port(de.port.create('ADC_AIN', 3, 'out'))
 
-oFpga.add_interface(oAdcSpiInterface)
-oFpga.add_interface(oAdcDiscretes)
-oFpga.add_interface(oAdcInputSelect)
-
-oTsSpi = de.interface.create('Temp Sensor SPI')
+oTsSpi = oFpga.create_interface('Temp Sensor SPI')
 oTsSpi.add_port(de.port.create('TS_SCLK', 1, 'out'))
 oTsSpi.add_port(de.port.create('TS_MOSI', 1, 'out'))
 oTsSpi.add_port(de.port.create('TS_CS_N', 1, 'out'))
 oTsSpi.add_port(de.port.create('TS_MISO', 1, 'in'))
 
-oTsDiscretes = de.interface.create('Temp Sensor Discretes')
+oTsDiscretes = oFpga.create_interface('Temp Sensor Discretes')
 oTsDiscretes.add_port(de.port.create('TS_RESET_N', 1, 'out'))
 oTsDiscretes.add_port(de.port.create('TS_INT', 1, 'in'))
 
-oFpga.add_interface(oTsSpi)
-oFpga.add_interface(oTsDiscretes)
-
-oLed = de.interface.create('LED')
+oLed = oFpga.create_interface('LED')
 oLed.create_port('LED', 10, 'out')
 
-oFpga.add_interface(oLed)
-
-oHostSpi = de.interface.create('HOST SPI')
+oHostSpi = oFpga.create_interface('HOST SPI')
 oHostSpi.create_port('HOST_CS_N', 1, 'in')
 oHostSpi.create_port('HOST_SCLK', 1, 'in')
 oHostSpi.create_port('HOST_MOSI', 1, 'in')
 oHostSpi.create_port('HOST_MISO', 1, 'out')
-oFpga.add_interface(oHostSpi)
 
-oInputDiscretes = de.interface.create('Input Discretes')
+oInputDiscretes = oFpga.create_interface('Input Discretes')
 oInputDiscretes.create_port('DISC_IN', 8, 'in')
 
-oOutputDiscretes = de.interface.create('Output Discretes')
+oOutputDiscretes = oFpga.create_interface('Output Discretes')
 oOutputDiscretes.create_port('DISC_OUT', 8, 'out')
-
-oFpga.add_interface(oInputDiscretes)
-oFpga.add_interface(oOutputDiscretes)
-
 
 # Add connections
 
