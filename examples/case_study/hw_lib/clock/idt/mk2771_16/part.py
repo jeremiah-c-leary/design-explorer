@@ -1,9 +1,9 @@
 from . import interfaces
 import design_explorer as de
 
-def create (self):
+def create (instanceName):
 
-    oReturn = de.component.create('mk2771_16')
+    oReturn = de.component.create('mk2771_16', instanceName)
 
     oReturn.add_interface(interfaces.oPclock)
 

@@ -1,9 +1,9 @@
 from . import interfaces
 import design_explorer as de
 
-def create (self):
+def create (instanceName):
 
-    oReturn = de.component.create('ad4110-1')
+    oReturn = de.component.create('ad4110-1', instanceName)
 
     oReturn.add_interface(interfaces.oSPI)
     oReturn.add_interface(interfaces.oDiscretes)

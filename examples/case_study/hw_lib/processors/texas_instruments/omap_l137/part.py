@@ -1,9 +1,10 @@
 from . import interfaces
 import design_explorer as de
 
-def create (self):
 
-    oReturn = de.component.create('omap-l137')
+def create (instanceName):
+
+    oReturn = de.component.create('omap-l137', instanceName)
 
     oReturn.add_interface(interfaces.oSPI)
     oReturn.add_interface(interfaces.oGPIO0)

@@ -93,45 +93,45 @@ oFpga.add_interface(oOutputDiscretes)
 # Add connections
 
 # Connect clock and reset
-oConnection1 = de.connection.create('clock', oClockGen.get_interface_named('PClock'), oFpga.get_interface_named('Clock'), False)
+oConnection1 = de.connection.create('clock', oCCA, 'Clock.PClock', 'FPGA.Clock', False)
 oConnection1.map_port('Pclock[0]', 'CLK')
 
-oConnection2 = de.connection.create('reset', oHost.get_interface_named('GPIO_bank_0'), oFpga.get_interface_named('Reset'), False)
+oConnection2 = de.connection.create('reset', oCCA, 'Host.GPIO_bank_0', 'FPGA.Reset', False)
 oConnection2.map_port('GPIO0[2]', 'RESET_N')
 
 # Connect to input and output discretes
-oConnection3 = de.connection.create('discrete inputs', oDiscretes.get_interface_named('Output Discretes'), oFpga.get_interface_named('Input Discretes'))
-oConnection4 = de.connection.create('discrete outputs', oFpga.get_interface_named('Output Discretes'), oDiscretes.get_interface_named('Input Discretes'))
+oConnection3 = de.connection.create('discrete inputs', oCCA, 'Discretes.Output Discretes', 'FPGA.Input Discretes')
+oConnection4 = de.connection.create('discrete outputs', oCCA, 'FPGA.Output Discretes', 'Discretes.Input Discretes')
 
 # Connect to LED
-oConnection5 = de.connection.create('LED', oFpga.get_interface_named('LED'), oLED.get_interface_named('Anode'))
+oConnection5 = de.connection.create('LED', oCCA, 'FPGA.LED', 'LED.Anode')
 
 # Connect to Host SPI
-oConnection6 = de.connection.create('Host', oHost.get_interface_named('SPI0'), oFpga.get_interface_named('HOST SPI'), False)
+oConnection6 = de.connection.create('Host', oCCA, 'Host.SPI0', 'FPGA.HOST SPI', False)
 oConnection6.map_port('SPI0_SCS_N', 'HOST_CS_N')
 oConnection6.map_port('SPI0_CLK', 'HOST_SCLK')
 oConnection6.map_port('SPI0_SIMO', 'HOST_MOSI')
 oConnection6.map_port('SPI0_SOMI', 'HOST_MISO')
 
 # Connect to temp sensor SPI
-oConnection7 = de.connection.create('TS SPI', oFpga.get_interface_named('Temp Sensor SPI'), oTempSensor.get_interface_named('SPI'))
+oConnection7 = de.connection.create('TS SPI', oCCA, 'FPGA.Temp Sensor SPI', 'TempSensor.SPI')
 
 # Connect to temp sensor reset
-oConnection8 = de.connection.create('TS Reset', oFpga.get_interface_named('Temp Sensor Discretes'), oTempSensor.get_interface_named('Discretes'), False)
+oConnection8 = de.connection.create('TS Reset', oCCA, 'FPGA.Temp Sensor Discretes', 'TempSensor.Discretes', False)
 oConnection8.map_port('TS_RESET_N', 'TS_RESET_N')
 
 # Connect to temp sensor interrupt
-oConnection9 = de.connection.create('TS Interrupt', oTempSensor.get_interface_named('Interrupt'), oFpga.get_interface_named('Temp Sensor Discretes'), False)
+oConnection9 = de.connection.create('TS Interrupt', oCCA, 'TempSensor.Interrupt', 'FPGA.Temp Sensor Discretes', False)
 oConnection9.map_port('INTERRUPT', 'TS_INT')
 
 # Connect to ADC SPI interface
-oConnection10 = de.connection.create('ADC SPI', oFpga.get_interface_named('ADC SPI'), oADC.get_interface_named('SPI'))
+oConnection10 = de.connection.create('ADC SPI', oCCA, 'FPGA.ADC SPI', 'ADC.SPI')
 
 # Connect to ADC discretes
-oConnection11 = de.connection.create('ADC Discretes', oFpga.get_interface_named('ADC Discretes'), oADC.get_interface_named('Discretes'))
+oConnection11 = de.connection.create('ADC Discretes', oCCA, 'FPGA.ADC Discretes', 'ADC.Discretes')
 
 # Connect to ADC input select
-oConnection11 = de.connection.create('ADC Input Select', oFpga.get_interface_named('ADC Input Select'), oADC.get_interface_named('Input Select'), False)
+oConnection11 = de.connection.create('ADC Input Select', oCCA, 'FPGA.ADC Input Select', 'ADC.Input Select', False)
 oConnection11.map_port('ADC_AIN[2]', 'AIN2')
 oConnection11.map_port('ADC_AIN[1]', 'AIN1')
 oConnection11.map_port('ADC_AIN[0]', 'AINCOM')
