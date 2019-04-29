@@ -38,3 +38,18 @@ def extract_component_from_path(sPath):
 
     lPath = sPath.split('.')
     return lPath[-2]
+
+
+def get_component_paths(oSystem, sPath, lPaths):
+    try:
+        lComponents = oSystem.components
+    except:
+        lPaths.append(sPath)
+        return lPaths
+
+    for oComponent in lComponents:
+        if sPath not in lPaths:
+            lPaths.append(sPath)
+        get_component_paths(oComponent, sPath + '.' + oComponent.instanceName, lPaths)
+
+    return lPaths
