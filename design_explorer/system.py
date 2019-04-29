@@ -11,6 +11,7 @@ class create():
 
     def __init__(self, name):
         self.name = name
+        self.instanceName = name
         self.components = None
         self.connections = None
 
@@ -21,8 +22,17 @@ class create():
     def add_connection(self, oConnection):
         self.connections = utils.append_to_list(self.connections, oConnection)
 
-    def get_component_named(self, sString):
+    def get_component_named(self, sPath, sFullPath=None):
+        if sFullPath is None:
+            sFullPath = sPath
+        lPath = sPath.split('.')
+        sComponentName = lPath[0]
+        lComponentPath = lPath[1:]
         for oComponent in self.components:
-            if oComponent.instanceName == sString:
-                return oComponent
-        raise ValueError('Component named ' + sString + ' could not be found in system ' + self.name)
+            if oComponent.instanceName == sComponentName:
+                if len(lPath) == 1:
+                    return oComponent
+                else:
+                    return oComponent.get_component_named('.'.join(lComponentPath), sFullPath)
+        if len(lPath) == 1:
+            raise ValueError('Component named ' + sFullPath + ' could not be found in system ' + self.name)
