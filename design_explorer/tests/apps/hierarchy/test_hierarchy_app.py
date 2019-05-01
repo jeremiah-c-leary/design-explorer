@@ -130,6 +130,7 @@ class test_filter_upto_level(unittest.TestCase):
 
     def test_level_1_filter(self):
         lExpected = []
+        lExpected.append('top')
         lExpected.append('top.1')
         lExpected.append('top.2')
         lExpected.append('top.3')
@@ -140,6 +141,7 @@ class test_filter_upto_level(unittest.TestCase):
 
     def test_level_2_filter(self):
         lExpected = []
+        lExpected.append('top')
         lExpected.append('top.1')
         lExpected.append('top.1.1')
         lExpected.append('top.1.2')
@@ -158,6 +160,7 @@ class test_filter_upto_level(unittest.TestCase):
     def test_level_3_filter(self):
         lExpected = []
 
+        lExpected.append('top')
         lExpected.append('top.1')
         lExpected.append('top.1.1')
         lExpected.append('top.1.2')
@@ -179,6 +182,7 @@ class test_filter_upto_level(unittest.TestCase):
     def test_level_4_filter(self):
         lExpected = []
 
+        lExpected.append('top')
         lExpected.append('top.1')
         lExpected.append('top.1.1')
         lExpected.append('top.1.2')
@@ -235,40 +239,40 @@ class test_extract_end_points(unittest.TestCase):
         lActual = de.apps.hierarchy.extract_end_points(self.lInput)
         self.assertEqual(lExpected, lActual)
 
-# jcl - not sure if I need this function yet
-#class test_extract_mid_points(unittest.TestCase):
-#
-#    def setUp(self):
-#        self.lInput = []
-#        self.lInput.append('top')
-#        self.lInput.append('top.1')
-#        self.lInput.append('top.1.1')
-#        self.lInput.append('top.1.2')
-#        self.lInput.append('top.2')
-#        self.lInput.append('top.2.1')
-#        self.lInput.append('top.2.2')
-#        self.lInput.append('top.2.2.1')
-#        self.lInput.append('top.3')
-#        self.lInput.append('top.3.1')
-#        self.lInput.append('top.3.1.1')
-#        self.lInput.append('top.3.1.2')
-#        self.lInput.append('top.3.1.2.1')
-#        self.lInput.append('top.3.2')
-#        self.lInput.append('top.3.3')
-#        self.lInput.append('top.4')
-#
-#    def test_extract_mid_points(self):
-#        lExpected = []
-#
-#        lExpected.append('top.1')
-#        lExpected.append('top.2')
-#        lExpected.append('top.2.2')
-#        lExpected.append('top.3')
-#        lExpected.append('top.3.1')
-#        lExpected.append('top.3.1.2')
-#
-#        lActual = de.apps.hierarchy.extract_mid_points(self.lInput)
-#        self.assertEqual(lExpected, lActual)
+class test_extract_mid_points(unittest.TestCase):
+
+    def setUp(self):
+        self.lInput = []
+        self.lInput.append('top')
+        self.lInput.append('top.1')
+        self.lInput.append('top.1.1')
+        self.lInput.append('top.1.2')
+        self.lInput.append('top.2')
+        self.lInput.append('top.2.1')
+        self.lInput.append('top.2.2')
+        self.lInput.append('top.2.2.1')
+        self.lInput.append('top.3')
+        self.lInput.append('top.3.1')
+        self.lInput.append('top.3.1.1')
+        self.lInput.append('top.3.1.2')
+        self.lInput.append('top.3.1.2.1')
+        self.lInput.append('top.3.2')
+        self.lInput.append('top.3.3')
+        self.lInput.append('top.4')
+
+    def test_extract_mid_points(self):
+        lExpected = []
+
+        lExpected.append('top')
+        lExpected.append('top.1')
+        lExpected.append('top.2')
+        lExpected.append('top.2.2')
+        lExpected.append('top.3')
+        lExpected.append('top.3.1')
+        lExpected.append('top.3.1.2')
+
+        lActual = de.apps.hierarchy.extract_mid_points(self.lInput)
+        self.assertEqual(lExpected, lActual)
 
 if __name__ == '__main__':
     unittest.main()
