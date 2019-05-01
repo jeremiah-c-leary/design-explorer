@@ -3,7 +3,7 @@
 import unittest
 import design_explorer as de
 
-class test_node_generation(unittest.TestCase):
+class test_hierarchy_app(unittest.TestCase):
 
     def test_single_system_with_five_components(self):
 
@@ -29,7 +29,7 @@ class test_node_generation(unittest.TestCase):
         lExpected.append('cca.Comp4')
         lExpected.append('cca.Comp5')
 
-        self.assertEqual(lExpected, de.apps.hierarchy_map.create(oCca))
+        self.assertEqual(lExpected, de.apps.hierarchy.extract(oCca))
 
 
     def test_multiple_cca(self):
@@ -76,7 +76,7 @@ class test_node_generation(unittest.TestCase):
         lExpected.append('Top Level.Cca3.Cca4.Comp2')
         lExpected.append('Top Level.Cca3.Cca4.Comp3')
 
-        lActual = de.apps.hierarchy_map.create(oSystem)
+        lActual = de.apps.hierarchy.extract(oSystem)
         
         self.assertEqual(lExpected, lActual)
 

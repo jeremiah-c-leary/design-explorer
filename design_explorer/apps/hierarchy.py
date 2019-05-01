@@ -2,7 +2,7 @@
 import design_explorer as de
 
 
-def create(oSystem):
+def extract(oSystem):
 
     lReturn = []
 
