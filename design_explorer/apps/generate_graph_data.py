@@ -1,30 +1,19 @@
 import design_explorer as de
 
 
+
 def node_list(oSystem, iLevel=1):
 
     lReturn = []
     lReturn.append('Id, Label')
 
-    lNodes = []
-    de.utils.get_component_paths(oSystem, oSystem.instanceName, lNodes)
+    lNodes = de.apps.hierarchy.extract(oSystem)
 
-    # Filter nodes based on level
-    lFilteredNodes = []
-    for sNode in lNodes:
-        if sNode.count('.') <= iLevel and sNode.count('.') > 0:
-            lFilteredNodes.append(sNode)
+    lFilteredNodes = de.apps.hierarchy.filter_by_level(lNodes, iLevel)
+    
+    lFinalNodes = de.apps.hierarchy.extract_end_points(lFilteredNodes)
 
-    lFinalNodes = []
-    for sNode in lFilteredNodes[::-1]:
-        fFound = False
-        for sFinalNode in lFinalNodes:
-            if sFinalNode.count(sNode) > 0:
-                fFound = True
-        if not fFound:
-            lFinalNodes.append(sNode)
-
-    for sNode in lFinalNodes[::-1]:
+    for sNode in lFinalNodes:
         lReturn.append(sNode + ', ' + sNode.split('.')[-1])
 
     return lReturn

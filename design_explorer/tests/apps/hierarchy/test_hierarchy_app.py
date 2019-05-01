@@ -5,7 +5,7 @@ import design_explorer as de
 
 class test_hierarchy_app(unittest.TestCase):
 
-    def test_single_system_with_five_components(self):
+    def test_single_cca_with_five_components(self):
 
         oCca = de.hw.cca.create('cca')
 
@@ -32,7 +32,7 @@ class test_hierarchy_app(unittest.TestCase):
         self.assertEqual(lExpected, de.apps.hierarchy.extract(oCca))
 
 
-    def test_multiple_cca(self):
+    def test_multiple_cca_extract(self):
 
         oSystem = de.system.create('Top Level')
 
@@ -75,6 +75,33 @@ class test_hierarchy_app(unittest.TestCase):
         lExpected.append('Top Level.Cca3.Cca4.Comp1')
         lExpected.append('Top Level.Cca3.Cca4.Comp2')
         lExpected.append('Top Level.Cca3.Cca4.Comp3')
+
+        lActual = de.apps.hierarchy.extract(oSystem)
+        
+        self.assertEqual(lExpected, lActual)
+
+    def test_deep_nested_extract(self):
+
+        oSystem = de.system.create('Top')
+        oCca1 = oSystem.add_component(de.hw.cca.create('Cca1'))
+        oCca2 = oCca1.add_component(de.hw.cca.create('Cca2'))
+        oCca3 = oCca2.add_component(de.hw.cca.create('Cca3'))
+        oCca4 = oCca3.add_component(de.hw.cca.create('Cca4'))
+        oCca5 = oCca4.add_component(de.hw.cca.create('Cca5'))
+        oCca6 = oCca5.add_component(de.hw.cca.create('Cca6'))
+        oCca7 = oCca6.add_component(de.hw.cca.create('Cca7'))
+        oCca7Comp = oCca7.add_component(de.component.create('Comp1', 'Comp1'))
+
+        lExpected = []
+        lExpected.append('Top')
+        lExpected.append('Top.Cca1')
+        lExpected.append('Top.Cca1.Cca2')
+        lExpected.append('Top.Cca1.Cca2.Cca3')
+        lExpected.append('Top.Cca1.Cca2.Cca3.Cca4')
+        lExpected.append('Top.Cca1.Cca2.Cca3.Cca4.Cca5')
+        lExpected.append('Top.Cca1.Cca2.Cca3.Cca4.Cca5.Cca6')
+        lExpected.append('Top.Cca1.Cca2.Cca3.Cca4.Cca5.Cca6.Cca7')
+        lExpected.append('Top.Cca1.Cca2.Cca3.Cca4.Cca5.Cca6.Cca7.Comp1')
 
         lActual = de.apps.hierarchy.extract(oSystem)
         
