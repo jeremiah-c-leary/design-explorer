@@ -16,7 +16,7 @@ def extract(oSystem):
     return lReturn
 
 
-def filter_by_level(lHierarchy, iLevel):
+def filter_upto_level(lHierarchy, iLevel):
     lReturn = []
     for sNode in lHierarchy:
         if sNode.count('.') <= iLevel and sNode.count('.') > 0:

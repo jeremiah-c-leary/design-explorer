@@ -9,7 +9,7 @@ def node_list(oSystem, iLevel=1):
 
     lNodes = de.apps.hierarchy.extract(oSystem)
 
-    lFilteredNodes = de.apps.hierarchy.filter_by_level(lNodes, iLevel)
+    lFilteredNodes = de.apps.hierarchy.filter_upto_level(lNodes, iLevel)
     
     lFinalNodes = de.apps.hierarchy.extract_end_points(lFilteredNodes)
 
@@ -19,7 +19,7 @@ def node_list(oSystem, iLevel=1):
     return lReturn
 
 
-def edge_list(oSystem):
+def edge_list(oSystem, iLevel=1):
 
     lReturn = []
     lReturn.append('Source,Target,Type')
