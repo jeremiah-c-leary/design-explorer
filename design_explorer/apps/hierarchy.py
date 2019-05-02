@@ -6,11 +6,6 @@ def extract(oSystem):
 
     lReturn = []
 
-    sLevel = oSystem.name
-    lReturn.append(sLevel)
-
-    lComponents = oSystem.components
-
     de.utils.get_component_paths(oSystem, oSystem.instanceName, lReturn)
 
     return lReturn
@@ -51,3 +46,18 @@ def extract_mid_points(lHierarchy):
             lEndPoints.append(sNode)
 
     return lReturn[::-1]
+
+
+def extract_connections(oSystem, lMidPoints):
+    lReturn = []
+    for sMidPoint in lMidPoints:
+        print sMidPoint
+        try:
+            oComponent = oSystem.get_component_named(sMidPoint)
+            print oComponent
+            print oComponent.name
+            lReturn.extend(oComponent.connections)
+        except ValueError:
+            print 'Could not find component ' + sMidPoint
+
+    return lReturn
