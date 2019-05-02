@@ -62,6 +62,33 @@ class test_connection(unittest.TestCase):
 
         self.assertEqual(dMap, oConnection.map)
 
+    def test_multilevel_connection(self):
+        oSystem = de.system.create('top')
+        oCca1 = de.hw.cca.create('Cca1')
+        oCca2 = de.hw.cca.create('Cca2')
+        oCca3 = de.hw.cca.create('Cca3')
+        oCca4 = de.hw.cca.create('Cca4')
+        oCca5 = de.hw.cca.create('Cca5')
+        oCca6 = de.hw.cca.create('Cca6')
+
+        oSystem.add_component(oCca1)
+        oSystem.add_component(oCca2)
+        oCca1.add_component(oCca3)
+        oCca2.add_component(oCca4)
+        oCca3.add_component(oCca5)
+        oCca4.add_component(oCca6)
+
+        oCca5Comp1 = oCca5.add_component(de.component.create('Cca5Comp1', 'Cca5Comp1'))
+        oInterface1 = oCca5Comp1.create_interface('I1')
+        oCca6Comp2 = oCca6.add_component(de.component.create('Cca6Comp1', 'Cca6Comp1'))
+        oInterface2 = oCca6Comp2.create_interface('I2')
+
+
+        oCon1 = de.connection.create('con1', oSystem, 'Cca1.Cca3.Cca5.Cca5Comp1.I1', 'Cca2.Cca4.Cca6.Cca6Comp1.I2', False)
+
+        self.assertEqual(oInterface1, oCon1.source)
+        self.assertEqual(oInterface2, oCon1.sink)
+
 
 if __name__ == '__main__':
     unittest.main()

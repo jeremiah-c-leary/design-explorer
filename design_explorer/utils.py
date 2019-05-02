@@ -40,6 +40,15 @@ def extract_component_from_path(sPath):
     return lPath[-2]
 
 
+def remove_interface_from_path(sPath):
+    '''
+    Returns the entire path to a component
+    '''
+
+    lPath = sPath.split('.')
+    return '.'.join(lPath[:-1])
+
+
 def get_component_paths(oSystem, sPath, lPaths):
     try:
         lComponents = oSystem.components
