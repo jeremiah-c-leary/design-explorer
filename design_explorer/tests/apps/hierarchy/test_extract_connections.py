@@ -43,10 +43,11 @@ class test_connections(unittest.TestCase):
         oCca4Comp3 = oCca4.add_component(de.component.create('Comp3', 'Comp3'))
         oCca4Comp3.create_interface('I1')
 
-        self.oCon1 = de.connection.create('con1', oCca1, 'Cca1.Comp1.I1', 'Cca1.Comp2.I1', False)
-        self.oCon2 = de.connection.create('con2', oCca2, 'Cca2.Comp1.I1', 'Cca2.Comp2.I1', False)
-        self.oCon3 = de.connection.create('con3', oCca3, 'Cca3.Comp1.I1', 'Cca3.Comp2.I1', False)
-        self.oCon4 = de.connection.create('con4', oCca3, 'Cca4.Comp1.I1', 'Cca4.Comp2.I1', False)
+        self.oCon1 = de.connection.create('con1', oCca1, 'Comp1.I1', 'Comp2.I1', False)
+        self.oCon2 = de.connection.create('con2', oCca2, 'Comp1.I1', 'Comp2.I1', False)
+        self.oCon3 = de.connection.create('con3', oCca3, 'Comp1.I1', 'Comp2.I1', False)
+        self.oCon4 = de.connection.create('con4', oCca3, 'Comp1.I1', 'Comp2.I1', False)
+#        self.oCon5 = de.connection.create('con5', self.oSystem, 'Cca1.Comp1.I1', 'Cca2.Comp1.I1', False)
 
         oCca1.add_connection(self.oCon1)
         oCca2.add_connection(self.oCon2)
