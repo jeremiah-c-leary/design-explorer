@@ -22,7 +22,10 @@ class test_functions(unittest.TestCase):
         sInput = 'cca1.cca2.cca3.comp1.I1'
         sExpected = 'cca1.cca2.cca3.comp1'
         self.assertEqual(sExpected, de.utils.remove_interface_from_path(sInput))
-        
+
+    def test_trim_path_to_level(self):
+        sInput = 'top.cca1.cca2.cca3.comp2.i1'
+        self.assertEqual('top.cca1.cca2', de.utils.trim_path_to_level(sInput, 2))
 
 if __name__ == '__main__':
     unittest.main()

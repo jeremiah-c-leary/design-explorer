@@ -12,6 +12,7 @@ class test_interface(unittest.TestCase):
         self.assertEqual(oInterface.ports, None)
         self.assertEqual(oInterface.source, False)
         self.assertEqual(oInterface.parent, None)
+        self.assertEqual(oInterface.path, None)
 
     def test_interface_add_port_method(self):
         oInterface = interface.create('Interface1')

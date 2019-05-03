@@ -62,3 +62,13 @@ def get_component_paths(oSystem, sPath, lPaths):
         get_component_paths(oComponent, sPath + '.' + oComponent.instanceName, lPaths)
 
     return lPaths
+
+
+def split_path(sPath):
+    return sPath.split('.')    
+
+
+def trim_path_to_level(sPath, iLevel):
+    lPath = split_path(sPath)
+    return '.'.join(lPath[:iLevel + 1])
+

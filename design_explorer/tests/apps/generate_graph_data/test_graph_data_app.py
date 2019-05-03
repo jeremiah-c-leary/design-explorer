@@ -31,6 +31,42 @@ class test_node_generation(unittest.TestCase):
 
         self.assertEqual(lExpected, de.apps.generate_graph_data.node_list(oCca))
 
+    def test_multiple_cca(self):
+
+        oSystem = de.system.create('Top Level')
+
+        oCca1 = oSystem.add_component(de.hw.cca.create('Cca1'))
+
+        oCca1Comp1 = oCca1.add_component(de.component.create('Comp1', 'Comp1'))
+        oCca1Comp2 = oCca1.add_component(de.component.create('Comp2', 'Comp2'))
+        oCca1Comp3 = oCca1.add_component(de.component.create('Comp3', 'Comp3'))
+
+        oCca2 = oSystem.add_component(de.hw.cca.create('Cca2'))
+        oCca2Comp1 = oCca2.add_component(de.component.create('Comp1', 'Comp1'))
+        oCca2Comp2 = oCca2.add_component(de.component.create('Comp2', 'Comp2'))
+        oCca2Comp3 = oCca2.add_component(de.component.create('Comp3', 'Comp3'))
+
+        lExpected = []
+        lExpected.append('Id, Label')
+        lExpected.append('Top Level.Cca1, Cca1')
+        lExpected.append('Top Level.Cca2, Cca2')
+
+        lActual = de.apps.generate_graph_data.node_list(oSystem)
+
+        self.assertEqual(lExpected, lActual)
+
+        lExpected = []
+        lExpected.append('Id, Label')
+        lExpected.append('Top Level.Cca1.Comp1, Comp1')
+        lExpected.append('Top Level.Cca1.Comp2, Comp2')
+        lExpected.append('Top Level.Cca1.Comp3, Comp3')
+        lExpected.append('Top Level.Cca2.Comp1, Comp1')
+        lExpected.append('Top Level.Cca2.Comp2, Comp2')
+        lExpected.append('Top Level.Cca2.Comp3, Comp3')
+
+        lActual = de.apps.generate_graph_data.node_list(oSystem, 2)
+        self.assertEqual(lExpected, lActual)
+
 
 class test_edge_generation(unittest.TestCase):
 
@@ -74,47 +110,74 @@ class test_edge_generation(unittest.TestCase):
 
         lExpected = []
         lExpected.append('Source,Target,Type')
-        lExpected.append('Comp1,Comp2,Directed')
-        lExpected.append('Comp1,Comp3,Directed')
-        lExpected.append('Comp1,Comp4,Directed')
-        lExpected.append('Comp1,Comp5,Directed')
+        lExpected.append('cca.Comp1,cca.Comp2,Directed')
+        lExpected.append('cca.Comp1,cca.Comp3,Directed')
+        lExpected.append('cca.Comp1,cca.Comp4,Directed')
+        lExpected.append('cca.Comp1,cca.Comp5,Directed')
 
         self.assertEqual(lExpected, de.apps.generate_graph_data.edge_list(self.oCca))
 
     def test_multiple_cca(self):
 
-        oSystem = de.system.create('Top Level')
+        oSystem = de.system.create('top')
 
         oCca1 = oSystem.add_component(de.hw.cca.create('Cca1'))
 
         oCca1Comp1 = oCca1.add_component(de.component.create('Comp1', 'Comp1'))
+        oCca1Comp1.create_interface('C1_I0')
+        oCca1Comp1.create_interface('C1_I1')
+        oCca1Comp1.create_interface('C1_I2')
+        oCca1Comp1.create_interface('C1_I3')
         oCca1Comp2 = oCca1.add_component(de.component.create('Comp2', 'Comp2'))
+        oCca1Comp2.create_interface('C2_I1')
+        oCca1Comp2.create_interface('C2_I2')
         oCca1Comp3 = oCca1.add_component(de.component.create('Comp3', 'Comp3'))
+        oCca1Comp3.create_interface('C3_I1')
+        oCca1Comp3.create_interface('C3_I2')
 
         oCca2 = oSystem.add_component(de.hw.cca.create('Cca2'))
         oCca2Comp1 = oCca2.add_component(de.component.create('Comp1', 'Comp1'))
+        oCca2Comp1.create_interface('C1_I0')
+        oCca2Comp1.create_interface('C1_I1')
+        oCca2Comp1.create_interface('C1_I2')
+        oCca2Comp1.create_interface('C1_I3')
         oCca2Comp2 = oCca2.add_component(de.component.create('Comp2', 'Comp2'))
+        oCca2Comp2.create_interface('C2_I1')
+        oCca2Comp2.create_interface('C2_I2')
         oCca2Comp3 = oCca2.add_component(de.component.create('Comp3', 'Comp3'))
+        oCca2Comp3.create_interface('C3_I1')
+        oCca2Comp3.create_interface('C3_I2')
+
+        oCca1.add_connection(de.connection.create('con1_1', oCca1, 'Comp1.C1_I2', 'Comp2.C2_I1', False))
+        oCca1.add_connection(de.connection.create('con1_2', oCca1, 'Comp2.C2_I2', 'Comp3.C3_I1', False))
+        oCca1.add_connection(de.connection.create('con1_3', oCca1, 'Comp3.C3_I2', 'Comp1.C1_I3', False))
+
+        oCca2.add_connection(de.connection.create('con2_1', oCca2, 'Comp1.C1_I2', 'Comp2.C2_I1', False))
+        oCca2.add_connection(de.connection.create('con2_2', oCca2, 'Comp2.C2_I2', 'Comp3.C3_I1', False))
+        oCca2.add_connection(de.connection.create('con2_3', oCca2, 'Comp3.C3_I2', 'Comp1.C1_I3', False))
+
+        oSystem.add_connection(de.connection.create('sys1_1', oSystem, 'Cca1.Comp1.C1_I0', 'Cca2.Comp1.C1_I0', False))
 
         lExpected = []
-        lExpected.append('Id, Label')
-        lExpected.append('Top Level.Cca1, Cca1')
-        lExpected.append('Top Level.Cca2, Cca2')
+        lExpected.append('Source,Target,Type')
+        lExpected.append('top.Cca1,top.Cca2,Directed')
 
-        lActual = de.apps.generate_graph_data.node_list(oSystem)
 
+
+        lActual = de.apps.generate_graph_data.edge_list(oSystem, 1)
         self.assertEqual(lExpected, lActual)
 
         lExpected = []
-        lExpected.append('Id, Label')
-        lExpected.append('Top Level.Cca1.Comp1, Comp1')
-        lExpected.append('Top Level.Cca1.Comp2, Comp2')
-        lExpected.append('Top Level.Cca1.Comp3, Comp3')
-        lExpected.append('Top Level.Cca2.Comp1, Comp1')
-        lExpected.append('Top Level.Cca2.Comp2, Comp2')
-        lExpected.append('Top Level.Cca2.Comp3, Comp3')
+        lExpected.append('Source,Target,Type')
+        lExpected.append('top.Cca1.Comp1,top.Cca2.Comp1,Directed')
+        lExpected.append('top.Cca1.Comp1,top.Cca1.Comp2,Directed')
+        lExpected.append('top.Cca1.Comp2,top.Cca1.Comp3,Directed')
+        lExpected.append('top.Cca1.Comp3,top.Cca1.Comp1,Directed')
+        lExpected.append('top.Cca2.Comp1,top.Cca2.Comp2,Directed')
+        lExpected.append('top.Cca2.Comp2,top.Cca2.Comp3,Directed')
+        lExpected.append('top.Cca2.Comp3,top.Cca2.Comp1,Directed')
 
-        lActual = de.apps.generate_graph_data.node_list(oSystem, 2)
+        lActual = de.apps.generate_graph_data.edge_list(oSystem, 2)
         self.assertEqual(lExpected, lActual)
 
 if __name__ == '__main__':

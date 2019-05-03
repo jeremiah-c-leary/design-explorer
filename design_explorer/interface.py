@@ -16,6 +16,7 @@ class create():
         self.ports = None
         self.source = False
         self.parent = None
+        self.path = None
 
     def add_port(self, oPort):
         self.ports = utils.append_to_list(self.ports, oPort)

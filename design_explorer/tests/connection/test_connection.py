@@ -26,6 +26,8 @@ class test_connection(unittest.TestCase):
         self.assertEqual(oConnection.name, 'con1')
         self.assertEqual(oConnection.source.name, 'Interface1')
         self.assertEqual(oConnection.sink.name, 'Interface2')
+        self.assertEqual(oConnection.source.path, 'Top Level.Component1')
+        self.assertEqual(oConnection.sink.path, 'Top Level.Component2')
 
         dMap = {}
         dMap['I1 P1'] = 'I2 P1'
