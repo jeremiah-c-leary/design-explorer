@@ -27,7 +27,6 @@ class create():
     def _find_interface(self, sString, sSystemName):
         oComponent = self.parent.get_component_named(de.utils.remove_interface_from_path(sString))
         oInterface = oComponent.get_interface_named(de.utils.extract_interface_from_path(sString))
-        oInterface.path = sSystemName + '.' + de.utils.remove_interface_from_path(sString)
         return oInterface
 
 
