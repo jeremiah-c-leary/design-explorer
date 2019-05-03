@@ -87,6 +87,8 @@ class test_hierarchy_app(unittest.TestCase):
         oCca2 = oCca1.add_component(de.hw.cca.create('Cca2'))
         oCca3 = oCca2.add_component(de.hw.cca.create('Cca3'))
         oCca4 = oCca3.add_component(de.hw.cca.create('Cca4'))
+        oCca8 = oCca4.add_component(de.hw.cca.create('Cca8'))
+        oCca8Comp = oCca8.add_component(de.component.create('Comp2', 'Comp2'))
         oCca5 = oCca4.add_component(de.hw.cca.create('Cca5'))
         oCca6 = oCca5.add_component(de.hw.cca.create('Cca6'))
         oCca7 = oCca6.add_component(de.hw.cca.create('Cca7'))
@@ -98,6 +100,8 @@ class test_hierarchy_app(unittest.TestCase):
         lExpected.append('Top.Cca1.Cca2')
         lExpected.append('Top.Cca1.Cca2.Cca3')
         lExpected.append('Top.Cca1.Cca2.Cca3.Cca4')
+        lExpected.append('Top.Cca1.Cca2.Cca3.Cca4.Cca8')
+        lExpected.append('Top.Cca1.Cca2.Cca3.Cca4.Cca8.Comp2')
         lExpected.append('Top.Cca1.Cca2.Cca3.Cca4.Cca5')
         lExpected.append('Top.Cca1.Cca2.Cca3.Cca4.Cca5.Cca6')
         lExpected.append('Top.Cca1.Cca2.Cca3.Cca4.Cca5.Cca6.Cca7')
@@ -106,6 +110,39 @@ class test_hierarchy_app(unittest.TestCase):
         lActual = de.apps.hierarchy.extract(oSystem)
         
         self.assertEqual(lExpected, lActual)
+
+    def test_deep_nested_update_path(self):
+
+        oSystem = de.system.create('Top')
+        oCca1 = oSystem.add_component(de.hw.cca.create('Cca1'))
+        oCca2 = oCca1.add_component(de.hw.cca.create('Cca2'))
+        oCca3 = oCca2.add_component(de.hw.cca.create('Cca3'))
+        oCca4 = oCca3.add_component(de.hw.cca.create('Cca4'))
+        oCca8 = oCca4.add_component(de.hw.cca.create('Cca8'))
+        oCca8Comp = oCca8.add_component(de.component.create('Comp2', 'Comp2'))
+        oCca8CompInterface = oCca8Comp.create_interface('I1')
+        oCca5 = oCca4.add_component(de.hw.cca.create('Cca5'))
+        oCca6 = oCca5.add_component(de.hw.cca.create('Cca6'))
+        oCca7 = oCca6.add_component(de.hw.cca.create('Cca7'))
+        oCca7Comp = oCca7.add_component(de.component.create('Comp1', 'Comp1'))
+        oCca7CompInterface = oCca7Comp.create_interface('I2')
+
+        de.apps.hierarchy.update_paths(oSystem)
+
+        self.assertEqual(oSystem.path,'Top')
+        self.assertEqual(oCca1.path,'Top.Cca1')
+        self.assertEqual(oCca2.path,'Top.Cca1.Cca2')
+        self.assertEqual(oCca3.path,'Top.Cca1.Cca2.Cca3')
+        self.assertEqual(oCca4.path,'Top.Cca1.Cca2.Cca3.Cca4')
+        self.assertEqual(oCca5.path,'Top.Cca1.Cca2.Cca3.Cca4.Cca5')
+        self.assertEqual(oCca6.path,'Top.Cca1.Cca2.Cca3.Cca4.Cca5.Cca6')
+        self.assertEqual(oCca7.path,'Top.Cca1.Cca2.Cca3.Cca4.Cca5.Cca6.Cca7')
+        self.assertEqual(oCca8.path,'Top.Cca1.Cca2.Cca3.Cca4.Cca8')
+        self.assertEqual(oCca7Comp.path,'Top.Cca1.Cca2.Cca3.Cca4.Cca5.Cca6.Cca7.Comp1')
+        self.assertEqual(oCca8Comp.path,'Top.Cca1.Cca2.Cca3.Cca4.Cca8.Comp2')
+        self.assertEqual(oCca7CompInterface.path,'Top.Cca1.Cca2.Cca3.Cca4.Cca5.Cca6.Cca7.Comp1.I2')
+        self.assertEqual(oCca8CompInterface.path,'Top.Cca1.Cca2.Cca3.Cca4.Cca8.Comp2.I1')
+
 
 class test_filter_upto_level(unittest.TestCase):
 

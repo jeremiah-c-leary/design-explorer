@@ -66,3 +66,25 @@ def extract_connections(oSystem, lMidPoints):
 def remove_system_name(sString):
     iIndex = sString.find('.')
     return sString[iIndex + 1:]
+
+
+def update_paths(oSystem, sPath=None):
+
+    if sPath is None:
+        sPath = oSystem.name
+    else:
+        sPath += '.' + oSystem.instanceName
+
+    oSystem.path = sPath
+
+    try:
+        for oInterface in oSystem.interfaces:
+            oInterface.path = sPath + '.' + oInterface.name
+    except:
+        pass
+
+    try:
+        for oComponent in oSystem.components:
+            update_paths(oComponent, sPath)
+    except AttributeError:
+        pass
