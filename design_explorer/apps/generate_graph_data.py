@@ -5,7 +5,7 @@ import design_explorer as de
 def node_list(oSystem, iLevel=1):
 
     lReturn = []
-    lReturn.append('Id,Label,Type')
+    lReturn.append('Id,Label,Type,Level')
 
     lNodes = de.apps.hierarchy.extract(oSystem)
 
@@ -15,7 +15,7 @@ def node_list(oSystem, iLevel=1):
 
     for sNode in lFinalNodes:
         oComponent = oSystem.get_component_named(de.utils.remove_first_element_from_path(sNode))
-        lReturn.append(sNode + ',' + sNode.split('.')[-1] + ',' + oComponent.type)
+        lReturn.append(sNode + ',' + sNode.split('.')[-1] + ',' + oComponent.type + ',' + de.utils.remove_last_element_from_path(sNode))
 
     return lReturn
 

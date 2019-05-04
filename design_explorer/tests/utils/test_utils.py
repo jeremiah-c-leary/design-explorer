@@ -28,5 +28,9 @@ class test_functions(unittest.TestCase):
         sInput = 'top.cca1.cca2.cca3.comp2.i1'
         self.assertEqual('cca1.cca2.cca3.comp2.i1', de.utils.remove_first_element_from_path(sInput))
 
+    def test_remove_last_element_from_path(self):
+        sInput = 'top.cca1.cca2.cca3.comp2'
+        self.assertEqual('top.cca1.cca2.cca3', de.utils.remove_last_element_from_path(sInput))
+
 if __name__ == '__main__':
     unittest.main()

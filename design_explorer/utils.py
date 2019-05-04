@@ -75,3 +75,7 @@ def trim_path_to_level(sPath, iLevel):
 
 def remove_first_element_from_path(sPath):
     return '.'.join(split_path(sPath)[1:])
+
+
+def remove_last_element_from_path(sPath):
+    return '.'.join(split_path(sPath)[:-1])
