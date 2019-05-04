@@ -13,6 +13,7 @@ class create():
         self.interfaces = None
         self.datasheet = None
         self.instanceName = instanceName
+        self.type = 'component'
 
     def add_interface(self, oInterface):
         oInterface.parent = self

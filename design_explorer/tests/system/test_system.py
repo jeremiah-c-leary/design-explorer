@@ -14,6 +14,7 @@ class test_system(unittest.TestCase):
         self.assertEqual(oSystem.name, 'instance')
         self.assertEqual(oSystem.components, None)
         self.assertEqual(oSystem.connections, None)
+        self.assertEqual(oSystem.type, 'system')
 
     def test_system_add_component_method(self):
         oSystem = system.create('System1')

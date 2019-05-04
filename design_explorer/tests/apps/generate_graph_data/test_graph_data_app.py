@@ -22,12 +22,12 @@ class test_node_generation(unittest.TestCase):
         oCca.add_component(oComp5)
 
         lExpected = []
-        lExpected.append('Id, Label')
-        lExpected.append('cca.Comp1, Comp1')
-        lExpected.append('cca.Comp2, Comp2')
-        lExpected.append('cca.Comp3, Comp3')
-        lExpected.append('cca.Comp4, Comp4')
-        lExpected.append('cca.Comp5, Comp5')
+        lExpected.append('Id,Label')
+        lExpected.append('cca.Comp1,Comp1,component')
+        lExpected.append('cca.Comp2,Comp2,component')
+        lExpected.append('cca.Comp3,Comp3,component')
+        lExpected.append('cca.Comp4,Comp4,component')
+        lExpected.append('cca.Comp5,Comp5,component')
 
         self.assertEqual(lExpected, de.apps.generate_graph_data.node_list(oCca))
 
@@ -47,22 +47,22 @@ class test_node_generation(unittest.TestCase):
         oCca2Comp3 = oCca2.add_component(de.component.create('Comp3', 'Comp3'))
 
         lExpected = []
-        lExpected.append('Id, Label')
-        lExpected.append('Top Level.Cca1, Cca1')
-        lExpected.append('Top Level.Cca2, Cca2')
+        lExpected.append('Id,Label')
+        lExpected.append('Top Level.Cca1,Cca1,cca')
+        lExpected.append('Top Level.Cca2,Cca2,cca')
 
         lActual = de.apps.generate_graph_data.node_list(oSystem)
 
         self.assertEqual(lExpected, lActual)
 
         lExpected = []
-        lExpected.append('Id, Label')
-        lExpected.append('Top Level.Cca1.Comp1, Comp1')
-        lExpected.append('Top Level.Cca1.Comp2, Comp2')
-        lExpected.append('Top Level.Cca1.Comp3, Comp3')
-        lExpected.append('Top Level.Cca2.Comp1, Comp1')
-        lExpected.append('Top Level.Cca2.Comp2, Comp2')
-        lExpected.append('Top Level.Cca2.Comp3, Comp3')
+        lExpected.append('Id,Label')
+        lExpected.append('Top Level.Cca1.Comp1,Comp1,component')
+        lExpected.append('Top Level.Cca1.Comp2,Comp2,component')
+        lExpected.append('Top Level.Cca1.Comp3,Comp3,component')
+        lExpected.append('Top Level.Cca2.Comp1,Comp1,component')
+        lExpected.append('Top Level.Cca2.Comp2,Comp2,component')
+        lExpected.append('Top Level.Cca2.Comp3,Comp3,component')
 
         lActual = de.apps.generate_graph_data.node_list(oSystem, 2)
         self.assertEqual(lExpected, lActual)

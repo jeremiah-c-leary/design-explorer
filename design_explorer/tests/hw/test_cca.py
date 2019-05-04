@@ -10,6 +10,7 @@ class test_cca(unittest.TestCase):
         self.assertEqual(oCca.name, 'cca1')
         self.assertEqual(oCca.components, None)
         self.assertEqual(oCca.connections, None)
+        self.assertEqual(oCca.type, 'cca')
 
     def test_cca_class_add_component_method(self):
         oCca = de.hw.cca.create('cca1')

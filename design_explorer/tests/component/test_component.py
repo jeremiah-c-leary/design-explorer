@@ -12,6 +12,7 @@ class test_hw_component(unittest.TestCase):
         self.assertEqual(oComponent.interfaces, None)
         self.assertEqual(oComponent.datasheet, None)
         self.assertEqual(oComponent.instanceName, None)
+        self.assertEqual(oComponent.type, 'component')
 
     def test_component_datasheet_attribute(self):
         oComponent = component.create('component1')

@@ -14,6 +14,7 @@ class create():
         self.instanceName = name
         self.components = None
         self.connections = None
+        self.type = 'system'
 
     def add_component(self, oItem):
         self.components = utils.append_to_list(self.components, oItem)

@@ -13,3 +13,4 @@ class cca(system.create):
 
     def __init__(self, name):
         system.create.__init__(self, name)
+        self.type = 'cca'
