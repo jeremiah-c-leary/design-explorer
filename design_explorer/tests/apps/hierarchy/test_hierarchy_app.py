@@ -77,7 +77,7 @@ class test_hierarchy_app(unittest.TestCase):
         lExpected.append('Top Level.Cca3.Cca4.Comp3')
 
         lActual = de.apps.hierarchy.extract(oSystem)
-        
+
         self.assertEqual(lExpected, lActual)
 
     def test_deep_nested_extract(self):

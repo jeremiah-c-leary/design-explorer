@@ -68,7 +68,7 @@ class test_connections(unittest.TestCase):
         lExpected.append(self.oCon2)
         lExpected.append(self.oCon3)
         lExpected.append(self.oCon4)
- 
+
         self.assertEqual(lExpected, lActual)
 
 
