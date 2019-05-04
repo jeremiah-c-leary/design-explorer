@@ -52,7 +52,7 @@ def remove_interface_from_path(sPath):
 def get_component_paths(oSystem, sPath, lPaths):
     try:
         lComponents = oSystem.components
-    except:
+    except AttributeError:
         lPaths.append(sPath)
         return lPaths
 

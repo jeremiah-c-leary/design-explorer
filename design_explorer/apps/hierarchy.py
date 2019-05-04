@@ -82,7 +82,7 @@ def update_paths(oSystem, sPath=None):
     try:
         for oInterface in oSystem.interfaces:
             oInterface.path = sPath + '.' + oInterface.name
-    except:
+    except AttributeError:
         pass
 
     try:
