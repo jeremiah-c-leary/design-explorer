@@ -37,14 +37,14 @@ class test_node_generation(unittest.TestCase):
 
         oCca1 = oSystem.add_component(de.hw.cca.create('Cca1'))
 
-        oCca1Comp1 = oCca1.add_component(de.component.create('Comp1', 'Comp1'))
-        oCca1Comp2 = oCca1.add_component(de.component.create('Comp2', 'Comp2'))
-        oCca1Comp3 = oCca1.add_component(de.component.create('Comp3', 'Comp3'))
+        oCca1.add_component(de.component.create('Comp1', 'Comp1'))
+        oCca1.add_component(de.component.create('Comp2', 'Comp2'))
+        oCca1.add_component(de.component.create('Comp3', 'Comp3'))
 
         oCca2 = oSystem.add_component(de.hw.cca.create('Cca2'))
-        oCca2Comp1 = oCca2.add_component(de.component.create('Comp1', 'Comp1'))
-        oCca2Comp2 = oCca2.add_component(de.component.create('Comp2', 'Comp2'))
-        oCca2Comp3 = oCca2.add_component(de.component.create('Comp3', 'Comp3'))
+        oCca2.add_component(de.component.create('Comp1', 'Comp1'))
+        oCca2.add_component(de.component.create('Comp2', 'Comp2'))
+        oCca2.add_component(de.component.create('Comp3', 'Comp3'))
 
         lExpected = []
         lExpected.append('Id,Label,Type,Level')

@@ -1,5 +1,4 @@
 
-import hw_lib
 import design_explorer as de
 
 oSystem = de.system.create('Top level system')

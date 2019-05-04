@@ -38,24 +38,24 @@ class test_hierarchy_app(unittest.TestCase):
 
         oCca1 = oSystem.add_component(de.hw.cca.create('Cca1'))
 
-        oCca1Comp1 = oCca1.add_component(de.component.create('Comp1', 'Comp1'))
-        oCca1Comp2 = oCca1.add_component(de.component.create('Comp2', 'Comp2'))
-        oCca1Comp3 = oCca1.add_component(de.component.create('Comp3', 'Comp3'))
+        oCca1.add_component(de.component.create('Comp1', 'Comp1'))
+        oCca1.add_component(de.component.create('Comp2', 'Comp2'))
+        oCca1.add_component(de.component.create('Comp3', 'Comp3'))
 
         oCca2 = oSystem.add_component(de.hw.cca.create('Cca2'))
-        oCca2Comp1 = oCca2.add_component(de.component.create('Comp1', 'Comp1'))
-        oCca2Comp2 = oCca2.add_component(de.component.create('Comp2', 'Comp2'))
-        oCca2Comp3 = oCca2.add_component(de.component.create('Comp3', 'Comp3'))
+        oCca2.add_component(de.component.create('Comp1', 'Comp1'))
+        oCca2.add_component(de.component.create('Comp2', 'Comp2'))
+        oCca2.add_component(de.component.create('Comp3', 'Comp3'))
 
         oCca3 = oSystem.add_component(de.hw.cca.create('Cca3'))
-        oCca3Comp1 = oCca3.add_component(de.component.create('Comp1', 'Comp1'))
-        oCca3Comp2 = oCca3.add_component(de.component.create('Comp2', 'Comp2'))
-        oCca3Comp3 = oCca3.add_component(de.component.create('Comp3', 'Comp3'))
+        oCca3.add_component(de.component.create('Comp1', 'Comp1'))
+        oCca3.add_component(de.component.create('Comp2', 'Comp2'))
+        oCca3.add_component(de.component.create('Comp3', 'Comp3'))
 
         oCca4 = oCca3.add_component(de.hw.cca.create('Cca4'))
-        oCca4Comp1 = oCca4.add_component(de.component.create('Comp1', 'Comp1'))
-        oCca4Comp2 = oCca4.add_component(de.component.create('Comp2', 'Comp2'))
-        oCca4Comp3 = oCca4.add_component(de.component.create('Comp3', 'Comp3'))
+        oCca4.add_component(de.component.create('Comp1', 'Comp1'))
+        oCca4.add_component(de.component.create('Comp2', 'Comp2'))
+        oCca4.add_component(de.component.create('Comp3', 'Comp3'))
 
         lExpected = []
         lExpected.append('Top Level')
@@ -88,11 +88,11 @@ class test_hierarchy_app(unittest.TestCase):
         oCca3 = oCca2.add_component(de.hw.cca.create('Cca3'))
         oCca4 = oCca3.add_component(de.hw.cca.create('Cca4'))
         oCca8 = oCca4.add_component(de.hw.cca.create('Cca8'))
-        oCca8Comp = oCca8.add_component(de.component.create('Comp2', 'Comp2'))
+        oCca8.add_component(de.component.create('Comp2', 'Comp2'))
         oCca5 = oCca4.add_component(de.hw.cca.create('Cca5'))
         oCca6 = oCca5.add_component(de.hw.cca.create('Cca6'))
         oCca7 = oCca6.add_component(de.hw.cca.create('Cca7'))
-        oCca7Comp = oCca7.add_component(de.component.create('Comp1', 'Comp1'))
+        oCca7.add_component(de.component.create('Comp1', 'Comp1'))
 
         lExpected = []
         lExpected.append('Top')
