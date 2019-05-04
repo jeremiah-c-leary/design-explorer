@@ -57,8 +57,10 @@ def extract_connections(oSystem, lMidPoints):
         else:
             sMidPoint = remove_system_name(sMidPoint)
             oComponent = oSystem.get_component_named(sMidPoint)
-            if oComponent.connections is not None:
+            try:
                 lReturn.extend(oComponent.connections)
+            except AttributeError:
+                pass
 
     return lReturn
 
