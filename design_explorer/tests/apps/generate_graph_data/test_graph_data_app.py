@@ -22,7 +22,7 @@ class test_node_generation(unittest.TestCase):
         oCca.add_component(oComp5)
 
         lExpected = []
-        lExpected.append('Id,Label')
+        lExpected.append('Id,Label,Type')
         lExpected.append('cca.Comp1,Comp1,component')
         lExpected.append('cca.Comp2,Comp2,component')
         lExpected.append('cca.Comp3,Comp3,component')
@@ -47,7 +47,7 @@ class test_node_generation(unittest.TestCase):
         oCca2Comp3 = oCca2.add_component(de.component.create('Comp3', 'Comp3'))
 
         lExpected = []
-        lExpected.append('Id,Label')
+        lExpected.append('Id,Label,Type')
         lExpected.append('Top Level.Cca1,Cca1,cca')
         lExpected.append('Top Level.Cca2,Cca2,cca')
 
@@ -56,7 +56,7 @@ class test_node_generation(unittest.TestCase):
         self.assertEqual(lExpected, lActual)
 
         lExpected = []
-        lExpected.append('Id,Label')
+        lExpected.append('Id,Label,Type')
         lExpected.append('Top Level.Cca1.Comp1,Comp1,component')
         lExpected.append('Top Level.Cca1.Comp2,Comp2,component')
         lExpected.append('Top Level.Cca1.Comp3,Comp3,component')
