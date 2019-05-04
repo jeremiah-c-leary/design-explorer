@@ -7,11 +7,11 @@ oSystem = de.system.create('Top level system')
 oCca = oSystem.add_component(de.hw.cca.create('CCA'))
 
 
-oFpga1 = oCca.add_component(de.component.create('FPGA1', 'FPGA1'))
-oFpga2 = oCca.add_component(de.component.create('FPGA2', 'FPGA2'))
-oFpga3 = oCca.add_component(de.component.create('FPGA3', 'FPGA3'))
-oFpga4 = oCca.add_component(de.component.create('FPGA4', 'FPGA4'))
-oFpga5 = oCca.add_component(de.component.create('FPGA5', 'FPGA5'))
+oFpga1 = oCca.add_component(de.hw.fpga.create('FPGA1', 'FPGA1'))
+oFpga2 = oCca.add_component(de.hw.fpga.create('FPGA2', 'FPGA2'))
+oFpga3 = oCca.add_component(de.hw.fpga.create('FPGA3', 'FPGA3'))
+oFpga4 = oCca.add_component(de.hw.fpga.create('FPGA4', 'FPGA4'))
+oFpga5 = oCca.add_component(de.hw.fpga.create('FPGA5', 'FPGA5'))
 
 oComp1  = oCca.add_component(de.component.create('Comp1',  'Comp1'))
 oComp2  = oCca.add_component(de.component.create('Comp2',  'Comp2'))
