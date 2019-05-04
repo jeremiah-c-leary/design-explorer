@@ -11,6 +11,7 @@ class create(component.create):
     def __init__(self, name, instanceName=None):
         component.create.__init__(self, name, instanceName)
         self.hdl_blocks = None
+        self.type = 'fpga'
 
     def add_hdl_block(self, oHdlBlock):
         self.hdl_blocks = utils.append_to_list(self.hdl_blocks, oHdlBlock)

@@ -12,6 +12,7 @@ class test_hw_fpga(unittest.TestCase):
         self.assertEqual(oFpga.name, 'fpga')
         self.assertEqual(oFpga.instanceName, None)
         self.assertEqual(oFpga.hdl_blocks, None)
+        self.assertEqual(oFpga.type, 'fpga')
 
     def test_fpga_add_hdl_block_method(self):
         oFpga = fpga.create('fpga1')
