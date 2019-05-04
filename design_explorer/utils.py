@@ -65,7 +65,7 @@ def get_component_paths(oSystem, sPath, lPaths):
 
 
 def split_path(sPath):
-    return sPath.split('.')    
+    return sPath.split('.')
 
 
 def trim_path_to_level(sPath, iLevel):

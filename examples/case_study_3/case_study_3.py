@@ -147,6 +147,6 @@ for i in range (1, 3):
 
     lNodes = de.apps.generate_graph_data.node_list(oSystem, i)
     de.utils.write_to_file('nodes_' + str(i) + '.csv', lNodes)
-    
+
     lEdges = de.apps.generate_graph_data.edge_list(oSystem, i)
     de.utils.write_to_file('edges_' + str(i) + '.csv', lEdges)

@@ -108,7 +108,7 @@ class test_hierarchy_app(unittest.TestCase):
         lExpected.append('Top.Cca1.Cca2.Cca3.Cca4.Cca5.Cca6.Cca7.Comp1')
 
         lActual = de.apps.hierarchy.extract(oSystem)
-        
+
         self.assertEqual(lExpected, lActual)
 
     def test_deep_nested_update_path(self):
